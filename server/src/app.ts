@@ -1,3 +1,6 @@
-import { a } from 'database/a';
+import dotenv from "dotenv";
+import { routes } from 'routes';
 
-console.log(a)
+dotenv.config(); // add environment
+
+routes(); 

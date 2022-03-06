@@ -3,25 +3,52 @@
 /** @jsxImportSource @emotion/react */
 import "twin.macro";
 import React from "react";
-import Background from "asset/images/background.webp";
+import Background from "asset/images/background.jpg";
 import { useState } from "react";
-import { useToggle } from 'react-use';
-import { useHistory } from 'react-router-dom';
+import { useToggle } from "react-use";
+import { useHistory } from "react-router-dom";
+import { BaseAPI } from "api/api";
+import { StatusCode } from "models/enums";
+import { customToast } from "components/Utils/toast.util";
+import { isAdmin, setToken } from "utils/utils";
+import { useDispatch } from "react-redux";
+import { toggleAdmin } from "app/slices/User/admin.slice";
 
 export const Login = () => {
-  const history = useHistory();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isRemember, toggleRemember] = useToggle(false);
+
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleRedirect = (field: string) => {
     history.push(`/${field}`);
   };
 
-  const handleSignIn = () => {
+  const handleSignIn = async () => {
+    const params = {
+      email,
+      password,
+      isRemember,
+    };
+    const response = await BaseAPI.post("/auth/signin", params);
+    if (response.status === StatusCode.OK) {
+      const token = response.data.token;
 
-  }
+      setToken(token);
+
+      dispatch(toggleAdmin(isAdmin(token))); // set admin
+
+      history.push("/");
+      return;
+    }
+    if (response.status === StatusCode.UNAUTHORIZED) {
+      customToast.error("Invalid email or password");
+      return;
+    }
+    customToast.error("Something went wrong");
+  };
   return (
     <div
       tw="min-h-screen sm:flex sm:flex-row mx-0 justify-center bg-cover bg-center z-0"
@@ -29,8 +56,8 @@ export const Login = () => {
     >
       <div tw="flex-col flex self-center p-10 sm:max-w-5xl xl:max-w-2xl z-10">
         <div tw="self-start hidden lg:flex flex-col">
-          <h1 tw="mb-3 font-bold text-5xl text-gray-500">Hi, Welcome Back</h1>
-          <p tw="pr-3 font-bold text-gray-600">
+          <h1 tw="mb-3 font-bold text-5xl text-white">Hi, Welcome Back</h1>
+          <p tw="pr-3 font-bold text-white">
             What would you like to do today? Let get in and start shopping.{" "}
             <br />
           </p>
@@ -106,7 +133,7 @@ export const Login = () => {
               <a
                 rel="noreferrer"
                 tw="ml-1 text-style-purple-1 hover:text-style-purple-2 font-bold cursor-pointer"
-                onClick={() => handleRedirect('signup')}
+                onClick={() => handleRedirect("signup")}
               >
                 Create an account
               </a>
