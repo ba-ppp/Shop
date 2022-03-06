@@ -1,5 +1,5 @@
 import { createStore } from "@reduxjs/toolkit";
-import { rootReducer } from "app/reducer/reducer";
+import { rootReducer } from "app/reducer/Reducer";
 import React from "react";
 import { Provider } from "react-redux";
 import { applyMiddleware } from "redux";

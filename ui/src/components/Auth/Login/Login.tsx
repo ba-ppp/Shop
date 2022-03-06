@@ -12,7 +12,7 @@ import { StatusCode } from "models/enums";
 import { customToast } from "components/Utils/toast.util";
 import { isAdmin, setToken } from "utils/utils";
 import { useDispatch } from "react-redux";
-import { toggleAdmin } from "app/slices/User/admin.slice";
+import { toggleAdmin } from "app/slices/User/Admin.slice";
 
 export const Login = () => {
   const [email, setEmail] = useState("");

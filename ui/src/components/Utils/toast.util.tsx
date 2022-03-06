@@ -1,11 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import 'twin.macro';
-
-
-import { MouseEvent, ReactElement } from 'react';
+import { ReactElement } from 'react';
 import toast, { Toast } from 'react-hot-toast';
+import 'twin.macro';
 import { CustomToast } from './CustomToast';
-import { ToastMessage } from './ToastMessage';
 
 export const customToast = {
   success: (message: string | ReactElement, title?: string) => {
