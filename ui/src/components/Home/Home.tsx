@@ -1,5 +1,11 @@
-import React from 'react';
+import React from "react";
+import { MenuSlider } from "components/MenuSlider/MenuSlider";
 
 export const Home = () => {
-    return (<h1>Home</h1>)
-}
+  return (
+    <div>
+        hi
+      <MenuSlider />
+    </div>
+  );
+};
