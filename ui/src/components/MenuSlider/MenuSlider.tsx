@@ -13,11 +13,11 @@ import {
 } from "@rmwc/list";
 import "@rmwc/list/styles";
 import { ReactComponent as ArrowDown } from "asset/icons/arrow_down.svg";
-import { ReactComponent as AppleLogo } from "asset/images/apple_logo.svg";
-import { ReactComponent as SamsungLogo } from "asset/images/samsung.svg";
-import { ReactComponent as OppoLogo } from "asset/images/oppo.svg";
-import { ReactComponent as XiaomiLogo } from "asset/images/xiaomi.svg";
-import { ReactComponent as VivoLogo } from "asset/images/vivo.svg";
+import { ReactComponent as AppleLogo } from "asset/icons/apple_logo.svg";
+import { ReactComponent as SamsungLogo } from "asset/icons/samsung.svg";
+import { ReactComponent as OppoLogo } from "asset/icons/oppo.svg";
+import { ReactComponent as XiaomiLogo } from "asset/icons/xiaomi.svg";
+import { ReactComponent as VivoLogo } from "asset/icons/vivo.svg";
 type Props = {
   isOpen?: boolean;
   handleClickMenu: (isOpen?: boolean) => void;
@@ -28,8 +28,8 @@ export const MenuSlider = (props: Props) => {
   
   return (
     <List
-      tw="w-52 fixed"
-      css={[!isOpen && tw`duration-500 w-12`, isOpen && tw`duration-500`]}
+      tw="w-64 fixed p-3 border-r-2 border-r-gray-100 h-full"
+      css={[!isOpen && tw`duration-500 w-20`, isOpen && tw`duration-500`]}
     >
       <CollapsibleList
         handle={

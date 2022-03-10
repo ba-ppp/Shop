@@ -23,7 +23,7 @@ export const NavBarMenu = () => {
   };
   return (
     <>
-      <div tw="flex justify-between items-center ml-2 mr-5">
+      <div tw="flex justify-between items-center ml-2 mr-5 p-3 border-b-2 border-b-gray-100">
         <div tw="flex space-x-5 h-9 w-56 leading-4 items-center">
           <button css={styles.box} onClick={() => handleClickMenu(!isOpen)}>
             {isOpen ? (
