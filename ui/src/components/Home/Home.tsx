@@ -1,11 +1,14 @@
+/** @jsxImportSource @emotion/react */
+import "twin.macro";
 import React from "react";
-import { MenuSlider } from "components/MenuSlider/MenuSlider";
 
 export const Home = () => {
   return (
     <div>
+      
+      {/* <div tw='ml-48'>
         hi
-      <MenuSlider />
+      </div> */}
     </div>
   );
 };

@@ -1,66 +1,103 @@
+/* eslint-disable jsx-a11y/alt-text */
+/** @jsxImportSource @emotion/react */
+import tw from "twin.macro";
 import React from "react";
-import { CollapsibleList, List, SimpleListItem } from "@rmwc/list";
-import '@rmwc/list/styles';
-import { ReactComponent as Search } from "asset/icons/search.svg";
+import {
+  CollapsibleList,
+  List,
+  SimpleListItem,
+  ListItemGraphic,
+  ListItem,
+  ListItemText,
+  ListItemMeta,
+} from "@rmwc/list";
+import "@rmwc/list/styles";
+import { ReactComponent as ArrowDown } from "asset/icons/arrow_down.svg";
+import { ReactComponent as AppleLogo } from "asset/images/apple_logo.svg";
+import { ReactComponent as SamsungLogo } from "asset/images/samsung.svg";
+import { ReactComponent as OppoLogo } from "asset/images/oppo.svg";
+import { ReactComponent as XiaomiLogo } from "asset/images/xiaomi.svg";
+import { ReactComponent as VivoLogo } from "asset/images/vivo.svg";
+type Props = {
+  isOpen?: boolean;
+  handleClickMenu: (isOpen?: boolean) => void;
+};
 
-
-export const MenuSlider = () => {
+export const MenuSlider = (props: Props) => {
+  const { isOpen, handleClickMenu } = props;
+  
   return (
-    <List>
+    <List
+      tw="w-52 fixed"
+      css={[!isOpen && tw`duration-500 w-12`, isOpen && tw`duration-500`]}
+    >
       <CollapsibleList
         handle={
-          <SimpleListItem
-            text="Cookies"
-            graphic="favorite"
-            metaIcon={<Search />}
-          />
+          <ListItem>
+            <ListItemGraphic icon={<AppleLogo />} />
+            <ListItemText>Apple</ListItemText>
+            <ListItemMeta icon={<ArrowDown />} />
+          </ListItem>
         }
-        onOpen={() => console.log("open")}
-        onClose={() => console.log("close")}
+        onOpen={() => handleClickMenu(true)}
+        // onClose={() => console.log("close")}
       >
-        <SimpleListItem text="Chocolate Chip" />
-        <SimpleListItem text="Ginger Snap" />
-        <SimpleListItem text="Peanut Butter" />
+        <SimpleListItem text="Phones" />
+        <SimpleListItem text="Watchs" />
+        <SimpleListItem text="Airpad" />
+        <SimpleListItem text="Airpod" />
+      </CollapsibleList>
+
+      <CollapsibleList
+        handle={
+          <ListItem>
+            <ListItemGraphic tw="" icon={<SamsungLogo />} />
+            <ListItemText>Samsung</ListItemText>
+            <ListItemMeta icon={<ArrowDown />} />
+          </ListItem>
+        }
+      >
+        <SimpleListItem text="Phones" />
+        <SimpleListItem text="Tablet" />
+        <SimpleListItem text="Galaxy Buds" />
       </CollapsibleList>
 
       <CollapsibleList
         handle={
           <SimpleListItem
-            text="Pizza"
-            graphic="local_pizza"
-            metaIcon="chevron_right"
+            text="OPPO"
+            graphic={<OppoLogo />}
+            metaIcon={<ArrowDown />}
           />
         }
       >
-        <SimpleListItem text="Cheese" />
-        <SimpleListItem text="Pepperoni" />
-        <SimpleListItem text="Supreme" />
+        <SimpleListItem text="Phones" />
+        <SimpleListItem text="OPPO Buds" />
+        <SimpleListItem text="OPPO Watch" />
       </CollapsibleList>
-
       <CollapsibleList
         handle={
           <SimpleListItem
-            text="Icecream"
-            graphic="star"
-            metaIcon="chevron_right"
+            text="XIAOMI"
+            graphic={<XiaomiLogo />}
+            metaIcon={<ArrowDown />}
           />
         }
       >
-        <SimpleListItem text="Vanilla" />
-        <SimpleListItem text="Chocolate" />
-        <CollapsibleList
-          handle={
-            <SimpleListItem
-              text="Nested Collapsible"
-              graphic="touch_app"
-              metaIcon="chevron_right"
-            />
-          }
-        >
-          <SimpleListItem text="Orange" />
-          <SimpleListItem text="Strawberry" />
-          <SimpleListItem text="Blueberry" />
-        </CollapsibleList>
+        <SimpleListItem text="Phones" />
+        <SimpleListItem text="Xi Watch" />
+        <SimpleListItem text="Xiaomi Pad" />
+      </CollapsibleList>
+      <CollapsibleList
+        handle={
+          <SimpleListItem
+            text="VIVO"
+            graphic={<VivoLogo />}
+            metaIcon={<ArrowDown />}
+          />
+        }
+      >
+        <SimpleListItem text="Phones" />
       </CollapsibleList>
     </List>
   );
