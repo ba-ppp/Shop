@@ -41,6 +41,7 @@ export const MenuSlider = (props: Props) => {
         }
         onOpen={() => handleClickMenu(true)}
         // onClose={() => console.log("close")}
+        // open={isOpen}
       >
         <SimpleListItem text="Phones" />
         <SimpleListItem text="Watchs" />

@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.5.0",
     "@reduxjs/toolkit": "^1.6.2",
+    "@rmwc/button": "^7.0.3",
     "@rmwc/card": "^7.0.3",
     "@rmwc/list": "^7.0.3",
     "@rmwc/typography": "^7.0.3",

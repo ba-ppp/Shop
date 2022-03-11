@@ -8,7 +8,9 @@ import { Toaster } from "react-hot-toast";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { PrivateRoute } from "routes/Private/PrivateRoutes";
 import { PublicRoute } from "routes/Public/PublicRoutes";
-
+import '@rmwc/button/styles';
+import "@rmwc/card/styles";
+import "@rmwc/typography/styles";
 function App() {
   return (
     <div>
