@@ -25,10 +25,10 @@ type Props = {
 
 export const MenuSlider = (props: Props) => {
   const { isOpen, handleClickMenu } = props;
-  
+
   return (
     <List
-      tw="w-64 fixed p-3 border-r-2 border-r-gray-100 h-full"
+      tw="w-64 fixed p-3 border-r-2 border-r-gray-100 h-full mt-0"
       css={[!isOpen && tw`duration-500 w-20`, isOpen && tw`duration-500`]}
     >
       <CollapsibleList
@@ -41,7 +41,7 @@ export const MenuSlider = (props: Props) => {
         }
         onOpen={() => handleClickMenu(true)}
         // onClose={() => console.log("close")}
-        // open={isOpen}
+        open={!isOpen ? false : undefined}
       >
         <SimpleListItem text="Phones" />
         <SimpleListItem text="Watchs" />
@@ -57,6 +57,7 @@ export const MenuSlider = (props: Props) => {
             <ListItemMeta icon={<ArrowDown />} />
           </ListItem>
         }
+        open={!isOpen ? false : undefined}
       >
         <SimpleListItem text="Phones" />
         <SimpleListItem text="Tablet" />
@@ -71,6 +72,7 @@ export const MenuSlider = (props: Props) => {
             metaIcon={<ArrowDown />}
           />
         }
+        open={!isOpen ? false : undefined}
       >
         <SimpleListItem text="Phones" />
         <SimpleListItem text="OPPO Buds" />
@@ -84,6 +86,7 @@ export const MenuSlider = (props: Props) => {
             metaIcon={<ArrowDown />}
           />
         }
+        open={!isOpen ? false : undefined}
       >
         <SimpleListItem text="Phones" />
         <SimpleListItem text="Xi Watch" />
@@ -97,6 +100,7 @@ export const MenuSlider = (props: Props) => {
             metaIcon={<ArrowDown />}
           />
         }
+        open={!isOpen ? false : undefined}
       >
         <SimpleListItem text="Phones" />
       </CollapsibleList>

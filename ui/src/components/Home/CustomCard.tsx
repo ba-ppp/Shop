@@ -7,7 +7,6 @@ import {
   CardPrimaryAction,
   CardActions,
   CardActionButtons,
-  CardActionButton,
   CardActionIcons,
   CardActionIcon,
 } from "@rmwc/card";
@@ -18,24 +17,31 @@ import { ReactComponent as Favorite } from "asset/icons/favorite.svg";
 import { ReactComponent as NoFavorite } from "asset/icons/no_favorite.svg";
 import { color } from "components/twin.style";
 import { Button } from "@rmwc/button";
+import { Product } from 'models/utils.model';
+import { useHistory } from 'react-router-dom';
 
 type Props = {
-  isFavorite?: boolean;
-  // price: number;
+  item: Product;
 };
 
 export const CustomCard = (props: Props) => {
-  const { isFavorite } = props;
+  const { item } = props;
+
+  const history = useHistory();
+
+  const handleClickItem = () => {
+    history.push(`/detail/${item.id}`);
+  }
   return (
     <div tw="ml-16">
       <Card style={{ width: "21rem" }}>
-        <CardPrimaryAction>
+        <CardPrimaryAction onClick={handleClickItem}>
           <CardMedia
             sixteenByNine
             tw=" bg-contain"
             style={{
               backgroundImage: `url('${
-                process.env.PUBLIC_URL + "images/iphone.jpg"
+                process.env.PUBLIC_URL + "/images/iphone.jpg"
               }')`,
             }}
           />
@@ -51,7 +57,7 @@ export const CustomCard = (props: Props) => {
         </CardPrimaryAction>
         <CardActions>
           <CardActionButtons tw='space-x-2 pl-2'>
-            <Button outlined tw="text-red-700! font-bold hover:bg-red-200! border-red-400!">
+            <Button outlined tw="text-red-700! font-bold hover:bg-red-200! border-red-400! active:bg-red-400! focus:bg-red-200!">
               Red
             </Button>
             <Button outlined tw="text-style-purple-2! hover:bg-style-purple-1! font-bold border-style-purple-2!">
@@ -68,7 +74,7 @@ export const CustomCard = (props: Props) => {
           </CardActionButtons>
           <CardActionIcons>
             <CardActionIcon icon={<AddToCart fill={color.purple_2} />} />
-            <CardActionIcon icon={isFavorite ? <Favorite /> : <NoFavorite />} />
+            <CardActionIcon icon={item.isFavorite ? <Favorite /> : <NoFavorite />} />
           </CardActionIcons>
         </CardActions>
       </Card>

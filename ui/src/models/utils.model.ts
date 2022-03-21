@@ -6,6 +6,7 @@ export interface IToken {
 
 export interface Product {
     id: string;
+    isFavorite?: boolean;
     name: string;
     img: string;
     price: number;

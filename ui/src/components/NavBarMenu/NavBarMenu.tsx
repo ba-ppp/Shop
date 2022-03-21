@@ -10,6 +10,7 @@ import { ReactComponent as Search } from "asset/icons/search.svg";
 import { color } from "components/twin.style";
 import { useToggle } from "react-use";
 import { MenuSlider } from "components/MenuSlider/MenuSlider";
+import { useHistory } from "react-router-dom";
 
 const styles = {
   box: tw`h-8 p-2 w-10 flex items-center cursor-pointer `,
@@ -18,12 +19,18 @@ const styles = {
 export const NavBarMenu = () => {
   const [isOpen, toggleOpen] = useToggle(true);
 
+  const history = useHistory();
+
   const handleClickMenu = (isOpen?: boolean) => {
     toggleOpen(isOpen);
   };
+
+  const handleClickMenuIcons = (route: string) => {
+    history.push(route);
+  };
   return (
     <>
-      <div tw="flex justify-between items-center ml-2 mr-5 p-3 border-b-2 border-b-gray-100">
+      <div tw="flex justify-between items-center ml-2 mr-5 p-3 border-b-2 border-b-gray-100 fixed top-0 z-10 bg-white w-full">
         <div tw="flex space-x-5 h-9 w-56 leading-4 items-center">
           <button css={styles.box} onClick={() => handleClickMenu(!isOpen)}>
             {isOpen ? (
@@ -44,7 +51,10 @@ export const NavBarMenu = () => {
           <button css={styles.box}>
             <Search fill={color.purple_1} width={24} height={24} />
           </button>
-          <button css={styles.box}>
+          <button
+            css={styles.box}
+            onClick={() => handleClickMenuIcons("payment")}
+          >
             <Cart fill={color.purple_1} width={24} height={24} />
           </button>
         </div>
