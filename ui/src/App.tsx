@@ -1,23 +1,31 @@
-import { Login } from 'components/Auth/Login/Login';
-import { SignUp } from 'components/Auth/SignUp/SignUp';
+import { Login } from "components/Auth/Login/Login";
+import { SignUp } from "components/Auth/SignUp/SignUp";
 import { Home } from "components/Home/Home";
-import { PageNotFound } from 'components/PageNotFound/PageNotFound';
+import { NavBarMenu } from "components/NavBarMenu/NavBarMenu";
+import { PageNotFound } from "components/PageNotFound/PageNotFound";
 import React from "react";
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
 import { Redirect, Route, Switch } from "react-router-dom";
-import { PrivateRoute } from "routes/Private/PrivateRoutes";
-import { PublicRoute } from 'routes/Public/PublicRoutes';
-import "./App.css";
-
+import { PublicRoute } from "routes/Public/PublicRoutes";
+import "@rmwc/button/styles";
+import "@rmwc/card/styles";
+import "@rmwc/typography/styles";
+import { Detail } from "components/Detail/Detail";
+import { Payment } from "components/Payment/Payment";
 function App() {
   return (
     <div>
       <Toaster position="top-center" reverseOrder={false} />
+      <NavBarMenu />
       <Switch>
-        <PrivateRoute path="/" exact component={Home} />
+        <PublicRoute path="/" exact component={Home} />
 
-        <PublicRoute path="/signin" exact component={Login}/>
-        <PublicRoute path="/signup" exact component={SignUp}/>
+        <PublicRoute path="/signin" exact component={Login} />
+        <PublicRoute path="/signup" exact component={SignUp} />
+        <PublicRoute path="/detail/:id" exact component={Detail} />
+
+        {/* private */}
+        <PublicRoute path="/payment" exact component={Payment} />
 
         <Route path="/404" component={PageNotFound} />
         <Route path="*">
