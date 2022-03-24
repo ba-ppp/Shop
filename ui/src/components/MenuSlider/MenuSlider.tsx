@@ -18,18 +18,27 @@ import { ReactComponent as SamsungLogo } from "asset/icons/samsung.svg";
 import { ReactComponent as OppoLogo } from "asset/icons/oppo.svg";
 import { ReactComponent as XiaomiLogo } from "asset/icons/xiaomi.svg";
 import { ReactComponent as VivoLogo } from "asset/icons/vivo.svg";
-type Props = {
-  isOpen?: boolean;
-  handleClickMenu: (isOpen?: boolean) => void;
-};
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "app/reducer/Reducer";
+import { toggleSlideBar } from 'app/slices/toggle.slice';
+type Props = {};
 
 export const MenuSlider = (props: Props) => {
-  const { isOpen, handleClickMenu } = props;
+  const toggle = useSelector((state: RootState) => state.toggle);
+
+  const dispatch = useDispatch();
+
+  const handleClickMenu = (isOpen: boolean) => {
+    dispatch(toggleSlideBar(isOpen));
+  };
 
   return (
     <List
       tw="w-64 fixed p-3 border-r-2 border-r-gray-100 h-full mt-0"
-      css={[!isOpen && tw`duration-500 w-20`, isOpen && tw`duration-500`]}
+      css={[
+        !toggle.isOpenSlideBar && tw`duration-500 w-20`,
+        toggle.isOpenSlideBar && tw`duration-500`,
+      ]}
     >
       <CollapsibleList
         handle={
@@ -41,7 +50,7 @@ export const MenuSlider = (props: Props) => {
         }
         onOpen={() => handleClickMenu(true)}
         // onClose={() => console.log("close")}
-        open={!isOpen ? false : undefined}
+        open={!toggle.isOpenSlideBar ? false : undefined}
       >
         <SimpleListItem text="Phones" />
         <SimpleListItem text="Watchs" />
@@ -57,7 +66,7 @@ export const MenuSlider = (props: Props) => {
             <ListItemMeta icon={<ArrowDown />} />
           </ListItem>
         }
-        open={!isOpen ? false : undefined}
+        open={!toggle.isOpenSlideBar ? false : undefined}
       >
         <SimpleListItem text="Phones" />
         <SimpleListItem text="Tablet" />
@@ -72,7 +81,7 @@ export const MenuSlider = (props: Props) => {
             metaIcon={<ArrowDown />}
           />
         }
-        open={!isOpen ? false : undefined}
+        open={!toggle.isOpenSlideBar ? false : undefined}
       >
         <SimpleListItem text="Phones" />
         <SimpleListItem text="OPPO Buds" />
@@ -86,7 +95,7 @@ export const MenuSlider = (props: Props) => {
             metaIcon={<ArrowDown />}
           />
         }
-        open={!isOpen ? false : undefined}
+        open={!toggle.isOpenSlideBar ? false : undefined}
       >
         <SimpleListItem text="Phones" />
         <SimpleListItem text="Xi Watch" />
@@ -100,7 +109,7 @@ export const MenuSlider = (props: Props) => {
             metaIcon={<ArrowDown />}
           />
         }
-        open={!isOpen ? false : undefined}
+        open={!toggle.isOpenSlideBar ? false : undefined}
       >
         <SimpleListItem text="Phones" />
       </CollapsibleList>

@@ -1,7 +1,7 @@
-import React from 'react';
+/** @jsxImportSource @emotion/react */
+import 'twin.macro'
+import React from "react";
 
 export const Payment = () => {
-    return (
-        <div>hi</div>
-    )
-}
+  return <div tw="mt-16 mb-10">hi</div>;
+};
