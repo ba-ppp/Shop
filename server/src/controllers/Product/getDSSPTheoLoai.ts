@@ -3,14 +3,14 @@ import { connection } from "../../database/mysql";
 
 const router = express.Router();
 
-export const getAllProduct = () => {
-    return router.get(
+export const getDSSP = () => {
+    return router.post(
         "/",
         async (req: express.Request, res: express.Response) => {
           try {
-            
-            const sql = "select * from product join detail on product.id_detail = detail.id_detail join category on detail.id_category = category.id_category order by detail.name_detail asc;";
-            connection.query(sql, function (err, results) {
+            const {id_loai} = req.body;
+            const sql = "select * from san_pham join thong_tin on san_pham.id_tt = thong_tin.id_tt where id_loai = ? order by san_pham.ten_sp asc;";
+            connection.query(sql, [id_loai], function (err, results) {
               if (err) throw err;
               res.json(results);
             });
