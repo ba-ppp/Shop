@@ -8,33 +8,34 @@ export const Detail = () => {
     "/",
     async (req: express.Request, res: express.Response) => {
       try {
-        const { idSp } = req.body;
+        const { id } = req.body;
         const resultsData: any = [];
         let data = {
-          tenSp: "",
-          giaSp: [] as any,
+          id: "",
+          ten: "",
+          gia: [] as any,
           dungLuong: [] as any,
-          mauSp: [] as any,
-          anhSp: [] as any,
+          mau: [] as any,
+          anh: [] as any,
           thongTin: {
             manHinh: {
               congNghe: "",
               doPhanGiai: "",
               rong: "",
               doSang: "",
-              matKinh: ""
+              matKinh: "",
             },
             camera: {
               sau: "",
               denFlash: "",
-              truoc: ""
+              truoc: "",
             },
             system: {
               os: "",
               cpu: "",
               gpu: "",
               ram: "",
-              rom: ""
+              rom: "",
             },
             ketNoi: {
               mang: "",
@@ -42,15 +43,16 @@ export const Detail = () => {
               wifi: "",
               bluetooth: "",
               congSac: "",
-              khac: ""
+              khac: "",
             },
             pin: {
               dungLuong: "",
               loai: "",
               tocDoSac: "",
-              congNghe: ""
-            }
-          }
+              congNghe: "",
+            },
+          },
+          phuKien: [] as any,
         };
         const sql =
           "select * from  san_pham s join chi_tiet_sp c on s.id_sp = c.id_sp where s.id_sp = ?";
@@ -58,22 +60,28 @@ export const Detail = () => {
           "select * from san_pham s join mau_sac m on s.id_sp = m.id_sp where s.id_sp = ?";
         const sql2 =
           "select * from san_pham s join thong_tin t on t.id_tt = s.id_tt where s.id_sp = ?";
-        connection.query(sql, [idSp], function (err, results) {
+        const sql3 =
+          "select h.id_hang from hang h join loai l on h.id_hang = l.id_hang join san_pham s on l.id_loai = s.id_loai join chi_tiet_sp c on s.id_sp = c.id_sp where s.id_sp = ?";
+        const sql4 =
+          "select * from hang h join loai l on h.id_hang = l.id_hang join san_pham s on l.id_loai = s.id_loai join chi_tiet_sp c on s.id_sp = c.id_sp where h.id_hang = ?";
+
+        connection.query(sql, [id], function (err, results) {
           if (err) throw err;
           results.forEach((item: any) => {
-            data.tenSp = item.ten_sp,
-            data.giaSp.push(item.gia),
-            data.dungLuong.push(item.dung_luong);
+            data.id = item.id_sp;
+            (data.ten = item.ten_sp),
+              data.gia.push(item.gia),
+              data.dungLuong.push(item.dung_luong);
           });
         });
-        connection.query(sql1, [idSp], function (err, results) {
+        connection.query(sql1, [id], function (err, results) {
           if (err) throw err;
           results.forEach((item: any) => {
-            data.mauSp.push(item.mau);
-            data.anhSp.push(item.anh);
+            data.mau.push(item.mau);
+            data.anh.push(item.anh);
           });
         });
-        connection.query(sql2, [idSp], function (err, results) {
+        connection.query(sql2, [id], function (err, results) {
           if (err) throw err;
           results.forEach((item: any) => {
             data.thongTin.manHinh.congNghe = item.cn_man;
@@ -99,6 +107,26 @@ export const Detail = () => {
             data.thongTin.pin.loai = item.loai_pin;
             data.thongTin.pin.tocDoSac = item.toc_do_sac;
             data.thongTin.pin.congNghe = item.cong_nghe_pin;
+          });
+          resultsData.push(data);
+          res.json(resultsData);
+        });
+        let idHang = "";
+        connection.query(sql3, [id], function (err, results) {
+          if (err) throw err;
+          idHang = results[0];
+          console.log(results[0])
+          
+        });
+        connection.query(sql4, [idHang], function (err, results) {
+          if (err) throw err;
+          results.forEach((item: any) => {
+            data.phuKien.push({
+              id: item.id_sp,
+              ten: item.ten_sp,
+              gia: item.gia,
+              anh: item.anh,
+            });
           });
           resultsData.push(data);
           res.json(resultsData);
