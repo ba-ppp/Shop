@@ -10,11 +10,11 @@ import { PublicRoute } from "routes/Public/PublicRoutes";
 import "@rmwc/button/styles";
 import "@rmwc/card/styles";
 import "@rmwc/typography/styles";
+import '@rmwc/menu/styles';
 import { Detail } from "components/Detail/Detail";
 import { Payment } from "components/Payment/Payment";
 
 function App() {
-
   return (
     <div>
       <Toaster position="top-center" reverseOrder={false} />

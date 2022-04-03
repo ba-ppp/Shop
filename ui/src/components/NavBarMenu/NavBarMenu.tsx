@@ -8,22 +8,23 @@ import { ReactComponent as Cart } from "asset/icons/cart.svg";
 import { ReactComponent as Search } from "asset/icons/search.svg";
 
 import { color } from "components/twin.style";
-import { useToggle } from "react-use";
+import { useLocation, useToggle } from "react-use";
 import { MenuSlider } from "components/MenuSlider/MenuSlider";
 import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
-import { toggleSlideBar } from 'app/slices/toggle.slice';
-import { RootState } from 'app/reducer/Reducer';
+import { useDispatch, useSelector } from "react-redux";
+import { toggleSlideBar } from "app/slices/toggle.slice";
+import { RootState } from "app/reducer/Reducer";
 
 const styles = {
   box: tw`h-8 p-2 w-10 flex items-center cursor-pointer `,
 };
 
 export const NavBarMenu = () => {
-
   const dispatch = useDispatch();
 
   const history = useHistory();
+
+  const location = useLocation();
 
   const toggle = useSelector((state: RootState) => state.toggle);
 
@@ -38,7 +39,10 @@ export const NavBarMenu = () => {
     <>
       <div tw="flex justify-between items-center ml-2 mr-5 p-3 border-b-2 border-b-gray-100 fixed top-0 z-10 bg-white w-full">
         <div tw="flex space-x-5 h-9 w-56 leading-4 items-center">
-          <button css={styles.box} onClick={() => handleClickMenu(!toggle.isOpenSlideBar)}>
+          <button
+            css={styles.box}
+            onClick={() => handleClickMenu(!toggle.isOpenSlideBar)}
+          >
             {toggle.isOpenSlideBar ? (
               <MenuOpen fill={color.purple_1} width={24} height={24} />
             ) : (
@@ -65,7 +69,7 @@ export const NavBarMenu = () => {
           </button>
         </div>
       </div>
-      <MenuSlider />
+      {!location.pathname?.includes("/payment") && <MenuSlider />}
     </>
   );
 };

@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { GlobalStyles } from "twin.macro";
-import { Store } from "app/Store/Store";
+import { Store } from "app/Store/store";
 import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
