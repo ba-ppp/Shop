@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import "@rmwc/card/styles";
 import "@rmwc/typography/styles";
-import { RootState } from "app/reducer/Reducer";
+import { RootState } from 'app/reducer/reducer';
+
 import { Product } from "models/utils.model";
 import React from "react";
 import { useState } from "react";

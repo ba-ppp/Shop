@@ -13,7 +13,7 @@ import { MenuSlider } from "components/MenuSlider/MenuSlider";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSlideBar } from "app/slices/toggle.slice";
-import { RootState } from "app/reducer/Reducer";
+import { RootState } from "app/reducer/reducer";
 
 const styles = {
   box: tw`h-8 p-2 w-10 flex items-center cursor-pointer `,
