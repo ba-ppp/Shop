@@ -21,7 +21,7 @@ export const getProduct = () => {
         const resultsData: any = [];
         const sql =
           "select * from hang h join loai l on h.id_hang = l.id_hang join san_pham s on l.id_loai = s.id_loai join chi_tiet_sp c on s.id_sp = c.id_sp join mau_sac m on s.id_sp = m.id_sp group by ten_sp;";
-
+        
         connection.query(sql, function (err, results) {
           if (err) throw err;
           results.forEach((item: any) => {
@@ -54,8 +54,6 @@ export const getProduct = () => {
               };
 
               loai = { ...newLoai };
-              
-              
             }
 
             if (item.id_hang === idHang || item.id_hang === data.id) {

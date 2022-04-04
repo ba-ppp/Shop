@@ -52,7 +52,7 @@ export const Detail = () => {
               congNghe: "",
             },
           },
-          // phuKien: [] as any,
+          phuKien: [] as any,
         };
         const sql =
           "select * from  san_pham s join chi_tiet_sp c on s.id_sp = c.id_sp where s.id_sp = ?";
@@ -63,7 +63,7 @@ export const Detail = () => {
         const sql3 =
           "select h.id_hang from hang h join loai l on h.id_hang = l.id_hang join san_pham s on l.id_loai = s.id_loai join chi_tiet_sp c on s.id_sp = c.id_sp where s.id_sp = ?";
         const sql4 =
-          "select * from hang h join loai l on h.id_hang = l.id_hang join san_pham s on l.id_loai = s.id_loai join chi_tiet_sp c on s.id_sp join mau_sac m on s.id_sp = m.id_sp = c.id_sp where h.id_hang = ?";
+          "select * from hang h join loai l on h.id_hang = l.id_hang join san_pham s on l.id_loai = s.id_loai join chi_tiet_sp c on s.id_sp = c.id_sp join mau_sac m on s.id_sp = m.id_sp where h.id_hang = ? and l.ten_loai = ? group by ten_sp;";
 
         connection.query(sql, [id], function (err, results) {
           if (err) throw err;
@@ -108,30 +108,26 @@ export const Detail = () => {
             data.thongTin.pin.tocDoSac = item.toc_do_sac;
             data.thongTin.pin.congNghe = item.cong_nghe_pin;
           });
-          resultsData.push(data);
-          res.json(resultsData);
+          // resultsData.push(data);
+          // res.json(resultsData);
         });
-        // let idHang = "";
-        // connection.query(sql3, [id], function (err, results) {
-        //   if (err) throw err;
-        //   idHang = results[0].id_hang;
-        //   console.log(idHang);
-        // });
-        // console.log(idHang);
-        // connection.query(sql4, [idHang], function (err, results) {
-        //   if (err) throw err;
-        //   results.forEach((item: any) => {
-            
-        //     data.phuKien.push({
-        //       id: item.id_sp,
-        //       ten: item.ten_sp,
-        //       gia: item.gia,
-        //       anh: item.anh,
-        //     });
-        //   });
-        //   resultsData.push(data);
-        //   res.json(resultsData);
-        // });
+
+        connection.query(sql3, [id], function (err, result) {
+          if (err) throw err;
+          connection.query(sql4, [result[0].id_hang, "headphone"], function (err, results) {
+            if (err) throw err;
+            results.forEach((item: any) => {
+              data.phuKien.push({
+                id: item.id_sp,
+                ten: item.ten_sp,
+                gia: item.gia,
+                anh: item.anh,
+              });
+            });
+            resultsData.push(data);
+            res.json(resultsData);
+          });
+        });
       } catch (error) {
         res.json({
           status: 400,
