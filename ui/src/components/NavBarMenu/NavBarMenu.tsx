@@ -8,7 +8,7 @@ import { ReactComponent as Cart } from "asset/icons/cart.svg";
 import { ReactComponent as Search } from "asset/icons/search.svg";
 
 import { color } from "components/twin.style";
-import { useLocation, useToggle } from "react-use";
+import { useLocation } from "react-use";
 import { MenuSlider } from "components/MenuSlider/MenuSlider";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";

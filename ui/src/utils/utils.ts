@@ -31,3 +31,7 @@ export const isAdmin = (token: string) => {
 }
 
 export const setIsLoggedIn = () => localStorage.setItem("isLoggedIn", "true");
+
+export const numberToVND = (number: number) => {
+  return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(number);
+}

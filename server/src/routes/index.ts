@@ -11,6 +11,6 @@ export const routes = () => {
     serverInit(app);
 
     app.use("/auth/signin", Login());
-    app.use("/Product/getProduct", getProduct());
-    app.use("/Product/getDetail", Detail());
+    app.use("/product/getProduct", getProduct());
+    app.use("/product/getDetail", Detail());
 }

@@ -1,24 +1,69 @@
 export interface IToken {
-    accessToken: string | null;
-    idToken: string | null;
-    refreshToken: string | null;
+  accessToken: string | null;
+  idToken: string | null;
+  refreshToken: string | null;
 }
 
 export interface Product {
-    id: string;
-    isFavorite?: boolean;
-    name: string;
-    img: string;
-    price: number;
-    count: number;
-    memory: string;
-    screen: string;
-    colors: string[];
-    chip: string;
-    os: string;
-    network: string;
-    battery: string;
-    main_camera: string;
-    selfie_camera: string;
-    decription: string;
+  id: string;
+  ten: string;
+  loai: ProductType[];
+}
+
+export interface ProductType {
+  id: string;
+  ten: string;
+  products: ProductItem[];
+}
+export interface ProductItem {
+  id: string;
+  ten: string;
+  gia: number[];
+  anh: string[];
+  mau: string[];
+  isFavorite?: boolean;
+}
+
+export interface ProductScreen {
+  congNghe: string;
+  doPhanGiai: string;
+  rong: string;
+  doSang: string;
+  matKinh: string;
+}
+
+export interface ProductCamera {
+  sau: string;
+  denFlash: string;
+  truoc: string;
+}
+
+export interface ProductSystem {
+  os: string;
+  ram: string;
+  rom: string;
+}
+
+export interface ProductConnection {
+  mang: string;
+  sim: string;
+  wifi: string;
+  bluetooh: string;
+  congSac: string;
+  khac: string;
+}
+
+export interface ProductBattery {
+  dungLuong: string;
+  loai: string;
+  tocDoSac: string;
+  congNghe: string;
+}
+
+export interface ProductDetail {
+  manHinh: ProductScreen;
+  camera: ProductCamera;
+  system: ProductSystem;
+  ketNoi: ProductConnection;
+  pin: ProductBattery;
 }
