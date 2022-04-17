@@ -1,10 +1,11 @@
 import { createStore } from "@reduxjs/toolkit";
-import { rootReducer } from "app/reducer/reducer";
+
 import React from "react";
 import { Provider } from "react-redux";
 import { applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { rootReducer } from 'app/reducer/reducer';
 
 export const Store: React.FC = ({ children }) => {
   const store = createStore(

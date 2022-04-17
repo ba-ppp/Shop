@@ -1,3 +1,4 @@
+import { catchError } from "controllers/utils/utils";
 import express from "express";
 import { connection } from "../../database/mysql";
 
@@ -8,7 +9,7 @@ export const Detail = () => {
     "/",
     async (req: express.Request, res: express.Response) => {
       try {
-        const { id } = req.body;
+        const id = req.query.id;
         const resultsData: any = [];
         let data = {
           id: "",

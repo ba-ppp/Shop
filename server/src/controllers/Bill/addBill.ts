@@ -9,7 +9,7 @@ export const addBill = () => {
     "/",
     async (req: express.Request, res: express.Response) => {
       try {
-        const { id,amount,price,rom,color,totalPrice,phone,name } = req.body;
+        const { id,amount,rom,color,phone,name } = req.body;
         const sql =
           "select * from  san_pham s join chi_tiet_sp c on s.id_sp = c.id_sp where s.id_sp = ? and c.dung_luong = ? ";
           const sql1 =
@@ -20,7 +20,7 @@ export const addBill = () => {
           if (err) throw err;
           connection.query(sql1, [id,color], function (err, result2) {
             if (err) throw err;
-            connection.query(sql2, [result1[0].id_chitiet,result2[0].id_mau,amount,price*amount,phone,name], function (err, result3) {
+            connection.query(sql2, [result1[0].id_chitiet,result2[0].id_mau,amount,result1[0].gia*amount,phone,name], function (err, result3) {
               if (err) throw err;
               if (result3) {
                 res.json({
