@@ -35,3 +35,33 @@ export const setIsLoggedIn = () => localStorage.setItem("isLoggedIn", "true");
 export const numberToVND = (number: number) => {
   return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(number);
 }
+
+export const getButtonColorFromVN = (text: string) => {
+  const lowerText = text.toLowerCase();
+  if (["đỏ"].includes(lowerText)) {
+    return "red";
+  }
+  if (["vàng đồng"].includes(lowerText)) {
+    return "yellow";
+  }
+  if (["xanh lá"].includes(lowerText)) {
+    return "green";
+  }
+  if (["xanh dương"].includes(lowerText)) {
+    return "blue";
+  }
+  if (["tím"].includes(lowerText)) {
+    return "purple";
+  }
+  if (["xám", "bạc"].includes(lowerText)) {
+    return "gray";
+  }
+  if (["hồng"].includes(lowerText)) {
+    return "pink";
+  }
+  if (["đen"].includes(lowerText)) {
+    return "black";
+  }
+
+  return "white";
+};

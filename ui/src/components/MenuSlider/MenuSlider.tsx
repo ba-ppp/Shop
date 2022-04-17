@@ -20,24 +20,27 @@ import { ReactComponent as XiaomiLogo } from "asset/icons/xiaomi.svg";
 import { ReactComponent as VivoLogo } from "asset/icons/vivo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "app/reducer/reducer";
-import { toggleSlideBar } from "app/slices/toggle.slice";
-import {
-  setIdHangSelected,
-  setIdLoaiSelected,
-} from "app/slices/products.slice";
+import { updateFirmSelected } from "app/slices/products.slice";
+import { useHistory, useLocation } from "react-router-dom";
 type Props = {};
 
 export const MenuSlider = (props: Props) => {
+  const location = useLocation();
+  const history = useHistory();
   const toggle = useSelector((state: RootState) => state.toggle);
 
   const dispatch = useDispatch();
 
-  const handleClickList = (firm: string) => {
-    dispatch(setIdHangSelected(firm));
-  };
-
-  const handleClickListItem = (type: string) => {
-    dispatch(setIdLoaiSelected(type));
+  const handleClickListItem = (
+    firm: string,
+    type: string,
+    isClickFirm?: boolean
+  ) => {
+    dispatch(updateFirmSelected({ idHang: firm, idLoai: type }));
+    if (location.pathname !== "/" && !isClickFirm) {
+      history.push("/");
+      return;
+    }
   };
 
   return (
@@ -56,21 +59,21 @@ export const MenuSlider = (props: Props) => {
             <ListItemMeta icon={<ArrowDown />} />
           </ListItem>
         }
-        onOpen={() => handleClickList("apple")}
+        // onOpen={() => handleClickListItem("apple", "phones", true)}
         // onClose={() => console.log("close")}
         open={!toggle.isOpenSlideBar ? false : undefined}
       >
         <SimpleListItem
           text="Phones"
-          onClick={() => handleClickListItem("phones")}
+          onClick={() => handleClickListItem("apple", "phones")}
         />
         <SimpleListItem
           text="Airpad"
-          onClick={() => handleClickListItem("airpad")}
+          onClick={() => handleClickListItem("apple", "airpad")}
         />
         <SimpleListItem
           text="Airpod"
-          onClick={() => handleClickListItem("airpod")}
+          onClick={() => handleClickListItem("apple", "airpod")}
         />
       </CollapsibleList>
 
@@ -82,20 +85,20 @@ export const MenuSlider = (props: Props) => {
             <ListItemMeta icon={<ArrowDown />} />
           </ListItem>
         }
-        onOpen={() => handleClickList("samsung")}
+        // onOpen={() => handleClickListItem("samsung", "phones", true)}
         open={!toggle.isOpenSlideBar ? false : undefined}
       >
         <SimpleListItem
           text="Phones"
-          onClick={() => handleClickListItem("phones")}
+          onClick={() => handleClickListItem("samsung", "phones")}
         />
         <SimpleListItem
           text="Tablet"
-          onClick={() => handleClickListItem("tablet")}
+          onClick={() => handleClickListItem("samsung", "tablet")}
         />
         <SimpleListItem
           text="Galaxy Buds"
-          onClick={() => handleClickListItem("buds")}
+          onClick={() => handleClickListItem("samsung", "buds")}
         />
       </CollapsibleList>
 
@@ -107,20 +110,20 @@ export const MenuSlider = (props: Props) => {
             metaIcon={<ArrowDown />}
           />
         }
-        onOpen={() => handleClickList("oppo")}
+        // onOpen={() => handleClickListItem("oppo", "phones", true)}
         open={!toggle.isOpenSlideBar ? false : undefined}
       >
         <SimpleListItem
           text="Phones"
-          onClick={() => handleClickListItem("phones")}
+          onClick={() => handleClickListItem("oppo", "phones")}
         />
         <SimpleListItem
           text="OPPO Buds"
-          onClick={() => handleClickListItem("buds")}
+          onClick={() => handleClickListItem("oppo", "buds")}
         />
         <SimpleListItem
           text="OPPO Watch"
-          onClick={() => handleClickListItem("watches")}
+          onClick={() => handleClickListItem("oppo", "watches")}
         />
       </CollapsibleList>
       <CollapsibleList
@@ -131,20 +134,20 @@ export const MenuSlider = (props: Props) => {
             metaIcon={<ArrowDown />}
           />
         }
-        onOpen={() => handleClickList("xiaomi")}
+        // onOpen={() => handleClickListItem("xiaomi", "phones", true)}
         open={!toggle.isOpenSlideBar ? false : undefined}
       >
         <SimpleListItem
           text="Phones"
-          onClick={() => handleClickListItem("phones")}
+          onClick={() => handleClickListItem("xiaomi", "phones")}
         />
         <SimpleListItem
           text="Xi Watch"
-          onClick={() => handleClickListItem("watches")}
+          onClick={() => handleClickListItem("xiaomi", "watches")}
         />
         <SimpleListItem
           text="Xiaomi Pad"
-          onClick={() => handleClickListItem("pad")}
+          onClick={() => handleClickListItem("xiaomi", "pad")}
         />
       </CollapsibleList>
       <CollapsibleList
@@ -155,12 +158,12 @@ export const MenuSlider = (props: Props) => {
             metaIcon={<ArrowDown />}
           />
         }
-        onOpen={() => handleClickList("vivo")}
+        // onOpen={() => handleClickListItem("vivo", "phones", true)}
         open={!toggle.isOpenSlideBar ? false : undefined}
       >
         <SimpleListItem
           text="Phones"
-          onClick={() => handleClickListItem("phones")}
+          onClick={() => handleClickListItem("vivo", "phones")}
         />
       </CollapsibleList>
     </List>

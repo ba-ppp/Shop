@@ -3,7 +3,7 @@ import "@rmwc/card/styles";
 import "@rmwc/typography/styles";
 import { RootState } from "app/reducer/reducer";
 import { setProductItems } from "app/slices/products.slice";
-import { isEmpty } from 'lodash';
+import { isEmpty } from "lodash";
 
 import { Product, ProductItem } from "models/utils.model";
 import React from "react";
@@ -32,22 +32,21 @@ export const Home = () => {
     const typeSelected = product.idLoaiSelected;
     const currentItems = products.find((i) => i.id === firmSelected);
 
-    currentItems?.loai.forEach((productItem) => {
-      productItem?.products.forEach((item: ProductItem, index) => {
+    currentItems?.loai
+      .find((i) => i.ten.toLowerCase() === typeSelected)
+      ?.products.forEach((item, index) => {
         if (index % 4 === 0) {
           newData.push(tempData);
           tempData = [];
         }
         tempData.push(item);
       });
-    });
 
     if (tempData.length > 0) {
       newData.push(tempData);
     }
-    console.log('newData', newData)
-    setDataRender(newData.filter(i => !isEmpty(i)));
 
+    setDataRender(newData.filter((i) => !isEmpty(i)));
   };
   useEffectOnce(() => {
     (async () => {
@@ -57,6 +56,11 @@ export const Home = () => {
       handleDataRender(data);
     })();
   });
+
+  useEffect(() => {
+    handleDataRender(product.items);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product.idHangSelected, product.idLoaiSelected]);
   return (
     <>
       <div tw="mt-16 mb-10">

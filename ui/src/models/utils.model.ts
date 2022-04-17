@@ -4,6 +4,12 @@ export interface IToken {
   refreshToken: string | null;
 }
 
+export interface ProductSuggestion {
+  anh: string;
+  gia: number;
+  id: string;
+  ten: string;
+}
 export interface Product {
   id: string;
   ten: string;
@@ -66,4 +72,11 @@ export interface ProductDetail {
   system: ProductSystem;
   ketNoi: ProductConnection;
   pin: ProductBattery;
+}
+
+export interface Accessories {
+  id: string;
+  ten: string;
+  gia: number;
+  anh: string;
 }

@@ -9,12 +9,12 @@ const ProductSlice = createSlice({
     items: [] as Product[],
   },
   reducers: {
-    setIdHangSelected: (state, action: PayloadAction<string>) => {
-      state.idHangSelected = action.payload;
-      state.idLoaiSelected = "phones";
-    },
-    setIdLoaiSelected: (state, action: PayloadAction<string>) => {
-      state.idLoaiSelected = action.payload;
+    updateFirmSelected: (
+      state,
+      action: PayloadAction<{ idHang: string; idLoai: string }>
+    ) => {
+      state.idHangSelected = action.payload.idHang;
+      state.idLoaiSelected = action.payload.idLoai;
     },
     setProductItems: (state, action: PayloadAction<Product[]>) => {
       state.items = action.payload;
@@ -22,7 +22,6 @@ const ProductSlice = createSlice({
   },
 });
 
-export const { setIdHangSelected, setIdLoaiSelected, setProductItems } =
-  ProductSlice.actions;
+export const { updateFirmSelected, setProductItems } = ProductSlice.actions;
 
 export const ProductReducer = ProductSlice.reducer;

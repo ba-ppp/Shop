@@ -1,14 +1,15 @@
+import { catchError } from "controllers/utils/utils";
 import express from "express";
 import { connection } from "../../database/mysql";
 
 const router = express.Router();
 
 export const Detail = () => {
-  return router.post(
+  return router.get(
     "/",
     async (req: express.Request, res: express.Response) => {
       try {
-        const { id } = req.body;
+        const id = req.query.id;
         const resultsData: any = [];
         let data = {
           id: "",
@@ -113,20 +114,22 @@ export const Detail = () => {
         });
 
         connection.query(sql3, [id], function (err, result) {
-          if (err) throw err;
-          connection.query(sql4, [result[0].id_hang, "headphone"], function (err, results) {
-            if (err) throw err;
-            results.forEach((item: any) => {
-              data.phuKien.push({
-                id: item.id_sp,
-                ten: item.ten_sp,
-                gia: item.gia,
-                anh: item.anh,
+          connection.query(
+            sql4,
+            [result[0].id_hang, "headphone"],
+            function (err, results) {
+              results.forEach((item: any) => {
+                data.phuKien.push({
+                  id: item.id_sp,
+                  ten: item.ten_sp,
+                  gia: item.gia,
+                  anh: item.anh,
+                });
               });
-            });
-            resultsData.push(data);
-            res.json(resultsData);
-          });
+              resultsData.push(data);
+              res.json(resultsData[0]);
+            }
+          );
         });
       } catch (error) {
         res.json({

@@ -32,6 +32,22 @@ export const Payment = () => {
     }
   }, [data]);
 
+  const handlePayment = () => {
+    // const payload = {
+    //   products: [
+    //     {
+    //       id: '13promax',
+    //       amount: 2,
+    //       rom: '256gb',
+    //       color: 'Vàng Đồng',
+    //     }
+    //   ],
+    //   phone: '0987654321',
+    //   name: 'Nguyễn Văn A',
+    //   address: ''
+    // };
+  };
+
   return (
     <div tw="mt-16 mb-10 ml-auto mr-auto width[70%]">
       <h1 tw="text-xl text-style-purple-1 font-bold mb-5 w-1/2 ml-auto">
@@ -66,7 +82,10 @@ export const Payment = () => {
         <div>Tổng tiền:</div>
         <div tw="text-style-purple-1">6.000.000đ</div>
       </div>
-      <div tw=" text-xl text-center rounded-xl w-1/2 m-auto justify-between p-3 border border-style-purple-1 bg-style-purple-1 text-white font-bold">
+      <div
+        onClick={handlePayment}
+        tw=" text-xl text-center rounded-xl w-1/2 m-auto justify-between p-3 border border-style-purple-1 bg-style-purple-1 text-white font-bold"
+      >
         Đặt hàng
       </div>
     </div>
