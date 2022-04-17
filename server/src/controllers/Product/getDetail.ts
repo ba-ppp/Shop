@@ -111,19 +111,23 @@ export const Detail = () => {
           // res.json(resultsData);
         });
 
-        connection.query(sql3, [id, "headphone"], function (err, results) {
-          if (err) throw err;
-          results.forEach((item: any) => {
-            data.phuKien.push({
-              id: item.id_sp,
-              ten: item.ten_sp,
-              gia: item.gia,
-              anh: item.anh,
-            });
-            
-          });
-          resultsData.push(data);
-          res.json(resultsData);
+        connection.query(sql3, [id], function (err, result) {
+          connection.query(
+            sql4,
+            [result[0].id_hang, "headphone"],
+            function (err, results) {
+              results.forEach((item: any) => {
+                data.phuKien.push({
+                  id: item.id_sp,
+                  ten: item.ten_sp,
+                  gia: item.gia,
+                  anh: item.anh,
+                });
+              });
+              resultsData.push(data);
+              res.json(resultsData[0]);
+            }
+          );
         });
         
       } catch (error) {
