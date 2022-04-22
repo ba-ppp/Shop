@@ -6,8 +6,16 @@ import { SimpleMenu, MenuItem } from "@rmwc/menu";
 import { ReactComponent as ArrowDown } from "asset/icons/arrow_down.svg";
 import { ReactComponent as Plus } from "asset/icons/plus.svg";
 import { ReactComponent as Minus } from "asset/icons/minus.svg";
+import { ProductItem } from "models/utils.model";
+import { useState } from "react";
 
-export const PaymentItem = () => {
+type Props = {
+  item: ProductItem;
+};
+export const PaymentItem = (props: Props) => {
+  const { item } = props;
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   return (
     <div tw="ml-auto mr-auto mb-5 width[50%] h-32 border-b-2 border-solid border-gray-100 p-3">
       <div tw="flex space-x-10">
@@ -15,39 +23,43 @@ export const PaymentItem = () => {
           tw="w-24 h-24 bg-contain bg-no-repeat"
           style={{
             backgroundImage: `url('${
-              process.env.PUBLIC_URL + "/images/iphone.jpg"
+              process.env.PUBLIC_URL + "/images/" + item.anh[currentIndex]
             }')`,
           }}
         />
         <div tw="flex flex-grow justify-between">
           <div>
-            <div tw="mb-3">IPhone SE</div>
+            <div tw="mb-3">{item.ten}</div>
             <SimpleMenu
               anchorCorner="bottomLeft"
               handle={
-                <div tw="cursor-pointer border rounded-md flex p-1.5 items-center space-x-5">
-                  <div>Đỏ</div>
+                <div tw="cursor-pointer border rounded-md flex p-1.5 items-center justify-between">
+                  <div>{item.mau[currentIndex]}</div>
                   <ArrowDown />
                 </div>
               }
             >
-              <MenuItem>
-                <div tw="flex w-48 flex-grow space-x-3 items-center">
-                  <div tw="border border-style-purple-1 p-0.5">
-                    <div
-                      tw="w-8 h-8 bg-contain bg-no-repeat"
-                      style={{
-                        backgroundImage: `url('${
-                          process.env.PUBLIC_URL + "/images/iphone.jpg"
-                        }')`,
-                      }}
-                    />
-                  </div>
-                  <div>Đỏ</div>
-                </div>
-              </MenuItem>
-              <MenuItem>Pizza</MenuItem>
-              <MenuItem>Icecream</MenuItem>
+              {item.mau.map((mau, index) => {
+                return (
+                  <MenuItem onClick={() => setCurrentIndex(index)}>
+                    <div tw="flex w-48 flex-grow space-x-3 items-center">
+                      <div tw="border border-style-purple-1 p-0.5">
+                        <div
+                          tw="w-8 h-8 bg-contain bg-no-repeat"
+                          style={{
+                            backgroundImage: `url('${
+                              process.env.PUBLIC_URL +
+                              "/images/" +
+                              item.anh[index]
+                            }')`,
+                          }}
+                        />
+                      </div>
+                      <div>{mau}</div>
+                    </div>
+                  </MenuItem>
+                );
+              })}
             </SimpleMenu>
           </div>
           <div>

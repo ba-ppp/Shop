@@ -10,11 +10,20 @@ import { PublicRoute } from "routes/Public/PublicRoutes";
 import "@rmwc/button/styles";
 import "@rmwc/card/styles";
 import "@rmwc/typography/styles";
-import '@rmwc/menu/styles';
+import "@rmwc/menu/styles";
 import { Detail } from "components/Detail/Detail";
 import { Payment } from "components/Payment/Payment";
+import { getItemFromLocalStorage } from "utils/utils";
+import { useEffectOnce } from "react-use";
+import { useDispatch } from "react-redux";
+import { addArrayCartItems } from "app/slices/carts.slice";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffectOnce(() => {
+    const items = getItemFromLocalStorage();
+    dispatch(addArrayCartItems(items));
+  });
   return (
     <div>
       <Toaster position="top-center" reverseOrder={false} />

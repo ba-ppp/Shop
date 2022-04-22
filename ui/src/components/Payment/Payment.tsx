@@ -6,10 +6,19 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { isEmpty } from "lodash";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "app/reducer/reducer";
+import { useEffectOnce } from "react-use";
+import { getItemFromLocalStorage } from "utils/utils";
+import { addArrayCartItems, addCartItem } from "app/slices/carts.slice";
 
 export const Payment = () => {
   const [data, setData] = useState([]);
   const [cities, setCities] = useState<string[]>([]);
+
+  const cart = useSelector((state: RootState) => state.cart);
+
+  const dispatch = useDispatch();
 
   const handleGetProvinde = async () => {
     const response = await axios.get(
@@ -53,8 +62,9 @@ export const Payment = () => {
       <h1 tw="text-xl text-style-purple-1 font-bold mb-5 w-1/2 ml-auto">
         Giỏ Hàng
       </h1>
-
-      <PaymentItem />
+      {cart.items.map((item) => {
+        return <PaymentItem item={item} />;
+      })}
       <div tw="flex w-1/2 m-auto justify-between p-3">
         <div tw="">Tạm tính (5 sản phẩm):</div>
         <div>2.000.000đ</div>

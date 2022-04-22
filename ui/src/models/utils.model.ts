@@ -27,6 +27,7 @@ export interface ProductItem {
   gia: number[];
   anh: string[];
   mau: string[];
+  moTa?: string;
   isFavorite?: boolean;
 }
 

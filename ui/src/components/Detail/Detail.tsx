@@ -12,19 +12,20 @@ import { useEffect } from "react";
 import { useHistory, useLocation, useParams } from "react-router-dom";
 import { useEffectOnce } from "react-use";
 import { getItemDetail } from "services/product.service";
-import { Accessories, ProductDetail } from "models/utils.model";
+import { Accessories, ProductDetail, ProductItem } from "models/utils.model";
 import { useState } from "react";
 import { numberToVND } from "utils/utils";
 import { BoxCircle } from "components/Shared/BoxCircle";
 import { get, isNil, keys } from "lodash";
 import { BoxRectangle } from "components/Shared/BoxRectangle";
+import { useDispatch } from "react-redux";
+import { addCartItem } from 'app/slices/carts.slice';
 
 const boxBackground: { [key: string]: TwStyle } = {
   white: tw`bg-white border-white`,
   black: tw`bg-black border-black`,
   red: tw`bg-red-600 border-red-600`,
 };
-
 
 type DetailData = {
   anh: string[];
@@ -42,6 +43,8 @@ export const Detail = () => {
   const [data, setData] = useState<DetailData>();
   const [currentPrice, setCurrentPrice] = useState(0);
   const [currentImage, setCurrentImage] = useState("");
+
+  const dispatch = useDispatch();
 
   useEffectOnce(() => {
     (async () => {
@@ -62,6 +65,18 @@ export const Detail = () => {
     if (isNil(data)) return;
 
     setCurrentPrice(data?.gia?.[index]);
+  };
+
+  const handleAddToCart = () => {
+    if (isNil(data)) return;
+    const item: ProductItem = {
+      id: data.id,
+      ten: data.ten,
+      gia: data.gia,
+      anh: data.anh,
+      mau: data.mau,
+    };
+    dispatch(addCartItem(item));
   };
   return (
     <div tw="mt-16 mb-10 ml-64">
@@ -128,7 +143,10 @@ export const Detail = () => {
           </div>
 
           <div tw="mt-5 flex space-x-5">
-            <button tw="bg-style-purple-1 hover:bg-style-purple-2 text-white font-bold py-3 px-4 rounded inline-flex items-center space-x-2">
+            <button
+              onClick={handleAddToCart}
+              tw="bg-style-purple-1 hover:bg-style-purple-2 text-white font-bold py-3 px-4 rounded inline-flex items-center space-x-2"
+            >
               <AddToCart fill="white" height={24} width={24} />
               <span>Thêm vào giỏ hàng</span>
             </button>
@@ -147,9 +165,8 @@ export const Detail = () => {
         </div>
         <List tw="width[590px] ml-96 space-y-5">
           {keys(data?.thongTin).map((key, index) => {
-            return (<ListDetail header={key} data={get(data?.thongTin, key)}/>)
+            return <ListDetail header={key} data={get(data?.thongTin, key)} />;
           })}
-
         </List>
       </div>
     </div>
