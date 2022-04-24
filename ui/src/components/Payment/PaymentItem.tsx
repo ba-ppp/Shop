@@ -8,6 +8,7 @@ import { ReactComponent as Plus } from "asset/icons/plus.svg";
 import { ReactComponent as Minus } from "asset/icons/minus.svg";
 import { ProductItem } from "models/utils.model";
 import { useState } from "react";
+import { numberToVND } from "utils/utils";
 
 type Props = {
   item: ProductItem;
@@ -63,10 +64,10 @@ export const PaymentItem = (props: Props) => {
             </SimpleMenu>
           </div>
           <div>
-            <div tw="mb-5">1.990.000đ</div>
+            <div tw="mb-5">{numberToVND(item.gia[0])}</div>
             <div tw="flex">
               <div tw="flex items-center border p-1 w-6 h-6 justify-center">
-                <Plus width={10} height={10} />
+                <Minus width={10} height={10} />
               </div>
               <input
                 tw="width[2rem]! text-center outline-none ml-0.5 mr-0.5 mb-0! bg-gray-100"
@@ -80,7 +81,7 @@ export const PaymentItem = (props: Props) => {
                 // max={totalPage}
               />
               <div tw="flex items-center border p-1 w-6 h-6 justify-center">
-                <Minus width={10} height={10} />
+                <Plus width={10} height={10} />
               </div>
             </div>
           </div>

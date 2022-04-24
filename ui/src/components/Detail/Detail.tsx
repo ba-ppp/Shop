@@ -19,7 +19,8 @@ import { BoxCircle } from "components/Shared/BoxCircle";
 import { get, isNil, keys } from "lodash";
 import { BoxRectangle } from "components/Shared/BoxRectangle";
 import { useDispatch } from "react-redux";
-import { addCartItem } from 'app/slices/carts.slice';
+import { addCartItem } from "app/slices/carts.slice";
+import { customToast } from "components/Utils/toast.util";
 
 const boxBackground: { [key: string]: TwStyle } = {
   white: tw`bg-white border-white`,
@@ -68,6 +69,7 @@ export const Detail = () => {
   };
 
   const handleAddToCart = () => {
+    customToast.success("", "Thêm vào giỏ hàng thành công");
     if (isNil(data)) return;
     const item: ProductItem = {
       id: data.id,

@@ -73,7 +73,7 @@ export const MenuSlider = (props: Props) => {
         />
         <SimpleListItem
           text="Airpod"
-          onClick={() => handleClickListItem("apple", "airpod")}
+          onClick={() => handleClickListItem("apple", "headphone")}
         />
       </CollapsibleList>
 
