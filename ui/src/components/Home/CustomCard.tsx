@@ -26,6 +26,7 @@ import { CustomButton } from "components/Shared/CustomButton";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addCartItem } from "app/slices/carts.slice";
+import { customToast } from "components/Utils/toast.util";
 
 type Props = {
   item: ProductItem;
@@ -48,6 +49,7 @@ export const CustomCard = (props: Props) => {
   };
 
   const handleAddToCart = () => {
+    customToast.success("", "Thêm vào giỏ hàng thành công");
     dispatch(addCartItem(item));
   };
 
@@ -72,13 +74,15 @@ export const CustomCard = (props: Props) => {
               {item.ten}
             </Typography>
             <Typography use="body1" tag="div" theme="textSecondaryOnBackground">
-              {item.moTa}
+              <span tw="line-clamp-2">
+                {item.moTa}
+              </span>
             </Typography>
           </div>
         </CardPrimaryAction>
         <CardActions tw="grid grid-cols-3 grid-rows-2 gap-3">
           {/* <CardActionButtons tw="space-x-2 pl-2"> */}
-          {item.mau.map((i, index) => {
+          {item?.mau.map((i, index) => {
             return (
               <CustomButton
                 handleClickColorButton={handleClickColorButton}
