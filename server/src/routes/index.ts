@@ -15,4 +15,5 @@ export const routes = () => {
     app.use("/product/getProduct", getProduct());
     app.use("/product/getDetail", Detail());
     app.use("/bill/addBill", addBill());
+
 }
