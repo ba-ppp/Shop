@@ -7,24 +7,35 @@ const CartSlice = createSlice({
   name: "admin",
   initialState: {
     items: [] as ProductItem[],
+    amount: [] as number[],
   },
   reducers: {
     addCartItem: (state, action: PayloadAction<ProductItem>) => {
       const newItems = uniqBy([...state.items, action.payload], "id");
       state.items = newItems;
+      state.amount = newItems.map(() => 1);
       addItemToLocalStorage(newItems);
     },
     setCartItem: (state, action: PayloadAction<ProductItem[]>) => {
       state.items = action.payload;
+      state.amount = action.payload.map(() => 1);
     },
     addArrayCartItems: (state, action: PayloadAction<ProductItem[]>) => {
       const newItems = uniqBy([...state.items, ...action.payload], "id");
       state.items = newItems;
+      state.amount = newItems.map(() => 1);
+    },
+    setAmountCartItem: (state, action: PayloadAction<number[]>) => {
+      state.amount = action.payload;
     },
   },
 });
 
-export const { addCartItem, setCartItem, addArrayCartItems } =
-  CartSlice.actions;
+export const {
+  addCartItem,
+  setCartItem,
+  addArrayCartItems,
+  setAmountCartItem,
+} = CartSlice.actions;
 
 export const CartReducers = CartSlice.reducer;

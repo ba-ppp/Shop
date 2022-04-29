@@ -9,14 +9,47 @@ import { ReactComponent as Minus } from "asset/icons/minus.svg";
 import { ProductItem } from "models/utils.model";
 import { useState } from "react";
 import { numberToVND } from "utils/utils";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "app/reducer/reducer";
+import { isEmpty, toNumber } from "lodash";
+import { setAmountCartItem } from "app/slices/carts.slice";
 
 type Props = {
   item: ProductItem;
+  index: number;
 };
 export const PaymentItem = (props: Props) => {
-  const { item } = props;
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const { item, index } = props;
+  const [currentSelectedIndex, setCurrentSelectedIndex] = useState(0);
 
+  const cart = useSelector((state: RootState) => state.cart);
+
+  const dispatch = useDispatch();
+
+  const handleInputAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    console.log('value', value)
+    let newCurrentAmount = toNumber(value);
+    console.log('newCurrentAmount', newCurrentAmount)
+
+    const newAmount = [...cart.amount];
+    newAmount[index] = newCurrentAmount;
+
+    dispatch(setAmountCartItem(newAmount));
+  };
+
+  const handleEditAmount = (isEncrease?: boolean) => {
+    const newAmount = [...cart.amount];
+    if (isEncrease) {
+      newAmount[index] += 1;
+    } else {
+      newAmount[index] -= 1;
+      if (newAmount[index] < 1) {
+        newAmount[index] = 1;
+      }
+    }
+    dispatch(setAmountCartItem(newAmount));
+  };
   return (
     <div tw="ml-auto mr-auto mb-5 width[50%] h-32 border-b-2 border-solid border-gray-100 p-3">
       <div tw="flex space-x-10">
@@ -24,7 +57,9 @@ export const PaymentItem = (props: Props) => {
           tw="w-24 h-24 bg-contain bg-no-repeat"
           style={{
             backgroundImage: `url('${
-              process.env.PUBLIC_URL + "/images/" + item.anh[currentIndex]
+              process.env.PUBLIC_URL +
+              "/images/" +
+              item.anh[currentSelectedIndex]
             }')`,
           }}
         />
@@ -35,14 +70,14 @@ export const PaymentItem = (props: Props) => {
               anchorCorner="bottomLeft"
               handle={
                 <div tw="cursor-pointer border rounded-md flex p-1.5 items-center justify-between">
-                  <div>{item.mau[currentIndex]}</div>
+                  <div>{item.mau[currentSelectedIndex]}</div>
                   <ArrowDown />
                 </div>
               }
             >
               {item.mau.map((mau, index) => {
                 return (
-                  <MenuItem onClick={() => setCurrentIndex(index)}>
+                  <MenuItem onClick={() => setCurrentSelectedIndex(index)}>
                     <div tw="flex w-48 flex-grow space-x-3 items-center">
                       <div tw="border border-style-purple-1 p-0.5">
                         <div
@@ -66,21 +101,17 @@ export const PaymentItem = (props: Props) => {
           <div>
             <div tw="mb-5">{numberToVND(item.gia[0])}</div>
             <div tw="flex">
-              <div tw="flex items-center border p-1 w-6 h-6 justify-center">
+              <div onClick={() => handleEditAmount()} tw="flex items-center border p-1 w-6 h-6 justify-center">
                 <Minus width={10} height={10} />
               </div>
               <input
                 tw="width[2rem]! text-center outline-none ml-0.5 mr-0.5 mb-0! bg-gray-100"
-                // css={numberNoArrow}
                 type="number"
-                value={1}
-                // onKeyDown={handleKeyDown}
-                // onBlur={dispatchGotoPage}
-                // onChange={(e) => setPageInput(e.target.value)}
+                value={cart.amount[index].toString()}
+                onChange={handleInputAmount}
                 min={1}
-                // max={totalPage}
               />
-              <div tw="flex items-center border p-1 w-6 h-6 justify-center">
+              <div onClick={() => handleEditAmount(true)} tw="flex items-center border p-1 w-6 h-6 justify-center">
                 <Plus width={10} height={10} />
               </div>
             </div>

@@ -37,6 +37,7 @@ function App() {
 
         {/* private */}
         <PublicRoute path="/payment" exact component={Payment} />
+        <PublicRoute path="/payment/:status" exact component={Payment} />
 
         <Route path="/404" component={PageNotFound} />
         <Route path="*">
