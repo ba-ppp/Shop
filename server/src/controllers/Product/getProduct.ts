@@ -35,6 +35,7 @@ export interface ProductType {
 export interface ProductItem {
   id: string;
   ten: string;
+  moTa: string,
   gia: number[];
   anh: string[];
   mau: string[];
@@ -113,6 +114,7 @@ export const getProduct = () => {
                   const productItem: ProductItem = {
                     id: item.id_sp,
                     ten: item.ten_sp,
+                    moTa: item.mo_ta,
                     gia: [parseInt(item.gia)],
                     anh: [item.anh],
                     mau: [item.mau],
@@ -131,6 +133,7 @@ export const getProduct = () => {
                 const productItem: ProductItem = {
                   id: item.id_sp,
                   ten: item.ten_sp,
+                  moTa: item.mo_ta,
                   gia: [parseInt(item.gia)],
                   anh: [item.anh],
                   mau: [item.mau],

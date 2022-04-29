@@ -1,4 +1,4 @@
-import { IToken } from "models/utils.model";
+import { IToken, ProductItem } from "models/utils.model";
 import jwt_decode from "jwt-decode";
 
 export const getToken = () => JSON.parse(localStorage.getItem("token") as any);
@@ -28,13 +28,16 @@ export const isAdmin = (token: string) => {
     return isAdmin;
   }
   return false;
-}
+};
 
 export const setIsLoggedIn = () => localStorage.setItem("isLoggedIn", "true");
 
 export const numberToVND = (number: number) => {
-  return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(number);
-}
+  return new Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  }).format(number);
+};
 
 export const getButtonColorFromVN = (text: string) => {
   const lowerText = text.toLowerCase();
@@ -64,4 +67,22 @@ export const getButtonColorFromVN = (text: string) => {
   }
 
   return "white";
+};
+
+export const addItemToLocalStorage = (value: ProductItem[]) => {
+  try {
+    localStorage.setItem("cart", JSON.stringify(value));
+  } catch (ex) {
+    console.log("Failed add item", ex);
+  }
+};
+
+export const getItemFromLocalStorage = () => {
+  try {
+    const value = localStorage.getItem("cart");
+    if (value) return JSON.parse(value);
+    return [];
+  } catch (ex) {
+    console.log("Failed get item", ex);
+  }
 };

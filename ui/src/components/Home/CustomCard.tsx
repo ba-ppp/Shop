@@ -24,11 +24,13 @@ import { useState } from "react";
 import { TwStyle } from "twin.macro";
 import { CustomButton } from "components/Shared/CustomButton";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { addCartItem } from "app/slices/carts.slice";
+import { customToast } from "components/Utils/toast.util";
 
 type Props = {
   item: ProductItem;
 };
-
 
 export const CustomCard = (props: Props) => {
   const { item } = props;
@@ -36,13 +38,20 @@ export const CustomCard = (props: Props) => {
   const [selectedImage, setSeletedImage] = useState(item.anh[0]);
   const history = useHistory();
 
+  const dispatch = useDispatch();
+
   const handleClickItem = () => {
     history.push(`/detail/${item.id}`);
   };
 
   const handleClickColorButton = (index: number) => {
     setSeletedImage(item.anh[index]);
-  }
+  };
+
+  const handleAddToCart = () => {
+    customToast.success("", "Thêm vào giỏ hàng thành công");
+    dispatch(addCartItem(item));
+  };
 
   useEffect(() => {
     setSeletedImage(item.anh[0]);
@@ -65,15 +74,22 @@ export const CustomCard = (props: Props) => {
               {item.ten}
             </Typography>
             <Typography use="body1" tag="div" theme="textSecondaryOnBackground">
-              Visit ten places on our planet that are undergoing the biggest
-              changes today.
+              <span tw="line-clamp-2">
+                {item.moTa}
+              </span>
             </Typography>
           </div>
         </CardPrimaryAction>
         <CardActions tw="grid grid-cols-3 grid-rows-2 gap-3">
           {/* <CardActionButtons tw="space-x-2 pl-2"> */}
-          {item.mau.map((i, index) => {
-            return <CustomButton handleClickColorButton={handleClickColorButton} text={i} index={index} />;
+          {item?.mau.map((i, index) => {
+            return (
+              <CustomButton
+                handleClickColorButton={handleClickColorButton}
+                text={i}
+                index={index}
+              />
+            );
           })}
           {/* </CardActionButtons> */}
         </CardActions>
@@ -84,7 +100,10 @@ export const CustomCard = (props: Props) => {
             </Button>
           </CardActionButtons>
           <CardActionIcons>
-            <CardActionIcon icon={<AddToCart fill={color.purple_2} />} />
+            <CardActionIcon
+              onClick={handleAddToCart}
+              icon={<AddToCart fill={color.purple_2} />}
+            />
             <CardActionIcon icon={false ? <Favorite /> : <NoFavorite />} />
           </CardActionIcons>
         </CardActions>
