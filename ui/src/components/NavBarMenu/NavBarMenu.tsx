@@ -49,7 +49,7 @@ export const NavBarMenu = () => {
               <MenuClose fill={color.purple_1} width={24} height={24} />
             )}
           </button>
-          <div tw="flex items-center font-size[18px]">
+          <div onClick={() => history.push('/')} tw="flex items-center font-size[18px] cursor-pointer">
             <span tw="text-style-purple-1 font-black">Phone</span>
             <span tw="font-black">Store</span>
           </div>
@@ -63,7 +63,7 @@ export const NavBarMenu = () => {
           </button>
           <button
             css={styles.box}
-            onClick={() => handleClickMenuIcons("payment")}
+            onClick={() => handleClickMenuIcons("/payment")}
           >
             <Cart fill={color.purple_1} width={24} height={24} />
           </button>

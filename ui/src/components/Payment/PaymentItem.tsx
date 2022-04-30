@@ -11,7 +11,7 @@ import { useState } from "react";
 import { numberToVND } from "utils/utils";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "app/reducer/reducer";
-import { isEmpty, toNumber } from "lodash";
+import { toNumber } from "lodash";
 import { setAmountCartItem } from "app/slices/carts.slice";
 
 type Props = {

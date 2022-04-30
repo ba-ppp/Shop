@@ -2,7 +2,7 @@
 const dev = {
   apiGateway: {
     URL: "http://localhost:8080",
-  }
+  },
 };
 
 export const config = {
