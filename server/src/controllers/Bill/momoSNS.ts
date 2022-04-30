@@ -63,7 +63,6 @@ export const momoSNS = () => {
       };
       const payloadURL = new URLSearchParams(payload);
       const payloadString = payloadURL.toString();
-      console.log('payloadString', payloadString)
       const myHash = sha256.hmac(
         "mkU3vhIpVoGlvETXuKqJEeFzZFWEZyZu",
         payloadString
