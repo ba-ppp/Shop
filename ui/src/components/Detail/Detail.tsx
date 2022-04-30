@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
-import tw, { TwStyle } from "twin.macro";
+import "twin.macro";
 import { List } from "@rmwc/list";
 import { ListDetail } from "./ListDetail";
 import { Suggestion } from "./Suggestion";
@@ -21,11 +21,11 @@ import { useDispatch } from "react-redux";
 import { addCartItem } from "app/slices/carts.slice";
 import { customToast } from "components/Utils/toast.util";
 
-const boxBackground: { [key: string]: TwStyle } = {
-  white: tw`bg-white border-white`,
-  black: tw`bg-black border-black`,
-  red: tw`bg-red-600 border-red-600`,
-};
+// const boxBackground: { [key: string]: TwStyle } = {
+//   white: tw`bg-white border-white`,
+//   black: tw`bg-black border-black`,
+//   red: tw`bg-red-600 border-red-600`,
+// };
 
 type DetailData = {
   anh: string[];

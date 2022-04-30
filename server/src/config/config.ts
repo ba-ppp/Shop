@@ -16,6 +16,6 @@ export const serverInit = (app: express.Application) => {
     res.send("Express + TypeScript Server");
   });
   app.listen(8080, () => {
-    console.log(`⚡️[server]: Server is running at https://localhost:8080`);
+    console.log(`⚡️[server]: Server is running at http://localhost:8080`);
   });
 };

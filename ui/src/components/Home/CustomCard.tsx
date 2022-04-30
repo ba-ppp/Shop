@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import tw from "twin.macro";
+import "twin.macro";
 import React from "react";
 import {
   Card,
@@ -17,11 +17,10 @@ import { ReactComponent as Favorite } from "asset/icons/favorite.svg";
 import { ReactComponent as NoFavorite } from "asset/icons/no_favorite.svg";
 import { color } from "components/twin.style";
 import { Button } from "@rmwc/button";
-import { Product, ProductItem } from "models/utils.model";
+import { ProductItem } from "models/utils.model";
 import { useHistory } from "react-router-dom";
 import { numberToVND } from "utils/utils";
 import { useState } from "react";
-import { TwStyle } from "twin.macro";
 import { CustomButton } from "components/Shared/CustomButton";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";

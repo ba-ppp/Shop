@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react-hooks/exhaustive-deps */
 /** @jsxImportSource @emotion/react */
 import "twin.macro";
@@ -10,19 +11,29 @@ import { has, isEmpty, mapValues } from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "app/reducer/reducer";
 import { numberToVND } from "utils/utils";
-import { createStripe, postPayment } from "services/payment.service";
+import {
+  checkMomo,
+  createStripe,
+  payMomo,
+  postPayment,
+} from "services/payment.service";
 import { customToast } from "components/Utils/toast.util";
 import { useHistory, useParams } from "react-router-dom";
 
-
 import { ReactComponent as Stripe } from "asset/icons/stripe.svg";
 import Momo from "asset/images/momo_logo.png";
+import { StatusCode } from "models/enums";
+import { useSearchParam } from "react-use";
+import { clearCartItems } from "app/slices/carts.slice";
 
 export const Payment = () => {
   const [data, setData] = useState([]);
 
   const { status }: any = useParams();
-  const history = useHistory()
+
+  const history = useHistory();
+
+  const dispatch = useDispatch();
 
   const [cities, setCities] = useState<string[]>([]);
   const [prices, setPrices] = useState(0);
@@ -42,8 +53,6 @@ export const Payment = () => {
 
   const cart = useSelector((state: RootState) => state.cart);
 
-  const dispatch = useDispatch();
-
   const handleGetProvinde = async () => {
     const response = await axios.get(
       "https://provinces.open-api.vn/api/?depth=2"
@@ -52,12 +61,43 @@ export const Payment = () => {
   };
 
   useEffect(() => {
-    if (status === 'success') {
-      customToast.success('Thanh toán thành công');
-      history.push('/payment');
-    }
-    
-  }, [status])
+    (async () => {
+      const url = window.location.href;
+
+      const paramsString = url.split("?")[1];
+      const searchParams = new URLSearchParams(paramsString);
+      if (
+        searchParams.has("partnerCode") &&
+        searchParams.has("partnerCode") &&
+        searchParams.has("requestId")
+      ) {
+        const payload = {
+          partnerCode: searchParams.get("partnerCode")!,
+          orderId: searchParams.get("orderId")!,
+          requestId: searchParams.get("requestId")!,
+        };
+        const res = await checkMomo(payload);
+        if (res.data) {
+          const { data } = res.data;
+
+          if (data?.resultCode === 0 && data?.message.includes("Successful")) {
+            customToast.success("Thanh toán thành công");
+            await handleClearPayment();
+          }
+        }
+      }
+    })();
+  }, [window.location.href]);
+
+  useEffect(() => {
+    // stripe
+    (async () => {
+      if (status === "success") {
+        customToast.success("Thanh toán thành công");
+        await handleClearPayment();
+      }
+    })();
+  }, [status]);
 
   useEffect(() => {
     handleGetProvinde();
@@ -88,6 +128,19 @@ export const Payment = () => {
     }
   };
 
+  const handleClearPayment = async () => {
+    const payload = {
+      products: cart.items,
+      phone,
+      name,
+      address: "",
+      amount: cart.amount,
+    };
+    await postPayment(payload);
+    history.push('/payment')
+    dispatch(clearCartItems());
+  };
+
   const handlePayment = async () => {
     if (isEmpty(name)) {
       customToast.error("Vui lòng nhập họ tên");
@@ -97,20 +150,33 @@ export const Payment = () => {
       customToast.error("Vui lòng nhập số điện thoại");
       return;
     }
+
     const payload = {
       products: cart.items,
       phone,
       name,
       address: "",
-      amount: cart.amount
+      amount: cart.amount,
     };
-    if (!payOptions.payCash) {
+
+    if (payOptions.payStripe) {
       const res = await createStripe(payload);
       const body = await res.data;
       window.location.href = body.url;
       return;
     }
-    await postPayment(payload);
+
+    if (payOptions.payMomo) {
+      const res = await payMomo({
+        amount: prices,
+      });
+      if (res.status === StatusCode.OK) {
+        const { data } = res.data;
+        window.location.href = data.payUrl;
+        return;
+      }
+    }
+    await handleClearPayment();
     customToast.success("Đã đặt hàng thành công");
   };
 
