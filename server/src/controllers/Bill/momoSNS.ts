@@ -9,12 +9,10 @@ export const momoSNS = () => {
   router.post(
     "/momo",
     async (req: express.Request, res: express.Response) => {
-      console.log("first");
       const { amount } = req.body;
       const amountString = (amount / 1000).toString();
       const requestId = v4();
       const orderId = v4();
-      const stringToHash = `accessKey=VK9in7lVWnI2HcRZ&amount=${amountString}&extraData=&ipnUrl=http://localhost:8080/momo/notification&orderId=${orderId}&orderInfo=Muadt&partnerCode=MOMOVN6L20220429&redirectUrl=http://localhost:3000/payment&requestId=${requestId}&requestType=captureWallet`;
       const payload: any = {
         accessKey: "VK9in7lVWnI2HcRZ",
         partnerCode: "MOMOVN6L20220429",
@@ -28,6 +26,7 @@ export const momoSNS = () => {
         extraData: "",
         lang: "vi",
       };
+      const stringToHash = new URLSearchParams(payload).toString();
       const myHash = sha256.hmac(
         "mkU3vhIpVoGlvETXuKqJEeFzZFWEZyZu",
         stringToHash
@@ -52,7 +51,6 @@ export const momoSNS = () => {
   router.post(
     "/checkMomo",
     async (req: express.Request, res: express.Response) => {
-      console.log('second')
       const { orderId, requestId } = req.body;
 
       const payload: any = {
