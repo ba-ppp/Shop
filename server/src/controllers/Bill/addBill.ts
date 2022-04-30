@@ -1,7 +1,6 @@
 import express from "express";
 import { connection } from "../../database/mysql";
 import { v4 } from 'uuid';
-
 let uid = v4();
 
 const router = express.Router();
