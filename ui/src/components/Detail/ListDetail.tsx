@@ -3,7 +3,7 @@ import React from "react";
 import tw from "twin.macro";
 import { CollapsibleList, SimpleListItem } from "@rmwc/list";
 import { ReactComponent as Add } from "asset/icons/add.svg";
-import { forOwn, get, keys } from "lodash";
+import { get, keys } from "lodash";
 
 type Data = {
   [key: string]: string;
@@ -28,8 +28,6 @@ export const ListDetail = (props: Props) => {
         />
       }
       tw="bg-gray-100 text-sm"
-      // onOpen={() => console.log("open")}
-      // onClose={() => console.log("close")}
     >
       <div>
         {keys(data).map((key) => {
