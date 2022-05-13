@@ -9,7 +9,7 @@ export const getRom = () => {
     "/",
     async (req: express.Request, res: express.Response) => {
       try {
-        const id = req.query.id;
+        const {id} = req.body;
         const resultsData: any = [];
         let data = {
           id: "",
@@ -21,13 +21,11 @@ export const getRom = () => {
           "select * from san_pham s join chi_tiet_sp c on s.id_sp = c.id_sp where s.id_sp = ?";
         connection.query(sql, [id], function (err, results) {
           if (err) throw err;
-          console.log(id);
           results.forEach((item: any) => {
             data.id = item.id_sp;
-            (data.ten = item.ten_sp),
-              data.gia.push(item.gia),
-              data.dungLuong.push(item.dung_luong);
-              console.log("aaa")
+            data.ten = item.ten_sp,
+            data.gia.push(item.gia),
+            data.dungLuong.push(item.dung_luong);
           });
           resultsData.push(data);
           res.json(resultsData[0]);

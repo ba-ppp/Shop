@@ -9,11 +9,9 @@ export const editPrice = () => {
     "/",
     async (req: express.Request, res: express.Response) => {
       try {
-        const id = req.query.id;
-        const dungLuong = req.query.dungLuong;
-        const giaMoi = req.query.giaMoi;
+        const {id,dungLuong,giaMoi} = req.body;
         const sql =
-          "update set gia = ? where id = ? and dung_luong=?";
+          "update chi_tiet_sp set gia = ? where id_sp = ? and dung_luong=?";
         connection.query(sql, [giaMoi,id,dungLuong], function (err, results) {
           if (err) throw err;
           res.json({
