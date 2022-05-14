@@ -14,4 +14,8 @@ export const payMomo = (payload: any) => {
 
 export const checkMomo = (payload: any) => {
   return BaseAPI.post("/pay/checkMomo", payload);
-}
+};
+
+export const getHistoryPayment = (payload: { sdt: string }) => {
+  return BaseAPI.get("/customer/historyBuy", { params: payload });
+};

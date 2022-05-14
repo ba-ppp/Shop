@@ -15,6 +15,7 @@ module.exports = {
       indigo: colors.indigo,
       pink: colors.pink,
       purple: colors.purple,
+      slate: colors.slate,
 
       "style-purple": {
         1: "#9B99FF",

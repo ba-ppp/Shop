@@ -23,7 +23,7 @@ export const colorBorder: { [key: string]: TwStyle } = {
   green: tw`text-green-500! hover:bg-green-300! border-green-400! active:bg-green-400! focus:bg-green-200!`,
   gray: tw`text-gray-500! hover:bg-gray-300! border-gray-400! active:bg-gray-400! focus:bg-gray-200!`,
   pink: tw`text-pink-500! hover:bg-pink-300! border-pink-400! active:bg-pink-400! focus:bg-pink-200!`,
-  black: tw`text-black! hover:bg-black! border-black! active:bg-black! focus:(bg-black text-white)!`,
+  black: tw`text-black! hover:(bg-black text-white)! border-black! active:bg-black! focus:(bg-black text-white)!`,
   white: tw`text-black!`,
 };
 

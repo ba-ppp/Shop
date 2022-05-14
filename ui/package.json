@@ -37,6 +37,7 @@
     "react-use": "^17.3.1",
     "redux-devtools-extension": "^2.13.9",
     "rmwc": "^7.0.3",
+    "sass": "^1.51.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "tslib": "^2.4.0",
     "twin.macro": "^2.8.1",

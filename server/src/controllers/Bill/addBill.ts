@@ -1,8 +1,6 @@
 import express from "express";
 import { connection } from "../../database/mysql";
-import { v4 } from 'uuid';
-
-let uid = v4();
+import { v4 } from "uuid";
 
 const router = express.Router();
 export const insertBill = async (
@@ -11,27 +9,29 @@ export const insertBill = async (
   name: string,
   address: string
 ) => {
+  const uid = v4();
   const sql = "call addBill (?,?,?,?)";
   const sql1 = "call addCTBill(?,?,?,?,?)";
   try {
     const rs = await new Promise((resolve, reject) => {
       connection.query(sql, [uid, phone, name, address], (err) => {
-        if (err) reject(err);
+        if (err) console.log('err', err)
         resolve(true);
       });
     });
     if (rs) {
+      
       const rs1 = await Promise.all(
-        products.map(({ id, rom, color, amount }) => {
+        products.map(({ id, dungLuong, mau, amount }) => {
           return new Promise((resolve, reject) => {
-            connection.query(sql1, [id, rom, color, amount, uid], (err) => {
-              if (err) reject(err);
+            connection.query(sql1, [id, dungLuong, mau, amount, uid], (err) => {
+              if (err) console.log('err', err)
               resolve(true);
             });
           });
         })
       );
-      if(rs1){
+      if (rs1) {
         return true;
       }
     }
@@ -48,6 +48,7 @@ export const addBill = () => {
       try {
         const { products, phone, name, address } = req.body;
         const status = insertBill(products, phone, name, address);
+        console.log('status', status)
 
         status.then((result) => {
           if (result) {

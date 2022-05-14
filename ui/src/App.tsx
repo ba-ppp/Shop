@@ -14,30 +14,69 @@ import "@rmwc/menu/styles";
 import { Detail } from "components/Detail/Detail";
 import { Payment } from "components/Payment/Payment";
 import { getItemFromLocalStorage } from "utils/utils";
-import { useEffectOnce } from "react-use";
-import { useDispatch } from "react-redux";
+import { useEffectOnce, useLocation } from "react-use";
+import { useDispatch, useSelector } from "react-redux";
 import { addArrayCartItems } from "app/slices/carts.slice";
+import { HomePage } from "components/HomePage/HomePage";
+import { RootState } from "app/reducer/reducer";
+import { HomeNavBar } from "components/NavBarMenu/HomeNavBar";
+import { useEffect } from "react";
+import { toggleMenuSelect } from "app/slices/toggle.slice";
+import { Search } from "components/Search/Search";
+import { isNil } from "lodash";
+import { Admin } from 'components/Admin/Admin';
+import { History } from 'components/History/History';
+import Loader from 'components/Loader/Loader';
+import './App.scss';
+import { Skeleton } from 'components/Loader/Skeleton';
 
 function App() {
   const dispatch = useDispatch();
+
+  const toggle = useSelector((state: RootState) => state.toggle);
+
   useEffectOnce(() => {
     const items = getItemFromLocalStorage();
     dispatch(addArrayCartItems(items));
   });
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (isNil(location.pathname)) return;
+
+    const pathNotHaveMenu = ["/", "/search", "/history"];
+
+    if (pathNotHaveMenu.includes(location.pathname)) {
+      dispatch(toggleMenuSelect(false));
+    } else {
+      dispatch(toggleMenuSelect(true));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
+
   return (
     <div>
       <Toaster position="top-center" reverseOrder={false} />
-      <NavBarMenu />
+
+      {toggle.hasMenuSelect ? <NavBarMenu /> : <HomeNavBar />}
+
       <Switch>
-        <PublicRoute path="/" exact component={Home} />
+        <PublicRoute path="/" exact component={HomePage} />
+        <PublicRoute path="/shop" exact component={Home} />
 
         <PublicRoute path="/signin" exact component={Login} />
         <PublicRoute path="/signup" exact component={SignUp} />
-        <PublicRoute path="/detail/:id" exact component={Detail} />
 
-        {/* private */}
+        <PublicRoute path="/detail/:id" exact component={Detail} />
+        <PublicRoute path="/search" exact component={Search} />
+
         <PublicRoute path="/payment" exact component={Payment} />
         <PublicRoute path="/payment/:status" exact component={Payment} />
+
+        <PublicRoute path="/admin" exact component={Admin} />
+
+        <PublicRoute path="/history" exact component={History} />
 
         <Route path="/404" component={PageNotFound} />
         <Route path="*">

@@ -37,8 +37,8 @@ export const MenuSlider = (props: Props) => {
     isClickFirm?: boolean
   ) => {
     dispatch(updateFirmSelected({ idHang: firm, idLoai: type }));
-    if (location.pathname !== "/" && !isClickFirm) {
-      history.push("/");
+    if (location.pathname !== "/shop" && !isClickFirm) {
+      history.push("/shop");
       return;
     }
   };
@@ -64,12 +64,12 @@ export const MenuSlider = (props: Props) => {
         open={!toggle.isOpenSlideBar ? false : undefined}
       >
         <SimpleListItem
-          text="Phones"
+          text="iPhone"
           onClick={() => handleClickListItem("apple", "phones")}
         />
         <SimpleListItem
-          text="Airpad"
-          onClick={() => handleClickListItem("apple", "airpad")}
+          text="iPad"
+          onClick={() => handleClickListItem("apple", "tablet")}
         />
         <SimpleListItem
           text="Airpod"

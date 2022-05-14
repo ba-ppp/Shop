@@ -7,6 +7,9 @@ import express from 'express';
 import { addBill } from 'controllers/Bill/addBill';
 import { createStripe } from 'controllers/Bill/createStripe';
 import { momoSNS } from 'controllers/Bill/momoSNS';
+import { getRom } from 'controllers/Admin/getRom';
+import { editPrice } from 'controllers/Admin/editPrice';
+import { historyBuy } from 'controllers/Customer/historyBuy';
 
 const app = express();
 
@@ -22,5 +25,9 @@ export const routes = () => {
 
     app.use("/pay", momoSNS());
     // app.use("/pay/checkMomo", checkMomo());
+    
+    app.use("/admin/getRom", getRom());
+    app.use("/admin/editPrice", editPrice());
 
+    app.use("/customer/historyBuy", historyBuy());
 }
