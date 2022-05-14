@@ -95,101 +95,106 @@ export const Detail = () => {
     dispatch(addCartItem(item));
   };
   return (
-    <div tw="mt-16 mb-10 ml-64">
-      {toggle.isLoading && (
+    <>
+      {toggle.isLoading ? (
         <div className="loader__component">
           <Loader />
         </div>
+      ) : (
+        <div tw="mt-16 mb-10 ml-64">
+          <div tw="flex items-center py-3">
+            <div
+              tw="height[450px] w-1/2 bg-no-repeat bg-contain bg-center mt-5"
+              style={{
+                backgroundImage: `url('${
+                  process.env.PUBLIC_URL + "/images/" + currentImage
+                }')`,
+              }}
+            />
+
+            <div tw="ml-16">
+              <div tw="text-4xl font-bold mb-7">{data?.ten}</div>
+              <div tw="text-xl font-semibold mb-5">
+                Giá: {numberToVND(currentPrice ?? 0)}
+              </div>
+              <div tw="text-xl font-medium mb-2">Dung lượng</div>
+              <div tw="flex space-x-5 mb-2">
+                {data?.dungLuong.map((capacity, index) => {
+                  return (
+                    <BoxRectangle
+                      capacity={capacity}
+                      index={index}
+                      handleClickBox={handleClickRecBox}
+                    />
+                  );
+                })}
+              </div>
+
+              <div tw="text-xl font-medium mb-2">Màu:</div>
+              <div tw="flex space-x-5">
+                {data?.mau.map((color, index) => {
+                  return (
+                    <BoxCircle
+                      color={color}
+                      index={index}
+                      handleClickBox={handleClickCircleBox}
+                    />
+                  );
+                })}
+              </div>
+
+              <div tw="w-full mt-5">
+                <div tw="flex space-x-3 mb-2">
+                  <Waranty height={28} width={28} />
+                  <div tw="font-size[16px] font-semibold">
+                    Bảo hành chính hãng 1 năm
+                  </div>
+                </div>
+                <div tw="flex space-x-3 mb-2">
+                  <Truck height={28} width={28} />
+                  <div tw="font-size[16px] font-semibold">
+                    Giao hàng nhanh toàn quốc
+                  </div>
+                </div>
+                <div tw="flex space-x-4">
+                  <Phone height={24} width={24} />
+                  <div tw="font-size[16px] font-semibold">
+                    Chăm sóc khách hàng 24/7
+                  </div>
+                </div>
+              </div>
+
+              <div tw="mt-5 flex space-x-5">
+                <button
+                  onClick={handleAddToCart}
+                  tw="bg-style-purple-1 hover:bg-style-purple-2 text-white font-bold py-3 px-4 rounded inline-flex items-center space-x-2"
+                >
+                  <AddToCart fill="white" height={24} width={24} />
+                  <span>Thêm vào giỏ hàng</span>
+                </button>
+                <button tw="bg-style-purple-2 px-4 py-3 rounded text-white">
+                  Mua ngay
+                </button>
+              </div>
+            </div>
+          </div>
+          <div tw="ml-20 mt-10">
+            <div tw="text-2xl font-medium mb-5">Phụ kiện đi kèm gợi ý: </div>
+            <div tw="flex space-x-5 items-center justify-around width[90%] mb-10">
+              {data?.phuKien.map((accessory, index) => {
+                return <Suggestion item={accessory} />;
+              })}
+            </div>
+            <List tw="width[590px] ml-96 space-y-5">
+              {keys(data?.thongTin).map((key, index) => {
+                return (
+                  <ListDetail header={key} data={get(data?.thongTin, key)} />
+                );
+              })}
+            </List>
+          </div>
+        </div>
       )}
-      <div tw="flex items-center py-3">
-        <div
-          tw="height[450px] w-1/2 bg-no-repeat bg-contain bg-center mt-5"
-          style={{
-            backgroundImage: `url('${
-              process.env.PUBLIC_URL + "/images/" + currentImage
-            }')`,
-          }}
-        />
-
-        <div tw="ml-16">
-          <div tw="text-4xl font-bold mb-7">{data?.ten}</div>
-          <div tw="text-xl font-semibold mb-5">
-            Giá: {numberToVND(currentPrice ?? 0)}
-          </div>
-          <div tw="text-xl font-medium mb-2">Dung lượng</div>
-          <div tw="flex space-x-5 mb-2">
-            {data?.dungLuong.map((capacity, index) => {
-              return (
-                <BoxRectangle
-                  capacity={capacity}
-                  index={index}
-                  handleClickBox={handleClickRecBox}
-                />
-              );
-            })}
-          </div>
-
-          <div tw="text-xl font-medium mb-2">Màu:</div>
-          <div tw="flex space-x-5">
-            {data?.mau.map((color, index) => {
-              return (
-                <BoxCircle
-                  color={color}
-                  index={index}
-                  handleClickBox={handleClickCircleBox}
-                />
-              );
-            })}
-          </div>
-
-          <div tw="w-full mt-5">
-            <div tw="flex space-x-3 mb-2">
-              <Waranty height={28} width={28} />
-              <div tw="font-size[16px] font-semibold">
-                Bảo hành chính hãng 1 năm
-              </div>
-            </div>
-            <div tw="flex space-x-3 mb-2">
-              <Truck height={28} width={28} />
-              <div tw="font-size[16px] font-semibold">
-                Giao hàng nhanh toàn quốc
-              </div>
-            </div>
-            <div tw="flex space-x-4">
-              <Phone height={24} width={24} />
-              <div tw="font-size[16px] font-semibold">
-                Chăm sóc khách hàng 24/7
-              </div>
-            </div>
-          </div>
-
-          <div tw="mt-5 flex space-x-5">
-            <button
-              onClick={handleAddToCart}
-              tw="bg-style-purple-1 hover:bg-style-purple-2 text-white font-bold py-3 px-4 rounded inline-flex items-center space-x-2"
-            >
-              <AddToCart fill="white" height={24} width={24} />
-              <span>Thêm vào giỏ hàng</span>
-            </button>
-            <button tw="bg-style-purple-2 px-4 py-3 rounded text-white">
-              Mua ngay
-            </button>
-          </div>
-        </div>
-      </div>
-      <div tw="ml-20 mt-10">
-        <div tw="text-2xl font-medium mb-5">Phụ kiện đi kèm gợi ý: </div>
-        <div tw="flex space-x-5 items-center justify-around width[90%] mb-10">
-          {data?.phuKien.map((accessory, index) => {
-            return <Suggestion item={accessory} />;
-          })}
-        </div>
-        <List tw="width[590px] ml-96 space-y-5">
-          {keys(data?.thongTin).map((key, index) => {
-            return <ListDetail header={key} data={get(data?.thongTin, key)} />;
-          })}
-        </List>
-      </div>
-    </div>
+    </>
   );
 };

@@ -3,7 +3,7 @@ import "@rmwc/card/styles";
 import "@rmwc/typography/styles";
 import { RootState } from "app/reducer/reducer";
 import { setProductItems } from "app/slices/products.slice";
-import { toggleLoading } from "app/slices/toggle.slice";
+import { toggleLoading, toggleMenuSelect } from "app/slices/toggle.slice";
 import Loader from "components/Loader/Loader";
 import { Skeleton } from "components/Loader/Skeleton";
 import { isEmpty, map } from "lodash";
@@ -22,7 +22,7 @@ import { CustomCard } from "./CustomCard";
 
 export const Home = () => {
   const [dataRender, setDataRender] = useState<ProductItem[][]>([]);
-  const [isLoadingSkeleton, toggleLoadingSkeleton] = useToggle(true);
+  const [isLoadingSkeleton, toggleLoadingSkeleton] = useToggle(false);
 
   const toggle = useSelector((state: RootState) => state.toggle);
   const product = useSelector((state: RootState) => state.product);
@@ -44,8 +44,7 @@ export const Home = () => {
     const firmSelected = product.idHangSelected;
     const typeSelected = product.idLoaiSelected;
     const currentItems = products.find((i) => i.id === firmSelected);
-    console.log('currentItems', currentItems);
-    console.log('typeSelected', typeSelected)
+
     currentItems?.loai
       .find((i) => i.ten.toLowerCase() === typeSelected)
       ?.products.forEach((item, index) => {
@@ -64,13 +63,17 @@ export const Home = () => {
   };
   useEffectOnce(() => {
     (async () => {
+      if (toggle.hasMenuSelect) {
+        dispatch(toggleMenuSelect(false))
+      }
+      await fakeSleep(1500);
+      toggleLoadingSkeleton(true);
       const response = await getProductItems();
 
       const data = await response.data;
       dispatch(setProductItems(data));
-      console.log('first')
+
       handleDataRender(data);
-      await fakeSleep(1500);
       await sleepAsync(1000);
       toggleLoadingSkeleton(false);
     })();
