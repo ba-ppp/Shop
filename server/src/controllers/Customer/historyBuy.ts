@@ -23,15 +23,16 @@ export const historyBuy = () => {
           results.forEach((item: any) => {
             data.sdt = item.sdt;
             data.chiTiet.push({
-              hoTen: item.ho_ten,
-              diaChi: item.dia_chi,
-              ngayMua: item.ngay_lap,
-              tenSP: item.ten_sp,
-              dungLuong: item.dung_luong,
-              mau: item.mau,
-              gia: item.gia,
-              sl: item.amout,
-              tongGia: item.price,
+                hoTen : item.ho_ten,
+                diaChi : item.dia_chi,
+                ngayMua : item.ngay_lap,
+                ten : item.ten_sp,
+                anh: item.anh,
+                dungLuong : item.dung_luong,
+                mau : item.mau,
+                gia : item.gia,
+                amount : item.amount,
+                totalPrice : item.price
             });
           });
           resultsData.push(data);
