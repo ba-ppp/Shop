@@ -26,6 +26,7 @@ export const historyBuy = () => {
                 diaChi : item.dia_chi,
                 ngayMua : item.ngay_lap,
                 tenSP : item.ten_sp,
+                anh: item.anh,
                 dungLuong : item.dung_luong,
                 mau : item.mau,
                 gia : item.gia,
