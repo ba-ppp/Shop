@@ -1,0 +1,16 @@
+.loader__component {
+    opacity: 0.8;
+    text-align: center;
+    z-index: 100000;
+    background-color: white !important;
+    overflow-y: hidden;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

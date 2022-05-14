@@ -10,7 +10,7 @@ import { useState } from "react";
 import { has, isEmpty, mapValues } from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "app/reducer/reducer";
-import { numberToVND } from "utils/utils";
+import { numberToVND, sleepAsync } from "utils/utils";
 import {
   checkMomo,
   createStripe,
@@ -25,6 +25,8 @@ import Momo from "asset/images/momo_logo.png";
 import { StatusCode } from "models/enums";
 import { useSearchParam } from "react-use";
 import { clearCartItems } from "app/slices/carts.slice";
+import { toggleLoading } from 'app/slices/toggle.slice';
+import Loader from 'components/Loader/Loader';
 
 export const Payment = () => {
   const [data, setData] = useState([]);
@@ -52,6 +54,16 @@ export const Payment = () => {
   const [name, setName] = useState("");
 
   const cart = useSelector((state: RootState) => state.cart);
+  const toggle = useSelector((state: RootState) => state.toggle);
+
+
+  const fakeSleep = async (milisecond: number) => {
+    dispatch(toggleLoading(true));
+
+    await sleepAsync(milisecond);
+
+    dispatch(toggleLoading(false));
+  };
 
   const handleGetProvinde = async () => {
     const response = await axios.get(
@@ -164,7 +176,7 @@ export const Payment = () => {
       address: "",
       amount: cart.amount,
     };
-
+    await fakeSleep(1500);
     if (payOptions.payStripe) {
       const res = await createStripe(payload);
       const body = await res.data;
@@ -200,6 +212,11 @@ export const Payment = () => {
 
   return (
     <div tw="mt-16 mb-10 ml-auto mr-auto width[70%]">
+       {toggle.isLoading && (
+          <div className="loader__component">
+            <Loader />
+          </div>
+        )}
       <h1 tw="text-xl text-style-purple-1 font-bold mb-5 w-1/2 ml-auto">
         Giỏ Hàng
       </h1>

@@ -13,13 +13,16 @@ import { useEffectOnce } from "react-use";
 import { getItemDetail } from "services/product.service";
 import { Accessories, ProductDetail, ProductItem } from "models/utils.model";
 import { useState } from "react";
-import { numberToVND } from "utils/utils";
+import { numberToVND, sleepAsync } from "utils/utils";
 import { BoxCircle } from "components/Shared/BoxCircle";
 import { get, isNil, keys } from "lodash";
 import { BoxRectangle } from "components/Shared/BoxRectangle";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addCartItem } from "app/slices/carts.slice";
 import { customToast } from "components/Utils/toast.util";
+import { RootState } from "app/reducer/reducer";
+import Loader from "components/Loader/Loader";
+import { toggleLoading } from "app/slices/toggle.slice";
 
 // const boxBackground: { [key: string]: TwStyle } = {
 //   white: tw`bg-white border-white`,
@@ -44,10 +47,21 @@ export const Detail = () => {
   const [currentPrice, setCurrentPrice] = useState(0);
   const [currentImage, setCurrentImage] = useState("");
 
+  const toggle = useSelector((state: RootState) => state.toggle);
+
   const dispatch = useDispatch();
+
+  const fakeSleep = async (milisecond: number) => {
+    dispatch(toggleLoading(true));
+
+    await sleepAsync(milisecond);
+
+    dispatch(toggleLoading(false));
+  };
 
   useEffectOnce(() => {
     (async () => {
+      await fakeSleep(1500);
       const response = await getItemDetail(id);
       setData(response.data);
       setCurrentPrice(response.data?.gia?.[0]);
@@ -82,6 +96,11 @@ export const Detail = () => {
   };
   return (
     <div tw="mt-16 mb-10 ml-64">
+      {toggle.isLoading && (
+        <div className="loader__component">
+          <Loader />
+        </div>
+      )}
       <div tw="flex items-center py-3">
         <div
           tw="height[450px] w-1/2 bg-no-repeat bg-contain bg-center mt-5"

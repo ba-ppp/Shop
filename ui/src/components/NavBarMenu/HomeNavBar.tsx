@@ -2,7 +2,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import tw from "twin.macro";
-// import { ReactComponent as Logo } from "asset/icons/logo.svg";
+// import { ReactComponent as Logo } from "asset/images/logo-banner.svg";
+import Logo from "asset/images/logo-banner.png";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as StarIcon } from "asset/icons/star.svg";
@@ -24,12 +25,15 @@ export const HomeNavBar = () => {
     setActiveNav(id);
   };
 
+
   useEffect(() => {
-    if (location.pathname.includes("admin")) {
-      toggleAdmin(true);
-    } else {
-      toggleAdmin(false);
+    if (location.pathname === '/') {
+      setActiveNav(1);
     }
+    if (location.pathname === '/search') {
+      setActiveNav(2);
+    }
+
   }, [location]);
 
   return (
@@ -40,8 +44,9 @@ export const HomeNavBar = () => {
             <NavLink to="/">
               <div tw="flex items-center space-x-2 mt-16">
                 {/* <Logo width={32} height={32} /> */}
+                <img src={Logo} alt="logo" width={32} height={32}/>
                 <div tw="flex text-2xl">
-                  <span tw="text-style-purple-1 font-black">Phone</span>
+                  <span tw="text-style-purple-2 font-black">Phone</span>
                   <span tw="font-black">Store</span>
                 </div>
               </div>
@@ -73,7 +78,7 @@ export const HomeNavBar = () => {
                 >
                   <NavLink to="/payment">Giỏ hàng</NavLink>
                 </li>
-                <NavLink to="/admin">
+                {/* <NavLink to="/admin">
                   <li
                     onClick={() => history.push("/admin")}
                     tw="flex -mt-2 tracking-wider text-white bg-style-purple-2 hover:bg-style-purple-3 px-4 py-1 text-sm rounded leading-loose mx-2 font-semibold cursor-pointer"
@@ -81,7 +86,7 @@ export const HomeNavBar = () => {
                     <StarIcon fill="white" tw="mr-0.5" />
                     Quản lý
                   </li>
-                </NavLink>
+                </NavLink> */}
               </ul>
             </div>
           </div>

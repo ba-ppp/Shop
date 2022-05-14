@@ -6,6 +6,7 @@ import { ReactComponent as MenuClose } from "asset/icons/menu_close.svg";
 import { ReactComponent as Person } from "asset/icons/person.svg";
 import { ReactComponent as Cart } from "asset/icons/cart.svg";
 import { ReactComponent as Search } from "asset/icons/search.svg";
+import Logo from "asset/images/logo-banner.png";
 
 import { color } from "components/twin.style";
 import { useLocation } from "react-use";
@@ -38,7 +39,7 @@ export const NavBarMenu = () => {
   return (
     <>
       <div tw="flex justify-between items-center ml-2 mr-5 p-3 border-b-2 border-b-gray-100 fixed top-0 z-10 bg-white w-full">
-        <div tw="flex space-x-5 h-9 w-56 leading-4 items-center">
+        <div tw="flex h-9 w-56 leading-4 items-center">
           <button
             css={styles.box}
             onClick={() => handleClickMenu(!toggle.isOpenSlideBar)}
@@ -49,16 +50,26 @@ export const NavBarMenu = () => {
               <MenuClose fill={color.purple_1} width={24} height={24} />
             )}
           </button>
-          <div onClick={() => history.push('/')} tw="flex items-center font-size[18px] cursor-pointer">
-            <span tw="text-style-purple-1 font-black">Phone</span>
-            <span tw="font-black">Store</span>
+          <div
+            onClick={() => history.push("/")}
+            tw="flex items-center font-size[18px] cursor-pointer space-x-1"
+          >
+            <img src={Logo} alt="logo" width={32} height={32} />
+            <div tw="flex">
+              <span tw="text-style-purple-2 font-black">Phone</span>
+              <span tw="font-black">Store</span>
+            </div>
           </div>
         </div>
         <div tw="flex">
           <button css={styles.box}>
             <Person fill={color.purple_1} width={24} height={24} />
           </button>
-          <button css={styles.box}>
+
+          <button
+            onClick={() => handleClickMenuIcons("/search")}
+            css={styles.box}
+          >
             <Search fill={color.purple_1} width={24} height={24} />
           </button>
           <button

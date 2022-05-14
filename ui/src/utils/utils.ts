@@ -91,3 +91,7 @@ export const stringToDate = (dateString: string) => {
   const date = new Date(dateString);
   return date.toLocaleString('en-GB', { timeZone: 'Asia/Ho_Chi_Minh' });
 }
+
+export const sleepAsync = (milliseconds: number) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}

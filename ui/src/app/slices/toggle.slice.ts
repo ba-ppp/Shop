@@ -3,8 +3,9 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const ToggleSlice = createSlice({
   name: "toggle",
   initialState: {
-    isOpenSlideBar: true as boolean,
-    hasMenuSelect: false as boolean
+    isOpenSlideBar: false as boolean,
+    hasMenuSelect: false as boolean,
+    isLoading: false as boolean,
   },
   reducers: {
     toggleSlideBar: (state, action: PayloadAction<boolean>) => {
@@ -12,11 +13,14 @@ const ToggleSlice = createSlice({
     },
     toggleMenuSelect: (state, action: PayloadAction<boolean>) => {
       state.hasMenuSelect = action.payload;
-    }
-
+    },
+    toggleLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    },
   },
 });
 
-export const { toggleSlideBar, toggleMenuSelect } = ToggleSlice.actions;
+export const { toggleSlideBar, toggleMenuSelect, toggleLoading } =
+  ToggleSlice.actions;
 
 export const ToggleReducers = ToggleSlice.reducer;
