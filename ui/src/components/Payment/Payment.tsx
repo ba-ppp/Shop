@@ -274,7 +274,7 @@ export const Payment = () => {
       </div>
       <div tw="w-1/2 m-auto justify-between p-3 flex">
         <div>Tổng tiền:</div>
-        <div tw="text-style-purple-1">6.000.000đ</div>
+        <div tw="text-style-purple-1">{numberToVND(prices)}</div>
       </div>
       <div tw="w-1/2 m-auto justify-between p-3">
         <div>Chọn hình thức thanh toán</div>
