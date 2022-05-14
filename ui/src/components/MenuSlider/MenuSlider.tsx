@@ -37,8 +37,8 @@ export const MenuSlider = (props: Props) => {
     isClickFirm?: boolean
   ) => {
     dispatch(updateFirmSelected({ idHang: firm, idLoai: type }));
-    if (location.pathname !== "/" && !isClickFirm) {
-      history.push("/");
+    if (location.pathname !== "/shop" && !isClickFirm) {
+      history.push("/shop");
       return;
     }
   };
