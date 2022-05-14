@@ -3,7 +3,7 @@ import "@rmwc/card/styles";
 import "@rmwc/typography/styles";
 import { RootState } from "app/reducer/reducer";
 import { setProductItems } from "app/slices/products.slice";
-import { toggleLoading } from "app/slices/toggle.slice";
+import { toggleLoading, toggleMenuSelect } from "app/slices/toggle.slice";
 import Loader from "components/Loader/Loader";
 import { Skeleton } from "components/Loader/Skeleton";
 import { isEmpty, map } from "lodash";
@@ -63,6 +63,9 @@ export const Home = () => {
   };
   useEffectOnce(() => {
     (async () => {
+      if (toggle.hasMenuSelect) {
+        dispatch(toggleMenuSelect(false))
+      }
       await fakeSleep(1500);
       toggleLoadingSkeleton(true);
       const response = await getProductItems();
