@@ -68,7 +68,7 @@ export const getProduct = () => {
       try {
         const resultsData: Product[] = [];
         const sql =
-          "select * from hang h join loai l on h.id_hang = l.id_hang join san_pham s on l.id_loai = s.id_loai join chi_tiet_sp c on s.id_sp = c.id_sp join mau_sac m on s.id_sp = m.id_sp;";
+          "select * from hang h join loai l on h.id_hang = l.id_hang join san_pham s on l.id_loai = s.id_loai join chi_tiet_sp c on s.id_sp = c.id_sp join mau_sac m on s.id_sp = m.id_sp ORDER BY s.ten_sp DESC;";
 
         connection.query(sql, function (err, results) {
           if (err) throw err;
