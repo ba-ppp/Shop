@@ -9,6 +9,7 @@ import { createStripe } from 'controllers/Bill/createStripe';
 import { momoSNS } from 'controllers/Bill/momoSNS';
 import { getRom } from 'controllers/Admin/getRom';
 import { editPrice } from 'controllers/Admin/editPrice';
+import { historyBuy } from 'controllers/Customer/historyBuy';
 
 const app = express();
 
@@ -27,4 +28,6 @@ export const routes = () => {
     
     app.use("/admin/getRom", getRom());
     app.use("/admin/editPrice", editPrice());
+
+    app.use("/customer/historyBuy", historyBuy());
 }
