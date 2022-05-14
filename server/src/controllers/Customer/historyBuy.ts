@@ -9,11 +9,12 @@ export const historyBuy = () => {
     "/",
     async (req: express.Request, res: express.Response) => {
       try {
-        const {sdt} = req.body;
+        const { sdt } = req.query;
+
         const resultsData: any = [];
         let data = {
           sdt: "",
-          chiTiet: [] as any
+          chiTiet: [] as any,
         };
         const sql =
           "select * from bill b join chi_tiet_bill cb on b.id_bill = cb.id_bill join chi_tiet_sp cp on cb.id_chitiet = cp.id_chitiet join mau_sac m on cb.id_mau = m.id_mau join san_pham s on m.id_sp = s.id_sp where b.sdt = ? ";
@@ -22,20 +23,20 @@ export const historyBuy = () => {
           results.forEach((item: any) => {
             data.sdt = item.sdt;
             data.chiTiet.push({
-                hoTen : item.ho_ten,
-                diaChi : item.dia_chi,
-                ngayMua : item.ngay_lap,
-                tenSP : item.ten_sp,
-                dungLuong : item.dung_luong,
-                mau : item.mau,
-                gia : item.gia,
-                sl : item.amout,
-                tongGia : item.price
+              hoTen: item.ho_ten,
+              diaChi: item.dia_chi,
+              ngayMua: item.ngay_lap,
+              tenSP: item.ten_sp,
+              dungLuong: item.dung_luong,
+              mau: item.mau,
+              gia: item.gia,
+              sl: item.amout,
+              tongGia: item.price,
             });
           });
           resultsData.push(data);
           res.json(resultsData[0]);
-        });    
+        });
       } catch (error) {
         res.json({
           status: 400,

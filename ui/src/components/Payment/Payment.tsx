@@ -130,14 +130,20 @@ export const Payment = () => {
 
   const handleClearPayment = async () => {
     const payload = {
-      products: cart.items,
+      products: cart.items.map((i, index) => {
+        return {
+          ...i,
+          amount: cart.amount[index],
+          dungLuong: i.dungLuong[0],
+          mau: cart.color?.[index] ?? i.mau[0],
+        };
+      }),
       phone,
       name,
       address: "",
-      amount: cart.amount,
     };
     await postPayment(payload);
-    history.push('/payment')
+    history.push("/payment");
     dispatch(clearCartItems());
   };
 

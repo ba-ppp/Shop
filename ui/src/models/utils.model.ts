@@ -29,6 +29,7 @@ export interface ProductItem {
   mau: string[];
   moTa?: string;
   isFavorite?: boolean;
+  dungLuong: string[];
 }
 
 export interface ProductScreen {
@@ -80,4 +81,17 @@ export interface Accessories {
   ten: string;
   gia: number;
   anh: string;
+}
+
+export interface HistoryDetail {
+  hoTen: string;
+  diaChi: string;
+  ngayMua: string;
+  tenSP: string;
+  dungLuong: string;
+  gia: number;
+  mau: string;
+  tongGia: number;
+  id: string;
+  
 }

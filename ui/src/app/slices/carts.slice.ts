@@ -8,6 +8,7 @@ const CartSlice = createSlice({
   initialState: {
     items: [] as ProductItem[],
     amount: [] as number[],
+    color: [] as string[],
   },
   reducers: {
     addCartItem: (state, action: PayloadAction<ProductItem>) => {
@@ -28,6 +29,9 @@ const CartSlice = createSlice({
     setAmountCartItem: (state, action: PayloadAction<number[]>) => {
       state.amount = action.payload;
     },
+    setColorCartItem: (state, action: PayloadAction<string[]>) => {
+      state.color = action.payload;
+    },
     clearCartItems: (state) => {
       state.items = [];
       state.amount = [];
@@ -38,6 +42,7 @@ const CartSlice = createSlice({
 
 export const {
   addCartItem,
+  setColorCartItem,
   setCartItem,
   addArrayCartItems,
   setAmountCartItem,

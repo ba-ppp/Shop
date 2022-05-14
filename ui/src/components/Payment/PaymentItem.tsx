@@ -12,7 +12,7 @@ import { numberToVND } from "utils/utils";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "app/reducer/reducer";
 import { toNumber } from "lodash";
-import { setAmountCartItem } from "app/slices/carts.slice";
+import { setAmountCartItem, setColorCartItem } from "app/slices/carts.slice";
 
 type Props = {
   item: ProductItem;
@@ -28,14 +28,22 @@ export const PaymentItem = (props: Props) => {
 
   const handleInputAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    console.log('value', value)
+    console.log("value", value);
     let newCurrentAmount = toNumber(value);
-    console.log('newCurrentAmount', newCurrentAmount)
+    console.log("newCurrentAmount", newCurrentAmount);
 
     const newAmount = [...cart.amount];
     newAmount[index] = newCurrentAmount;
 
     dispatch(setAmountCartItem(newAmount));
+  };
+
+  const handleEditColor = (i: number) => {
+    const newColor = [...cart.color];
+    newColor[index] = item.mau[i];
+    setCurrentSelectedIndex(i);
+
+    dispatch(setColorCartItem(newColor));
   };
 
   const handleEditAmount = (isEncrease?: boolean) => {
@@ -77,7 +85,7 @@ export const PaymentItem = (props: Props) => {
             >
               {item.mau.map((mau, index) => {
                 return (
-                  <MenuItem onClick={() => setCurrentSelectedIndex(index)}>
+                  <MenuItem onClick={() => handleEditColor(index)}>
                     <div tw="flex w-48 flex-grow space-x-3 items-center">
                       <div tw="border border-style-purple-1 p-0.5">
                         <div
@@ -101,7 +109,10 @@ export const PaymentItem = (props: Props) => {
           <div>
             <div tw="mb-5">{numberToVND(item.gia[0])}</div>
             <div tw="flex">
-              <div onClick={() => handleEditAmount()} tw="flex items-center border p-1 w-6 h-6 justify-center">
+              <div
+                onClick={() => handleEditAmount()}
+                tw="flex items-center border p-1 w-6 h-6 justify-center"
+              >
                 <Minus width={10} height={10} />
               </div>
               <input
@@ -111,7 +122,10 @@ export const PaymentItem = (props: Props) => {
                 onChange={handleInputAmount}
                 min={1}
               />
-              <div onClick={() => handleEditAmount(true)} tw="flex items-center border p-1 w-6 h-6 justify-center">
+              <div
+                onClick={() => handleEditAmount(true)}
+                tw="flex items-center border p-1 w-6 h-6 justify-center"
+              >
                 <Plus width={10} height={10} />
               </div>
             </div>

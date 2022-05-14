@@ -25,6 +25,7 @@ import { toggleMenuSelect } from "app/slices/toggle.slice";
 import { Search } from "components/Search/Search";
 import { isNil } from "lodash";
 import { Admin } from 'components/Admin/Admin';
+import { History } from 'components/History/History';
 
 function App() {
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ function App() {
   useEffect(() => {
     if (isNil(location.pathname)) return;
 
-    const pathNotHaveMenu = ["/", "/search"];
+    const pathNotHaveMenu = ["/", "/search", "/history"];
 
     if (pathNotHaveMenu.includes(location.pathname)) {
       dispatch(toggleMenuSelect(false));
@@ -71,6 +72,8 @@ function App() {
         <PublicRoute path="/payment/:status" exact component={Payment} />
 
         <PublicRoute path="/admin" exact component={Admin} />
+
+        <PublicRoute path="/history" exact component={History} />
 
         <Route path="/404" component={PageNotFound} />
         <Route path="*">

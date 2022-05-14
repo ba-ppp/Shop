@@ -76,6 +76,7 @@ export const Detail = () => {
       gia: data.gia,
       anh: data.anh,
       mau: data.mau,
+      dungLuong: data.dungLuong,
     };
     dispatch(addCartItem(item));
   };
