@@ -86,3 +86,8 @@ export const getItemFromLocalStorage = () => {
     console.log("Failed get item", ex);
   }
 };
+
+export const stringToDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return date.toLocaleString('en-GB', { timeZone: 'Asia/Ho_Chi_Minh' });
+}

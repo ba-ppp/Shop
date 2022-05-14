@@ -30,6 +30,7 @@ export interface ProductItem {
   moTa?: string;
   isFavorite?: boolean;
   dungLuong: string[];
+  ngayMua?: string;
 }
 
 export interface ProductScreen {
@@ -93,5 +94,5 @@ export interface HistoryDetail {
   mau: string;
   tongGia: number;
   id: string;
-  
+
 }
