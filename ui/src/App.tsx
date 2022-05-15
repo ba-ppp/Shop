@@ -24,9 +24,7 @@ import { Search } from "components/Search/Search";
 import { isNil } from "lodash";
 import { Admin } from 'components/Admin/Admin';
 import { History } from 'components/History/History';
-import Loader from 'components/Loader/Loader';
 import './App.scss';
-import { Skeleton } from 'components/Loader/Skeleton';
 
 function App() {
   const dispatch = useDispatch();

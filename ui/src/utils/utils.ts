@@ -95,3 +95,10 @@ export const stringToDate = (dateString: string) => {
 export const sleepAsync = (milliseconds: number) => {
   return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
+
+export const dataToOptions = (array: any, attribute: string) => {
+  return array.map((item: any) => ({
+    value: item?.codename,
+    label: item[attribute]
+  }))
+}

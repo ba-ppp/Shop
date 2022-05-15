@@ -6,13 +6,18 @@ import { SimpleMenu, MenuItem } from "@rmwc/menu";
 import { ReactComponent as ArrowDown } from "asset/icons/arrow_down.svg";
 import { ReactComponent as Plus } from "asset/icons/plus.svg";
 import { ReactComponent as Minus } from "asset/icons/minus.svg";
+import { ReactComponent as Delete } from "asset/icons/delete.svg";
 import { ProductItem } from "models/utils.model";
 import { useState } from "react";
 import { numberToVND, stringToDate } from "utils/utils";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "app/reducer/reducer";
 import { toNumber } from "lodash";
-import { setAmountCartItem, setColorCartItem } from "app/slices/carts.slice";
+import {
+  setAmountCartItem,
+  setCartItem,
+  setColorCartItem,
+} from "app/slices/carts.slice";
 
 type Props = {
   item: ProductItem;
@@ -59,9 +64,16 @@ export const PaymentItem = (props: Props) => {
     }
     dispatch(setAmountCartItem(newAmount));
   };
+
+  const handleDeleteItem = () => {
+    const newCart = [...cart.items];
+    newCart.splice(index, 1);
+    dispatch(setCartItem(newCart));
+  };
+
   return (
     <div tw="ml-auto mr-auto mb-5 width[50%] h-32 border-b-2 border-solid border-gray-100 p-3">
-      <div tw="flex space-x-10">
+      <div tw="flex space-x-10 items-center">
         <div
           tw="w-24 h-24 bg-contain bg-no-repeat"
           style={{
@@ -71,11 +83,9 @@ export const PaymentItem = (props: Props) => {
           }}
         />
         <div tw="flex flex-grow justify-between">
-          <div>
+          <div tw="w-1/2">
             <div tw="mb-3">{item.ten}</div>
-            {isHistoryPage && (
-              <div>{stringToDate(item?.ngayMua!)}</div>
-            )}
+            {isHistoryPage && <div>{stringToDate(item?.ngayMua!)}</div>}
             {!isHistoryPage && (
               <SimpleMenu
                 anchorCorner="bottomLeft"
@@ -114,11 +124,12 @@ export const PaymentItem = (props: Props) => {
             <div tw="mb-5">
               {numberToVND(isHistoryPage ? (item.gia as any) : item.gia[0])}
             </div>
+
             {!isHistoryPage && (
               <div tw="flex">
                 <div
                   onClick={() => handleEditAmount()}
-                  tw="flex items-center border p-1 w-6 h-6 justify-center"
+                  tw="flex items-center border p-1 w-6 h-6 justify-center cursor-pointer"
                 >
                   <Minus width={10} height={10} />
                 </div>
@@ -131,13 +142,18 @@ export const PaymentItem = (props: Props) => {
                 />
                 <div
                   onClick={() => handleEditAmount(true)}
-                  tw="flex items-center border p-1 w-6 h-6 justify-center"
+                  tw="flex items-center border p-1 w-6 h-6 justify-center cursor-pointer"
                 >
                   <Plus width={10} height={10} />
                 </div>
               </div>
             )}
           </div>
+          {!isHistoryPage && (
+            <div tw="flex items-center cursor-pointer">
+              <Delete width={32} height={32} onClick={handleDeleteItem} />
+            </div>
+          )}
         </div>
       </div>
     </div>
