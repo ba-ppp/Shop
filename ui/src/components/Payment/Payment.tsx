@@ -7,7 +7,7 @@ import { PaymentItem } from "./PaymentItem";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import { has, isEmpty, mapValues } from "lodash";
+import { has, isEmpty, last, mapValues } from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "app/reducer/reducer";
 import { dataToOptions, numberToVND, sleepAsync } from "utils/utils";
@@ -27,6 +27,8 @@ import { StatusCode } from "models/enums";
 import { clearCartItems } from "app/slices/carts.slice";
 import { toggleLoading } from "app/slices/toggle.slice";
 import Loader from "components/Loader/Loader";
+import { css } from '@emotion/react';
+import tw from 'twin.macro';
 
 export const Payment = () => {
   const [data, setData] = useState<any>([]);
@@ -37,6 +39,10 @@ export const Payment = () => {
   const [selectedCity, setSelectedCity] = useState<any>([]);
   const [selectedDistrict, setSelectedDistrict] = useState<any>([]);
   const [selectedWard, setSelectedWard] = useState<any>([]);
+
+  const [defaultCity, setDefaultCity] = useState<string>("");
+  const [defaultDistrict, setDefaultDistrict] = useState<string>("");
+  const [defaultWard, setDefaultWard] = useState<string>("");
 
   const { status }: any = useParams();
 
@@ -120,6 +126,15 @@ export const Payment = () => {
   }, [status]);
 
   useEffect(() => {
+    const info = window.localStorage.getItem("info");
+    if (!isEmpty(info)) {
+      const { name, phone } = JSON.parse(info!);
+      setName(name);
+      setPhone(phone);
+    }
+  });
+
+  useEffect(() => {
     handleGetProvinde();
   }, []);
 
@@ -156,7 +171,7 @@ export const Payment = () => {
   };
 
   const handleClearPayment = async () => {
-    history.push("/payment");
+    history.push("/shop");
     dispatch(clearCartItems());
   };
 
@@ -179,6 +194,12 @@ export const Payment = () => {
       address,
       amount: cart.amount,
     };
+
+    window.localStorage.setItem(
+      "info",
+      JSON.stringify({ name, phone })
+    );
+
     if (payOptions.payStripe) {
       const res = await createStripe(payload);
       const body = await res.data;
@@ -247,7 +268,7 @@ export const Payment = () => {
   }, [cart.items, cart.amount]);
 
   return (
-    <div tw="mt-6 mb-10 ml-auto mr-auto width[70%]">
+    <div tw="mt-6 mb-10 ml-auto mr-auto width[70%] text-center">
       {toggle.isLoading && (
         <div className="loader__component">
           <Loader />
@@ -264,7 +285,7 @@ export const Payment = () => {
         <div>{numberToVND(prices)}</div>
       </div>
       <div tw="m-auto w-1/2 p-3">
-        <div tw="mb-3">Thông tin khách hàng</div>
+        <div tw="mb-3 text-left">Thông tin khách hàng</div>
         <div tw="flex justify-between">
           <input
             tw="border p-2 rounded width[261px] height[40px] focus:outline-none"
@@ -283,7 +304,7 @@ export const Payment = () => {
         </div>
       </div>
       <div tw="w-1/2 m-auto justify-between p-3">
-        <div>Chọn hình thức nhận hàng</div>
+        <div tw='text-left'>Chọn hình thức nhận hàng</div>
         <div tw="flex items-center space-x-20">
           <div tw="flex items-center">
             <input
@@ -308,34 +329,38 @@ export const Payment = () => {
           </div>
         </div>
       </div>
-      <div tw="w-1/2 mx-auto grid grid-cols-2 grid-rows-2 p-3 border gap-5 rounded-xl">
-        <Select
-          placeholder="Chọn Tỉnh / Thành"
-          options={city}
-          onChange={handleChangeCity}
-        />
-        <Select
-          placeholder="Chọn Quận / Huyện"
-          options={district}
-          onChange={handleChangeDistrict}
-        />
-        <Select
-          placeholder="Chọn Phường / Xã"
-          options={ward}
-          onChange={handleChangeWard}
-        />
-        <input
-          onChange={handleAddress}
-          placeholder="Số nhà, đường"
-          tw="border pl-3 rounded border-gray-300 focus:outline-none"
-        />
-      </div>
+      {console.log("defaultCity", defaultCity)}
+      {shipOptions.shipHome && (
+        <div tw="w-1/2 mx-auto grid grid-cols-2 grid-rows-2 p-3 border gap-5 rounded-xl">
+          <Select
+            defaultValue={defaultCity}
+            placeholder="Chọn Tỉnh / Thành"
+            options={city}
+            onChange={handleChangeCity}
+          />
+          <Select
+            placeholder="Chọn Quận / Huyện"
+            options={district}
+            onChange={handleChangeDistrict}
+          />
+          <Select
+            placeholder="Chọn Phường / Xã"
+            options={ward}
+            onChange={handleChangeWard}
+          />
+          <input
+            onChange={handleAddress}
+            placeholder="Số nhà, đường"
+            tw="border pl-3 rounded border-gray-300 focus:outline-none"
+          />
+        </div>
+      )}
       <div tw="w-1/2 m-auto justify-between p-3 flex mt-5">
         <div>Tổng tiền:</div>
         <div tw="font-semibold text-style-purple-2">{numberToVND(prices)}</div>
       </div>
       <div tw="w-1/2 m-auto justify-between p-3">
-        <div>Chọn hình thức thanh toán</div>
+        <div tw='text-left'>Chọn hình thức thanh toán</div>
         <div tw="flex items-center space-x-20">
           <div tw="flex items-center">
             <input
@@ -375,12 +400,14 @@ export const Payment = () => {
           </div>
         </div>
       </div>
-      <div
+      <button
         onClick={handlePayment}
-        tw=" text-xl text-center rounded-xl w-1/2 m-auto justify-between p-3 border border-style-purple-2 bg-style-purple-2 hover:bg-style-purple-3 text-white font-bold cursor-pointer"
+        disabled={isEmpty(cart.items)}
+        css={[isEmpty(cart.items) && css`${tw`(cursor-not-allowed border-style-purple-1 bg-style-purple-1)!`}`]}
+        tw="text-xl text-center rounded-xl w-1/2 mx-auto justify-between p-3 border border-style-purple-2 bg-style-purple-2 hover:bg-style-purple-3 text-white font-bold cursor-pointer"
       >
         Đặt hàng
-      </div>
+      </button>
     </div>
   );
 };

@@ -35,7 +35,7 @@ const CartSlice = createSlice({
     clearCartItems: (state) => {
       state.items = [];
       state.amount = [];
-      window.localStorage.clear();
+      window.localStorage.removeItem("cart");
     }
   },
 });

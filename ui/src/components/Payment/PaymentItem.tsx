@@ -121,8 +121,11 @@ export const PaymentItem = (props: Props) => {
             )}
           </div>
           <div>
-            <div tw="mb-5">
-              {numberToVND(isHistoryPage ? (item.gia as any) : item.gia[0])}
+            <div>
+              <div tw="mb-5">
+                {numberToVND(isHistoryPage ? (item.gia as any) : item.gia[0])}
+              </div>
+              {isHistoryPage && <div>x{(item as any)?.amount}</div>}
             </div>
 
             {!isHistoryPage && (
