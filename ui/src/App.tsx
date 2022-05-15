@@ -1,5 +1,3 @@
-import { Login } from "components/Auth/Login/Login";
-import { SignUp } from "components/Auth/SignUp/SignUp";
 import { Home } from "components/Home/Home";
 import { NavBarMenu } from "components/NavBarMenu/NavBarMenu";
 import { PageNotFound } from "components/PageNotFound/PageNotFound";
@@ -20,8 +18,6 @@ function App() {
       <Switch>
         <PublicRoute path="/" exact component={Home} />
 
-        <PublicRoute path="/signin" exact component={Login} />
-        <PublicRoute path="/signup" exact component={SignUp} />
         <PublicRoute path="/detail/:id" exact component={Detail} />
 
         {/* private */}
