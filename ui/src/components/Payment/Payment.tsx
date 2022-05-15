@@ -7,10 +7,11 @@ import { PaymentItem } from "./PaymentItem";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import { has, isEmpty, mapValues } from "lodash";
+import { has, isEmpty, mapValues, toNumber } from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "app/reducer/reducer";
-import { numberToVND, sleepAsync } from "utils/utils";
+import { dataToOptions, numberToVND, sleepAsync } from "utils/utils";
+import Select from "react-select";
 import {
   checkMomo,
   createStripe,
@@ -23,13 +24,19 @@ import { useHistory, useParams } from "react-router-dom";
 import { ReactComponent as Stripe } from "asset/icons/stripe.svg";
 import Momo from "asset/images/momo_logo.png";
 import { StatusCode } from "models/enums";
-import { useSearchParam } from "react-use";
 import { clearCartItems } from "app/slices/carts.slice";
-import { toggleLoading } from 'app/slices/toggle.slice';
-import Loader from 'components/Loader/Loader';
+import { toggleLoading } from "app/slices/toggle.slice";
+import Loader from "components/Loader/Loader";
 
 export const Payment = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any>([]);
+  const [city, setCity] = useState<any>([]);
+  const [district, setDistrict] = useState<any>([]);
+  const [ward, setWard] = useState<any>([]);
+
+  const [selectedCity, setSelectedCity] = useState<any>([]);
+  const [selectedDistrict, setSelectedDistrict] = useState<any>([]);
+  const [selectedWard, setSelectedWard] = useState<any>([]);
 
   const { status }: any = useParams();
 
@@ -37,7 +44,6 @@ export const Payment = () => {
 
   const dispatch = useDispatch();
 
-  const [cities, setCities] = useState<string[]>([]);
   const [prices, setPrices] = useState(0);
 
   const [shipOptions, setShipOptions] = useState({
@@ -52,10 +58,10 @@ export const Payment = () => {
 
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
 
   const cart = useSelector((state: RootState) => state.cart);
   const toggle = useSelector((state: RootState) => state.toggle);
-
 
   const fakeSleep = async (milisecond: number) => {
     dispatch(toggleLoading(true));
@@ -67,9 +73,11 @@ export const Payment = () => {
 
   const handleGetProvinde = async () => {
     const response = await axios.get(
-      "https://provinces.open-api.vn/api/?depth=2"
+      "https://provinces.open-api.vn/api/?depth=3"
     );
+
     setData(response.data);
+    setCity(dataToOptions(response.data, "name"));
   };
 
   useEffect(() => {
@@ -115,16 +123,6 @@ export const Payment = () => {
     handleGetProvinde();
   }, []);
 
-  useEffect(() => {
-    if (!isEmpty(data)) {
-      const cityList: string[] = [];
-      data.forEach((item: any) => {
-        cityList.push(item.name);
-      });
-      setCities(cityList);
-    }
-  }, [data]);
-
   const handleClickChecked = (
     e: React.ChangeEvent<HTMLInputElement>,
     options: any
@@ -140,7 +138,7 @@ export const Payment = () => {
     }
   };
 
-  const handleClearPayment = async () => {
+  const handleAddtoDB = async () => {
     const payload = {
       products: cart.items.map((i, index) => {
         return {
@@ -155,6 +153,9 @@ export const Payment = () => {
       address: "",
     };
     await postPayment(payload);
+  };
+
+  const handleClearPayment = async () => {
     history.push("/payment");
     dispatch(clearCartItems());
   };
@@ -169,20 +170,21 @@ export const Payment = () => {
       return;
     }
 
+    await handleAddtoDB();
+
     const payload = {
       products: cart.items,
       phone,
       name,
-      address: "",
+      address,
       amount: cart.amount,
     };
-    await fakeSleep(1500);
     if (payOptions.payStripe) {
       const res = await createStripe(payload);
       const body = await res.data;
       window.location.href = body.url;
-      return;
     }
+    await fakeSleep(1500);
 
     if (payOptions.payMomo) {
       const res = await payMomo({
@@ -191,7 +193,6 @@ export const Payment = () => {
       if (res.status === StatusCode.OK) {
         const { data } = res.data;
         window.location.href = data.payUrl;
-        return;
       }
     }
     await handleClearPayment();
@@ -206,17 +207,51 @@ export const Payment = () => {
     setPrices(total);
   };
 
+  const handleChangeCity = (newValue: any) => {
+    const currentCity = data.find(
+      (item: any) => item?.codename === newValue?.value
+    );
+    setSelectedCity(currentCity);
+    if (currentCity) {
+      setDistrict(dataToOptions(currentCity?.districts, "name"));
+    }
+  };
+
+  const handleChangeDistrict = (newValue: any) => {
+    const currentDistrict = selectedCity?.districts.find(
+      (item: any) => item?.codename === newValue?.value
+    );
+    setSelectedDistrict(currentDistrict);
+    if (currentDistrict) {
+      setWard(dataToOptions(currentDistrict.wards, "name"));
+    }
+  };
+
+  const handleChangeWard = (newValue: any) => {
+    const currentWard = selectedDistrict?.wards.find(
+      (item: any) => item?.codename === newValue?.value
+    );
+    setSelectedWard(currentWard);
+  };
+
+  const handleAddress = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    const newAddress =
+      value +
+      ` ${selectedWard?.name} ${selectedDistrict?.name} ${selectedCity?.name}`;
+    setAddress(newAddress);
+  };
   useEffect(() => {
     getTotalPrice();
   }, [cart.items, cart.amount]);
 
   return (
     <div tw="mt-16 mb-10 ml-auto mr-auto width[70%]">
-       {toggle.isLoading && (
-          <div className="loader__component">
-            <Loader />
-          </div>
-        )}
+      {toggle.isLoading && (
+        <div className="loader__component">
+          <Loader />
+        </div>
+      )}
       <h1 tw="text-xl text-style-purple-1 font-bold mb-5 w-1/2 ml-auto">
         Giỏ Hàng
       </h1>
@@ -227,18 +262,18 @@ export const Payment = () => {
         <div tw="">Tạm tính ({cart.items.length} sản phẩm):</div>
         <div>{numberToVND(prices)}</div>
       </div>
-      <div tw="w-1/2 m-auto justify-between p-3">
+      <div tw="m-auto w-1/2 p-3">
         <div tw="mb-3">Thông tin khách hàng</div>
-        <div tw="flex space-x-10">
+        <div tw="flex justify-between">
           <input
-            tw="border p-2 rounded-xl width[261px] height[50px]"
+            tw="border p-2 rounded width[261px] height[40px]"
             type="text"
             placeholder="Họ và tên: "
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <input
-            tw="border p-2 rounded-xl width[261px] height[50px]"
+            tw="border p-2 rounded width[261px] height[40px]"
             type="text"
             placeholder="Số điện thoại: "
             value={phone}
@@ -272,7 +307,29 @@ export const Payment = () => {
           </div>
         </div>
       </div>
-      <div tw="w-1/2 m-auto justify-between p-3 flex">
+      <div tw="w-1/2 mx-auto grid grid-cols-2 grid-rows-2 p-3 border gap-5 rounded-xl">
+        <Select
+          placeholder="Chọn Tỉnh / Thành"
+          options={city}
+          onChange={handleChangeCity}
+        />
+        <Select
+          placeholder="Chọn Quận / Huyện"
+          options={district}
+          onChange={handleChangeDistrict}
+        />
+        <Select
+          placeholder="Chọn Phường / Xã"
+          options={ward}
+          onChange={handleChangeWard}
+        />
+        <input
+          onChange={handleAddress}
+          placeholder="Số nhà, đường"
+          tw="border pl-3 rounded border-gray-300 focus:outline-none"
+        />
+      </div>
+      <div tw="w-1/2 m-auto justify-between p-3 flex mt-5">
         <div>Tổng tiền:</div>
         <div tw="text-style-purple-1">{numberToVND(prices)}</div>
       </div>

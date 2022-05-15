@@ -1,5 +1,3 @@
-import { Login } from "components/Auth/Login/Login";
-import { SignUp } from "components/Auth/SignUp/SignUp";
 import { Home } from "components/Home/Home";
 import { NavBarMenu } from "components/NavBarMenu/NavBarMenu";
 import { PageNotFound } from "components/PageNotFound/PageNotFound";
@@ -26,9 +24,7 @@ import { Search } from "components/Search/Search";
 import { isNil } from "lodash";
 import { Admin } from 'components/Admin/Admin';
 import { History } from 'components/History/History';
-import Loader from 'components/Loader/Loader';
 import './App.scss';
-import { Skeleton } from 'components/Loader/Skeleton';
 
 function App() {
   const dispatch = useDispatch();
@@ -65,8 +61,6 @@ function App() {
         <PublicRoute path="/" exact component={HomePage} />
         <PublicRoute path="/shop" exact component={Home} />
 
-        <PublicRoute path="/signin" exact component={Login} />
-        <PublicRoute path="/signup" exact component={SignUp} />
 
         <PublicRoute path="/detail/:id" exact component={Detail} />
         <PublicRoute path="/search" exact component={Search} />
