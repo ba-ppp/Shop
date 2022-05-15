@@ -62,7 +62,7 @@ export const Detail = () => {
         const sql2 =
           "select * from san_pham s join thong_tin t on t.id_tt = s.id_tt where s.id_sp = ?";
         const sql3 =
-          "select * from hang h join loai l on h.id_hang = l.id_hang join san_pham s on l.id_loai = s.id_loai join chi_tiet_sp c on s.id_sp = c.id_sp join mau_sac m on s.id_sp = m.id_sp where h.id_hang = (select h.id_hang from hang h join loai l on h.id_hang = l.id_hang join san_pham s on l.id_loai = s.id_loai join chi_tiet_sp c on s.id_sp = c.id_sp where s.id_sp = ? group by id_hang) and l.ten_loai = ? group by ten_sp;";
+          "select * from hang h join loai l on h.id_hang = l.id_hang join san_pham s on l.id_loai = s.id_loai join chi_tiet_sp c on s.id_sp = c.id_sp join mau_sac m on s.id_sp = m.id_sp where h.id_hang = (select h.id_hang from hang h join loai l on h.id_hang = l.id_hang join san_pham s on l.id_loai = s.id_loai join chi_tiet_sp c on s.id_sp = c.id_sp where s.id_sp = ? group by id_hang) and (l.ten_loai = ? or l.ten_loai = ?) group by rand() LIMIT 4;;";
 
         connection.query(sql, [id], function (err, results) {
           if (err) throw err;
@@ -111,7 +111,7 @@ export const Detail = () => {
           // res.json(resultsData);
         });
 
-        connection.query(sql3, [id, "headphone"], function (err, result) {
+        connection.query(sql3, [id, "headphone", "watch"], function (err, result) {
           result.forEach((item: any) => {
             data.phuKien.push({
               id: item.id_sp,
