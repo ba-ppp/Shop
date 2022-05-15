@@ -69,7 +69,7 @@ export const CustomCard = (props: Props) => {
             }}
           />
           <div style={{ padding: "0 1rem 1rem 1rem" }}>
-            <Typography use="headline6" tag="h2">
+            <Typography tw='line-clamp-1' use="headline6" tag="h2">
               {item.ten}
             </Typography>
             <Typography use="body1" tag="div" theme="textSecondaryOnBackground">

@@ -5,7 +5,6 @@ import { RootState } from "app/reducer/reducer";
 import { setProductItems } from "app/slices/products.slice";
 import { toggleLoading, toggleMenuSelect } from "app/slices/toggle.slice";
 import Loader from "components/Loader/Loader";
-import { Skeleton } from "components/Loader/Skeleton";
 import { isEmpty, map } from "lodash";
 
 import { Product, ProductItem } from "models/utils.model";
@@ -22,7 +21,6 @@ import { CustomCard } from "./CustomCard";
 
 export const Home = () => {
   const [dataRender, setDataRender] = useState<ProductItem[][]>([]);
-  const [isLoadingSkeleton, toggleLoadingSkeleton] = useToggle(false);
 
   const toggle = useSelector((state: RootState) => state.toggle);
   const product = useSelector((state: RootState) => state.product);
@@ -64,10 +62,9 @@ export const Home = () => {
   useEffectOnce(() => {
     (async () => {
       if (toggle.hasMenuSelect) {
-        dispatch(toggleMenuSelect(false))
+        dispatch(toggleMenuSelect(false));
       }
       await fakeSleep(1500);
-      toggleLoadingSkeleton(true);
       const response = await getProductItems();
 
       const data = await response.data;
@@ -75,14 +72,13 @@ export const Home = () => {
 
       handleDataRender(data);
       await sleepAsync(1000);
-      toggleLoadingSkeleton(false);
     })();
   });
 
   useEffect(() => {
     (async () => {
-      if (toggle.isLoading || isLoadingSkeleton) return;
-      
+      if (toggle.isLoading) return;
+
       await fakeSleep(1500);
 
       handleDataRender(product.items);
@@ -98,30 +94,23 @@ export const Home = () => {
             <Loader />
           </div>
         )}
-        {isLoadingSkeleton && (
-          <div tw="grid grid-cols-4 gap-y-10 p-5 pl-10 ml-12">
-            {map([1, 2, 3, 4, 5, 6, 7, 8], (i) => {
-              return <Skeleton />;
-            })}
-          </div>
-        )}
-        {!isLoadingSkeleton &&
-          dataRender.map((product) => {
-            return (
-              <div
-                tw="mt-12 flex"
-                css={[
-                  !toggle.isOpenSlideBar
-                    ? tw`ml-32 duration-500`
-                    : tw`ml-64 duration-500`,
-                ]}
-              >
-                {product.map((item) => {
-                  return <CustomCard item={item} />;
-                })}
-              </div>
-            );
-          })}
+
+        {dataRender.map((product) => {
+          return (
+            <div
+              tw="mt-12 flex"
+              css={[
+                !toggle.isOpenSlideBar
+                  ? tw`ml-32 duration-500`
+                  : tw`ml-64 duration-500`,
+              ]}
+            >
+              {product.map((item) => {
+                return <CustomCard item={item} />;
+              })}
+            </div>
+          );
+        })}
       </div>
     </>
   );
