@@ -388,10 +388,10 @@ insert into chi_tiet_sp value ("7", "256GB",17000000,"se2022");
 insert into chi_tiet_sp value ("8", "256GB",36990000,"zfold3");
 insert into chi_tiet_sp value ("9", "512GB",39990000,"zfold3");
 
-insert into chi_tiet_sp(id_chitiet, gia, id_sp) value ("10", 4590000,"airpod3");
-insert into chi_tiet_sp(id_chitiet, gia, id_sp) value ("11", 4990000,"airpodpro");
-insert into chi_tiet_sp(id_chitiet, gia, id_sp) value ("12", 12490000,"airpodmax");
-insert into chi_tiet_sp(id_chitiet, gia, id_sp) value ("13", 549000,"earpod");
+insert into chi_tiet_sp value ("10","", 4590000,"airpod3");
+insert into chi_tiet_sp value ("11","", 4990000,"airpodpro");
+insert into chi_tiet_sp value ("12","", 12490000,"airpodmax");
+insert into chi_tiet_sp value ("13","", 549000,"earpod");
 
 insert into chi_tiet_sp value ("14", "128GB",21290000,"13");
 insert into chi_tiet_sp value ("15", "256GB",23690000,"13");
@@ -508,10 +508,10 @@ insert into mau_sac value ("21","Đen","iphone-12-black-1-650x650.png","12");
 insert into mau_sac value ("22","Trắng","iphone-12-white-1-650x650.png","12");
 insert into mau_sac value ("23","Xanh Lá","iphone-12-green-1-1-650x650.png","12");
 
-insert into mau_sac value ("24","","airpods-3-thumb-650x650.png","airpod3");
-insert into mau_sac value ("25","","airpods-pro-thumb-650x650.png","airpodpro");
-insert into mau_sac value ("26","","airpods-max-select-bac-thumb-650x650.png","airpodmax");
-insert into mau_sac value ("27","","earpod-lightning-trang-thumb-1-650x650.png","earpod");
+insert into mau_sac value ("24","Trắng","airpods-3-thumb-650x650.png","airpod3");
+insert into mau_sac value ("25","Trắng","airpods-pro-thumb-650x650.png","airpodpro");
+insert into mau_sac value ("26","Trắng","airpods-max-select-bac-thumb-650x650.png","airpodmax");
+insert into mau_sac value ("27","Trắng","earpod-lightning-trang-thumb-1-650x650.png","earpod");
 
 insert into mau_sac value ("28","Vàng Đồng","iphone-13-pro-gold-650x650.png","13pro");
 insert into mau_sac value ("29","Bạc","iphone-13-pro-silver-650x650.png","13pro");
