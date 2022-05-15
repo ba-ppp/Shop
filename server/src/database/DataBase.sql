@@ -135,14 +135,16 @@ insert into hang values("vivo","VIVO","img");
 insert into loai values("iphone","Phones","apple");
 insert into loai values("ipad","Tablet","apple");
 insert into loai values("airpod","Headphone","apple");
+insert into loai values("applewatch","Watch","apple");
 
 insert into loai values("ss","Phones","samsung");
 insert into loai values("sstab","Tablet","samsung");
 insert into loai values("ssbud","Headphone","samsung");
+insert into loai values("glxwatch","Watch","samsung");
 
 insert into loai values("opo","Phones","oppo");
--- insert into loai values("tablet","Tablet","oppo");
--- insert into loai values("airpod","Headphone","oppo");
+insert into loai values("oppobud","Headphone","oppo");
+insert into loai values("oppowatch","Watch","oppo");
 
 insert into loai values("mi","Phones","xiaomi");
 -- insert into loai values("tablet","Tablet","oppo");
@@ -192,7 +194,13 @@ insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh
     value ("iphone11", "IPS LCD", "828 x 1792 Pixels", "6.1' - Tần số quét 60 Hz", "625 nits ", "Kính cường lực Oleophobic (ion cường lực)", "2 camera 12 MP",
 		"3 đèn LED 2 tông màu", "12MP", "iOS 15", "Apple A13 Bionic 6 nhân", "Apple GPU 4 nhân", "4GB", "Hỗ trợ 4G", "1 Nano SIM & 1 eSIM",
         "Wi-Fi 802.11 a/b/g/n/ac/ax", "v5.0", "Lightning", "NFC, OTG", "3110 mAh", "Li-lon", "18 W", "Sạc không dây" );
-        
+
+insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
+	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
+    value ("iphonexr", "IPS LCD", "828 x 1792 Pixels", "6.1' - Tần số quét 60 Hz", "625 nits ", "Kính cường lực Oleophobic (ion cường lực)", "12 MP",
+		"4 đèn LED 2 tông màu", "7MP", "iOS 15", "Apple A12 Bionic 6 nhân", "Apple GPU 4 nhân", "3GB", "Hỗ trợ 4G", "1 Nano SIM & 1 eSIM",
+        "Wi-Fi 802.11 a/b/g/n/ac/ax", "v5.0", "Lightning", "NFC", "2942 mAh", "Li-lon", "18 W", "Sạc không dây" );
+
 insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
 	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
     value ("zfold3", "Dynamic AMOLED 2X", "Full HD+ (1768 x 2208 Pixels)", "Chính 7.6' & Phụ 6.2' - Tần số quét 120 Hz", "Chính 1200 nits & Phụ 1500 nits", "Kính cường lực Corning Gorilla Glass Victus", "3 camera 12 MP",
@@ -349,6 +357,77 @@ insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh
 		"Có", "Chính 50 MP & Phụ 8 MP", "Android 12", "MediaTek Dimensity 920 5G 8 nhân", "Mali-G68 MC4", "8GB", "Hỗ trợ 5G", "2 Nano SIM",
         "Wi-Fi 802.11 a/b/g/n/ac/ax", "v5.2", "Type-C", "NFC", "4200 mAh", "Li-Po", "44 W", "Sạc không dây");
         
+insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
+	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
+    value ("aw745mm", "OLED", "484 x 396 Pixels", "1.77'", "1000 nits", "Ion-X strengthened glass", "Không hỗ trợ",
+		"Không hỗ trợ", "Không hỗ trợ", "watchOS 8.0", "Apple S7", "PowerVR", "Đang cập nhật", "Hỗ trợ LTE", "Hỗ trợ eSIM",
+        "Có hỗ trợ", "v5.0", "Đế sạc nam châm", "GPS", "303.8 mAh", "Đang cập nhật", "Đang cập nhật", "Sạc không dây");
+        
+insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
+	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
+    value ("aw745mmwifi", "OLED", "484 x 396 Pixels", "1.77'", "1000 nits", "Ion-X strengthened glass", "Không hỗ trợ",
+		"Không hỗ trợ", "Không hỗ trợ", "watchOS 8.0", "Apple S7", "PowerVR", "Đang cập nhật", "Không hỗ trợ", "Không hỗ trợ",
+        "Có hỗ trợ", "v5.0", "Đế sạc nam châm", "GPS", "303.8 mAh", "Đang cập nhật", "Đang cập nhật", "Sạc không dây");
+        
+insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
+	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
+    value ("aw741mm", "OLED", "484 x 396 Pixels", "1.61'", "1000 nits", "Ion-X strengthened glass", "Không hỗ trợ",
+		"Không hỗ trợ", "Không hỗ trợ", "watchOS 8.0", "Apple S7", "PowerVR", "Đang cập nhật", "Hỗ trợ LTE", "Hỗ trợ eSIM",
+        "Có hỗ trợ", "v5.0", "Đế sạc nam châm", "GPS", "265.9 mAh", "Đang cập nhật", "Đang cập nhật", "Sạc không dây");
+        
+insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
+	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
+    value ("aw741mmwifi", "OLED", "484 x 396 Pixels", "1.61'", "1000 nits", "Ion-X strengthened glass", "Không hỗ trợ",
+		"Không hỗ trợ", "Không hỗ trợ", "watchOS 8.0", "Apple S7", "PowerVR", "Đang cập nhật", "Không hỗ trợ", "Không hỗ trợ",
+        "Có hỗ trợ", "v5.0", "Đế sạc nam châm", "GPS", "265.9 mAh", "Đang cập nhật", "Đang cập nhật", "Sạc không dây");
+        
+insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
+	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
+    value ("swactive244mm", "SUPER AMOLED", "360 x 360 Pixels", "1.4'", "Đang cập nhật", "Kính cường lực Gorrilla Glass Dx+", "Không hỗ trợ",
+		"Không hỗ trợ", "Không hỗ trợ", "Tizen OS 5.5", "Exynos 9110 (10 nm)", "Mali-T720", "1.5GB RAM", "Hỗ trợ LTE", "Hỗ trợ eSIM",
+        "Có hỗ trợ", "v5.0", "Đế sạc nam châm", "GPS, NFC", "340 mAh", "Li-Ion", "Đang cập nhật", "Sạc không dây");
+
+insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
+	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
+    value ("sw4cl46mm", "SUPER AMOLED", "450 x 450 Pixels", "1.36'", "Đang cập nhật", "Kính cường lực Gorrilla Glass Dx+", "Không hỗ trợ",
+		"Không hỗ trợ", "Không hỗ trợ", "Android Wear OS, One UI Watch 3", "Exynos W920 (5 nm)", "Mali-G68", "1.5GB RAM", "Hỗ trợ LTE", "Hỗ trợ eSIM",
+        "Có hỗ trợ", "v5.0", "Đế sạc nam châm", "GPS, NFC", "340 mAh", "Li-Ion", "Đang cập nhật", "Sạc không dây");
+        
+insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
+	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
+    value ("sw4cl42mm", "SUPER AMOLED", "396 x 396 Pixels", "1.19'", "Đang cập nhật", "Kính cường lực Gorrilla Glass Dx+", "Không hỗ trợ",
+		"Không hỗ trợ", "Không hỗ trợ", "Android Wear OS, One UI Watch 3", "Exynos W920 (5 nm)", "Mali-G68", "1.5GB RAM", "Hỗ trợ LTE", "Hỗ trợ eSIM",
+        "Có hỗ trợ", "v5.0", "Đế sạc nam châm", "GPS, NFC", "247 mAh", "Li-Ion", "Đang cập nhật", "Sạc không dây");
+        
+insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
+	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
+    value ("sw4cl46mmwifi", "SUPER AMOLED", "450 x 450 Pixels", "1.36'", "Đang cập nhật", "Kính cường lực Gorrilla Glass Dx+", "Không hỗ trợ",
+		"Không hỗ trợ", "Không hỗ trợ", "Android Wear OS, One UI Watch 3", "Exynos W920 (5 nm)", "Mali-G68", "1.5GB RAM", "Không hỗ trợ", "Không hỗ trợ",
+        "Có hỗ trợ", "v5.0", "Đế sạc nam châm", "GPS, NFC", "340 mAh", "Li-Ion", "Đang cập nhật", "Sạc không dây");
+        
+insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
+	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
+    value ("sw4cl42mmwifi", "SUPER AMOLED", "396 x 396 Pixels", "1.19'", "Đang cập nhật", "Kính cường lực Gorrilla Glass Dx+", "Không hỗ trợ",
+		"Không hỗ trợ", "Không hỗ trợ", "Android Wear OS, One UI Watch 3", "Exynos W920 (5 nm)", "Mali-G68", "1.5GB RAM", "Không hỗ trợ", "Không hỗ trợ",
+        "Có hỗ trợ", "v5.0", "Đế sạc nam châm", "GPS, NFC", "247 mAh", "Li-Ion", "Đang cập nhật", "Sạc không dây");
+        
+insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
+	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
+    value ("ow46mm", "AMOLED", "402 x 476 Pixels", "1.91'", "Đang cập nhật", "Kính cường lực", "Không hỗ trợ",
+		"Không hỗ trợ", "Không hỗ trợ", "Android Wear OS", "Qualcomm Snapdragon 3100", "Đang cập nhật", "Đang cập nhật", "Không hỗ trợ", "Không hỗ trợ",
+        "Có hỗ trợ", "v4.2", "Đế sạc nam châm", "GPS", "430 mAh", "Li-Ion", "Đang cập nhật", "Sạc không dây");
+        
+insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
+	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
+    value ("owfree", "AMOLED", "280 x 456 Pixels", "1.64'", "Đang cập nhật", "Kính 2.5D", "Không hỗ trợ",
+		"Không hỗ trợ", "Không hỗ trợ", "Hãng không công bố", "Apollo 3.5", "Đang cập nhật", "Đang cập nhật", "Không hỗ trợ", "Không hỗ trợ",
+        "Không hỗ trợ", "v5.0", "Đế sạc nam châm", "Đang cập nhật", "230 mAh", "Li-Ion", "Đang cập nhật", "Đang cập nhật");
+        
+insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
+	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
+    value ("owband", "AMOLED", "126 x 294 Pixels", "1.1'", "Đang cập nhật", "Kính 2.5D", "Không hỗ trợ",
+		"Không hỗ trợ", "Không hỗ trợ", "Hãng không công bố", "Hãng không công bố", "Đang cập nhật", "Đang cập nhật", "Không hỗ trợ", "Không hỗ trợ",
+        "Không hỗ trợ", "v5.0", "Đế sạc nam châm", "Đang cập nhật", "100 mAh", "Li-Ion", "Đang cập nhật", "Đang cập nhật");
 -- insert san pham
 
 insert into san_pham value ("13promax", "Iphone 13 Pro Max","iphone","iphone13promax","Màn hình ProMotion, chip A15 Bionic mạnh mẽ. Lên Pro thôi.");
@@ -358,6 +437,7 @@ insert into san_pham value ("13mini", "Iphone 13 Mini","iphone","iphone13mini","
 insert into san_pham value ("12", "Iphone 12","iphone","iphone12","Thiết kế cân đối, chip A14 Bionic mạnh mẽ. Giá rẻ bất ngờ.");
 insert into san_pham value ("13pro", "Iphone 13 Pro","iphone","iphone13pro","Màn hình ProMotion, chip A15 Bionic mạnh mẽ. Lên Pro thôi.");
 insert into san_pham value ("11", "Iphone 11","iphone","iphone11","Thiết kế cân đối, chip A13 Bionic mạnh mẽ. Giá rẻ bất ngờ.");
+insert into san_pham value ("xr", "Iphone XR","iphone","iphonexr","Thiết kế cân đối, chip A12 Bionic mạnh mẽ. Giá rẻ bất ngờ.");
 
 insert into san_pham value ("zfold3", "Samsung Galaxy Z Fold 3","ss","zfold3","Màn hình gập hiện đại, hỗ trợ kháng nước, camera ẩn dưới màn hình.");
 insert into san_pham value ("zflip3", "Samsung Galaxy Z Flip 3","ss","zflip3","Màn hình gập hiện đại, hỗ trợ kháng nước, thiết kế siêu nhỏ gọn.");
@@ -394,7 +474,31 @@ insert into san_pham value ("mi12pro", "Xiaomi Mi 12 Pro","mi","mi12","Thiết k
 
 insert into san_pham value ("vvv23", "Vivo V23","vv","vvv23","Thiết kế sang xịn, Selfie Phone chất lượng hàng đầu trong phân khúc.");
 
-insert into san_pham value ("tabs8ultra", "Samsung Galaxy Tab S8 Ultra","sstab","tabs8ultra","Màn hình lớn, đa nhiệm đa tác vụ, bút S Pen được nâng cấp toàn diện hơn.");
+insert into san_pham value ("aw745mm", "Apple Watch Series 7 Celluler 45mm Viền Thép","applewatch","aw745mm","Kiểu dáng hiện đại & thời thượng, màn OLED độ sáng cao và sắc nét, hỗ trợ eSIM.");
+insert into san_pham value ("aw745mmwifi", "Apple Watch Series 7 45mm Viền Nhôm","applewatch","aw745mmwifi","Kiểu dáng hiện đại & thời thượng, màn OLED độ sáng cao và sắc nét.");
+insert into san_pham value ("aw741mm", "Apple Watch Series 7 Celluler 41mm Viền Thép","applewatch","aw741mm","Kiểu dáng hiện đại & thời thượng, màn OLED độ sáng cao và sắc nét, hỗ trợ eSIM.");
+insert into san_pham value ("aw741mmwifi", "Apple Watch Series 7 41mm Viền Nhôm","applewatch","aw741mmwifi","Kiểu dáng hiện đại & thời thượng, màn OLED độ sáng cao và sắc nét.");
+
+insert into san_pham value ("aw741mmnike", "Apple Watch Series Nike 7 Celluler 41mm","applewatch","aw741mm","Kiểu dáng hiện đại & thời thượng, màn OLED độ sáng cao và sắc nét, hỗ trợ eSIM.");
+insert into san_pham value ("aw741mmwifinike", "Apple Watch Series Nike 7 41mm","applewatch","aw741mmwifi","Kiểu dáng hiện đại & thời thượng, màn OLED độ sáng cao và sắc nét.");
+
+insert into san_pham value ("swactive244mm", "Samsung Watch Active 2 44mm","glxwatch","swactive244mm","Nhiều tính năng chăm sóc sức khỏe, nhận cuộc gọi trực tiếp.");
+
+insert into san_pham value ("sw4cl46mm", "Samsung Watch 4 LTE Classic 46mm ","glxwatch","sw4cl46mm","Nhiều tính năng chăm sóc sức khỏe, nhận cuộc gọi trực tiếp.");
+insert into san_pham value ("sw4cl46mmwifi", "Samsung Watch 4 Classic 46mm ","glxwatch","sw4cl46mmwifi","Nhiều tính năng chăm sóc sức khỏe, nhận cuộc gọi trực tiếp.");
+
+insert into san_pham value ("sw444mm", "Samsung Watch 4 LTE 44mm ","glxwatch","sw4cl46mm","Nhiều tính năng chăm sóc sức khỏe, nhận cuộc gọi trực tiếp.");
+insert into san_pham value ("sw444mmwifi", "Samsung Watch 4 44mm ","glxwatch","sw4cl46mmwifi","Nhiều tính năng chăm sóc sức khỏe, nhận cuộc gọi trực tiếp.");
+
+insert into san_pham value ("sw4cl42mm", "Samsung Watch 4 LTE Classic 42mm ","glxwatch","sw4cl42mm","Nhiều tính năng chăm sóc sức khỏe, nhận cuộc gọi trực tiếp.");
+insert into san_pham value ("sw4cl42mmwifi", "Samsung Watch 4 Classic 42mm ","glxwatch","sw4cl42mmwifi","Nhiều tính năng chăm sóc sức khỏe, nhận cuộc gọi trực tiếp.");
+
+insert into san_pham value ("sw440mm", "Samsung Watch 4 LTE 40mm ","glxwatch","sw4cl42mm","Nhiều tính năng chăm sóc sức khỏe, nhận cuộc gọi trực tiếp.");
+insert into san_pham value ("sw440mmwifi", "Samsung Watch 4 40mm ","glxwatch","sw4cl42mmwifi","Nhiều tính năng chăm sóc sức khỏe, nhận cuộc gọi trực tiếp.");
+
+insert into san_pham value ("ow46mm", "Oppo Watch 46mm ","oppowatch","ow46mm","Thiết kế sang trọng tinh tế, mặt đồng hồ phong phú tha hồ lựa chọn.");
+insert into san_pham value ("owfree", "Oppo Watch Free ","oppowatch","owfree","Thiết kế sang trọng tinh tế, mặt đồng hồ phong phú tha hồ lựa chọn.");
+insert into san_pham value ("owband", "Oppo Band ","oppowatch","owband","Thiết kế sang trọng tinh tế, mặt đồng hồ phong phú tha hồ lựa chọn.");
 
 insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("airpod3", "AirPods 3", "airpod","Tính năng âm thanh không gian với tính năng theo dõi chuyển động, chống mồ hôi, chống nước.");
 insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("airpodpro", "AirPods Pro", "airpod","Chủ động khử tiếng ồn với chế độ xuyên âm, chống mồ hôi, chống nước.");
@@ -404,10 +508,15 @@ insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("earpod", "EarPods", "
 insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("ia500", "Tai nghe nhét tai Có Dây Samsung IA500", "ssbud","Thiết kế có dây truyền thống, đệm tai êm ái, trải nghiệm nghe phong phú, chất âm rõ nét với hệ thống loa 2 chiều.");
 insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("eg920", "Tai nghe Có Dây Samsung EG920", "ssbud","Chủ động khử tiếng ồn với chế độ xuyên âm, chống mồ hôi, chống nước.");
 insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("ig935", "Tai nghe Có Dây Samsung IG935", "ssbud","Chủ động khử tiếng ồn với chế độ xuyên âm, chế độ âm thanh không gian với tính năng theo dõi chuyển động.");
-insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("budspro", "Tai nghe Bluetooth True Wireless Galaxy Buds Pro", "ssbud","Thiết kế sang trọng, thời thượng cùng hộp sạc đồng nhất màu sắc đi kèm, nghe rõ bất kỳ đâu cùng công nghệ chống ồn chủ động (ANC)");
-insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("budslive", "Tai nghe Bluetooth True Wireless Galaxy Buds Live", "ssbud","Ngoại hình hoàn toàn mới, độc đáo riêng biệt, nghe rõ bất kỳ đâu cùng công nghệ chống ồn chủ động (ANC)");
-insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("buds2", "Tai nghe Bluetooth True Wireless Galaxy Buds 2", "ssbud","Thiết kế sang trọng, thời thượng cùng hộp sạc đồng nhất màu sắc đi kèm, nghe rõ bất kỳ đâu cùng công nghệ chống ồn chủ động (ANC)");
-insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("bn920c", "Tai nghe Bluetooth Samsung Level U Pro BN920C", "ssbud","Thiết kế sang trọng, hai đầu tai nghe hít nam châm, công nghệ lọc tiếng ồn thông minh");
+insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("budspro", "Tai nghe Bluetooth True Wireless Galaxy Buds Pro", "ssbud","Thiết kế sang trọng, thời thượng cùng hộp sạc đồng nhất màu sắc đi kèm, nghe rõ bất kỳ đâu cùng công nghệ chống ồn chủ động (ANC).");
+insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("budslive", "Tai nghe Bluetooth True Wireless Galaxy Buds Live", "ssbud","Ngoại hình hoàn toàn mới, độc đáo riêng biệt, nghe rõ bất kỳ đâu cùng công nghệ chống ồn chủ động (ANC).");
+insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("buds2", "Tai nghe Bluetooth True Wireless Galaxy Buds 2", "ssbud","Thiết kế sang trọng, thời thượng cùng hộp sạc đồng nhất màu sắc đi kèm, nghe rõ bất kỳ đâu cùng công nghệ chống ồn chủ động (ANC).");
+insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("bn920c", "Tai nghe Bluetooth Samsung Level U Pro BN920C", "ssbud","Thiết kế sang trọng, hai đầu tai nghe hít nam châm, công nghệ lọc tiếng ồn thông minh.");
+
+insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("encoair2", "Tai nghe Bluetooth True Wireless OPPO ENCO Air 2 ETE11", "oppobud","Thiết kế sang trọng, công nghệ lọc tiếng ồn thông minh.");
+insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("encobuds", "Tai nghe Bluetooth True Wireless OPPO ENCO Buds ETI81", "oppobud","Thiết kế sang trọng, công nghệ lọc tiếng ồn thông minh.");
+insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("mh135-3", "Tai nghe Có Dây EP Type C OPPO MH135-3", "oppobud","Tai nghe có dây thiết kế sành điệu, dây dài 1.2 m");
+insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("mh151", "Tai nghe Có Dây EP OPPO MH151", "oppobud","Tai nghe có dây thiết kế sành điệu, dây dài 1.2 m.");
 -- insert chi tiet san pham
 insert into chi_tiet_sp value ("1", "128GB",29190000,"13promax");
 insert into chi_tiet_sp value ("2", "256GB",32890000,"13promax");
@@ -525,6 +634,38 @@ insert into chi_tiet_sp value ("88", "256GB",19990000,"mi12");
 
 insert into chi_tiet_sp value ("89", "120GB",12990000,"vvv23");
 
+insert into chi_tiet_sp value ("90", "32GB",21990000,"aw745mm");
+insert into chi_tiet_sp value ("91", "32GB",11990000,"aw745mmwifi");
+insert into chi_tiet_sp value ("92", "32GB",19590000,"aw741mm");
+insert into chi_tiet_sp value ("93", "32GB",10590000,"aw741mmwifi");
+
+insert into chi_tiet_sp value ("94", "32GB",13990000,"aw741mmnike");
+insert into chi_tiet_sp value ("95", "32GB",10990000,"aw741mmwifinike");
+
+insert into chi_tiet_sp value ("96", "4GB",9990000,"swactive244mm");
+
+insert into chi_tiet_sp value ("97", "16GB",8991000,"sw4cl46mm");
+insert into chi_tiet_sp value ("98", "16GB",8091000,"sw4cl46mmwifi");
+
+insert into chi_tiet_sp value ("99", "16GB",8541000,"sw4cl42mm");
+insert into chi_tiet_sp value ("100", "16GB",7641000,"sw4cl42mmwifi");
+
+insert into chi_tiet_sp value ("101", "16GB",7191000,"sw444mm");
+insert into chi_tiet_sp value ("102", "16GB",6291000,"sw444mmwifi");
+
+insert into chi_tiet_sp value ("103", "16GB",6741000,"sw440mm");
+insert into chi_tiet_sp value ("104", "16GB",5841000,"sw440mmwifi");
+
+insert into chi_tiet_sp value ("105", "128GB",13490000,"xr");
+
+insert into chi_tiet_sp value ("106", "8GB",5193000,"ow46mm");
+insert into chi_tiet_sp value ("107", "128MB",1790000,"owfree");
+insert into chi_tiet_sp value ("108", "16MB",790000,"owband");
+
+insert into chi_tiet_sp value ("109","0", 1431000,"encoair2");
+insert into chi_tiet_sp value ("110","0", 790000,"encobuds");
+insert into chi_tiet_sp value ("111","0", 590000,"mh151");
+insert into chi_tiet_sp value ("112","0", 260000,"mh135-3");
 -- insert mau sac
 
 insert into mau_sac value ("1","Vàng Đồng","iphone-13-pro-max-gold-650x650.png","13promax");
@@ -693,3 +834,68 @@ insert into mau_sac value ("129","Xanh Dương","xiaomi-12-pro-1-3.jpg","mi12pro
 
 insert into mau_sac value ("130","Vàng","vivo-v23-5g-vang-1.jpg","vvv23");
 insert into mau_sac value ("131","Xanh Đen","vivo-v23-5g-xanh-1.jpg","vvv23");
+
+insert into mau_sac value ("132","Xanh Dương","apple-watch-s7-lte-45mm-xanh-duong-2-650x650.png","aw745mm");
+insert into mau_sac value ("133","Tím","apple-watch-s7-lte-45mm-tim-650x650.png","aw745mm");
+insert into mau_sac value ("134","Vàng","apple-watch-s7-lte-45mm-vang-nhat-2-650x650.png","aw745mm");
+
+insert into mau_sac value ("135","Xanh Dương","apple-watch-s7-lte-45mm-xanh-duong-2-650x650.png","aw741mm");
+insert into mau_sac value ("136","Tím","apple-watch-s7-lte-45mm-tim-650x650.png","aw741mm");
+insert into mau_sac value ("137","Vàng","apple-watch-s7-lte-45mm-vang-nhat-2-650x650.png","aw741mm");
+
+insert into mau_sac value ("138","Vàng","apple-watch-s7-gps-45mm-vang-nhat-650x650.png","aw745mmwifi");
+insert into mau_sac value ("139","Đen","apple-watch-s7-gps-45mm-den-650x650.png","aw745mmwifi");
+insert into mau_sac value ("140","Xanh Lá","apple-watch-s7-gps-45mm-xanh-la-650x650.png","aw745mmwifi");
+insert into mau_sac value ("141","Xanh Dương","apple-watch-s7-gps-45mm-xanh-duong-650x650.png","aw745mmwifi");
+insert into mau_sac value ("142","Đỏ","apple-watch-s7-gps-45mm-do-650x650.png","aw745mmwifi");
+
+insert into mau_sac value ("143","Vàng","apple-watch-s7-gps-45mm-vang-nhat-650x650.png","aw741mmwifi");
+insert into mau_sac value ("144","Đen","apple-watch-s7-gps-45mm-den-650x650.png","aw741mmwifi");
+insert into mau_sac value ("145","Xanh Lá","apple-watch-s7-gps-45mm-xanh-la-650x650.png","aw741mmwifi");
+insert into mau_sac value ("146","Xanh Dương","apple-watch-s7-gps-45mm-xanh-duong-650x650.png","aw741mmwifi");
+insert into mau_sac value ("147","Đỏ","apple-watch-s7-gps-45mm-do-650x650.png","aw741mmwifi");
+
+insert into mau_sac value ("148","Đen","apple-watch-nike-series-7-gps-cellular-41mm-650x650.png","aw741mmnike");
+insert into mau_sac value ("149","Trắng","apple-watch-series-7-nike-lte-41mm-650x650.png","aw741mmnike");
+insert into mau_sac value ("150","Đen","apple-watch-series-7-gps-41mm-den-650x650.png","aw741mmwifinike");
+
+insert into mau_sac value ("151","Đen","samsung-galaxy-watch-4-lte-classic-42mm-den-thumb-1-600x600.jpg","sw4cl46mm");
+insert into mau_sac value ("152","Đen","samsung-galaxy-watch-4-lte-classic-42mm-den-thumb-1-600x600.jpg","sw4cl42mm");
+
+insert into mau_sac value ("153","Đen","samsung-galaxy-watch-4-classic-46mm-den-thumb-1-600x600.jpeg","sw4cl46mmwifi");
+insert into mau_sac value ("154","Bạc","samsung-galaxy-watch-4-classic-46mm-bac-thumb-01-1-600x600.jpg","sw4cl46mmwifi");
+
+insert into mau_sac value ("155","Đen","samsung-galaxy-watch-4-classic-42mm-den-thumb-600x600.jpg","sw4cl42mmwifi");
+insert into mau_sac value ("156","Trắng","samsung-galaxy-watch-4-classic-42mm-trang-thumb-1-2-3-600x600.jpg","sw4cl42mmwifi");
+
+insert into mau_sac value ("157","Xanh Lá","samsung-galaxy-watch-4-44mm-xanh-thumb-600x600.jpg","sw444mmwifi");
+insert into mau_sac value ("158","Đen","samsung-galaxy-watch-4-44mm-den-thumb-600x600.jpg","sw444mmwifi");
+insert into mau_sac value ("159","Bạc","samsung-galaxy-watch-4-44mm-thumb-02-600x600.jpg","sw444mmwifi");
+
+insert into mau_sac value ("160","Đen","samsung-galaxy-watch-4-40mm-den-thumb-600x600.jpg","sw440mmwifi");
+insert into mau_sac value ("161","Trắng","samsung-galaxy-watch-4-40mm-trang-thumbnew-1-600x600.jpg","sw440mmwifi");
+insert into mau_sac value ("162","Vàng Hồng","samsung-galaxy-watch-4-40mm-vang-hong-thumb-1-2-3-4-600x600.jpg","sw440mmwifi");
+
+insert into mau_sac value ("163","Đen","samsung-galaxy-watch-active-2-44-mm-day-da-thumb-1-1-600x600.jpg","swactive244mm");
+
+insert into mau_sac value ("164","Đen","samsung-galaxy-watch-4-lte-44mm-den-thumb-600x600.jpg","sw444mm");
+insert into mau_sac value ("165","Đen","samsung-galaxy-watch-4-lte-40mm-thumb-den-1-1-600x600.jpg","sw440mm");
+
+insert into mau_sac value ("166","Trắng","iphone-xr-white-650x650.png","xr");
+
+insert into mau_sac value ("167","Vàng Đồng","oppo-watch-46mm-day-silicone-hong-thumb-1-1-600x600.jpg","ow46mm");
+insert into mau_sac value ("168","Đen","oppo-watch-free-den-thumb-mau-600x600.jpg","owfree");
+insert into mau_sac value ("169","Vàng","oppo-watch-free-vani-1.jpg","owfree");
+insert into mau_sac value ("170","Tím","oppo-band-tim-thumb-600x600.jpg","owband");
+insert into mau_sac value ("171","Đen","oppo-band-1-org-1.jpg","owband");
+
+insert into mau_sac value ("172","Xanh Dương","bluetooth-true-wireless-oppo-enco-air-2-ete11-1-600x600.jpg","encoair2");
+insert into mau_sac value ("173","Trắng","bluetooth-true-wireless-oppo-enco-air-2-ete11-2.jpg","encoair2");
+
+insert into mau_sac value ("174","Trắng","bluetooth-tws-oppo-enco-buds-eti81-600x600.jpg","encobuds");
+insert into mau_sac value ("175","Xanh Dương","bluetooth-tws-oppo-enco-buds-eti81-2-2.jpg","encobuds");
+
+insert into mau_sac value ("176","Đen","co-day-ep-oppo-mh151-10-600x600.jpg","mh151");
+insert into mau_sac value ("177","Trắng","co-day-ep-oppo-mh151-bac-1-1-org.jpg","mh151");
+
+insert into mau_sac value ("178","Trắng","co-day-ep-type-c-oppo-mh135-600x600.jpg","mh135-3");
