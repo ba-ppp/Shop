@@ -330,6 +330,19 @@ insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh
     value ("tabs8ultra", "Super AMOLED", "1848 x 2960 Pixels", "14' - Tần số quét 120 Hz", "Đang cập nhật", "Kính cường lực Corning Gorilla Glass 5", "Chính 13 MP & Phụ 6 MP",
 		"Có", "12 MP", "Android 12", "Snapdragon 8 Gen 1 8 nhân", "Adreno 730", "8GB", "Hỗ trợ 5G", "1 Nano SIM",
         "MIMO, Wi-Fi 802.11 a/b/g/n/ac/ax", "v5.2", "Type-C", "Samsung DeX (Giao diện tương tự PC)", "11200 mAh", "Li-Po", "45 W", "Sạc pin nhanh, tiết kiệm pin" );
+
+insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
+	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
+    value ("mi12", "AMOLED", "Full HD+ (1080 x 2400 Pixels)", "6.28' - Tần số quét 120 Hz", "1100", "Kính cường lực Corning Gorilla Glass Victus", "Chính 50 MP & Phụ 13 MP, 5 MP",
+		"Đèn LED kép", "32 MP", "Android 12", "Snapdragon 8 Gen 1 8 nhân", "Adreno 730", "8GB", "Hỗ trợ 5G", "2 Nano SIM",
+        "Wi-Fi 802.11 a/b/g/n/ac/ax, Wi-Fi MIMO", "v5.2", "Type-C", "NFC, Hồng ngoại", "4500 mAh", "Li-lon", "67 W", "Sạc không dây, sạc ngược không dây");
+        
+insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
+	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
+    value ("vvv23", "AMOLED", "Full HD+ (1080 x 2400 Pixels)", "6.28' - Tần số quét 120 Hz", "1100", "Kính cường lực Corning Gorilla Glass Victus", "Chính 50 MP & Phụ 13 MP, 5 MP",
+		"Đèn LED kép", "32 MP", "Android 12", "Snapdragon 8 Gen 1 8 nhân", "Adreno 730", "8GB", "Hỗ trợ 5G", "2 Nano SIM",
+        "Wi-Fi 802.11 a/b/g/n/ac/ax, Wi-Fi MIMO", "v5.2", "Type-C", "NFC, Hồng ngoại", "4500 mAh", "Li-lon", "67 W", "Sạc không dây, sạc ngược không dây");
+        
 -- insert san pham
 
 insert into san_pham value ("13promax", "Iphone 13 Pro Max","iphone","iphone13promax","Màn hình ProMotion, chip A15 Bionic mạnh mẽ. Lên Pro thôi.");
