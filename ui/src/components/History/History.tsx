@@ -31,12 +31,17 @@ export const History = () => {
       if (isNil(phone)) return;
       const res = await getHistoryPayment({ sdt: phone });
       const { data } = res;
+
       setDetail(data?.chiTiet);
       setName(data?.chiTiet[0]?.hoTen);
+
       await fakeSleep(1000);
-      if (isEmpty(name)) {
+
+      if (isEmpty(data?.chiTiet[0]?.hoTen)) {
         await sleepAsync(3000);
+
         history.push("/search");
+        
         await fakeSleep(1000);
       }
     })();
