@@ -1,20 +1,27 @@
 /** @jsxImportSource @emotion/react */
 import "twin.macro";
 import React from "react";
+import { ProductSuggestion } from "models/utils.model";
+import { numberToVND } from 'utils/utils';
 
-export const Suggestion = () => {
+type Props = {
+  item: ProductSuggestion;
+};
+
+export const Suggestion = (props: Props) => {
+  const { item } = props;
   return (
-    <div tw='flex-col'>
+    <div tw="flex-col">
       <div
-      tw='h-56 w-56 bg-contain bg-center bg-no-repeat'
+        tw="h-56 w-56 bg-contain bg-center bg-no-repeat"
         style={{
           backgroundImage: `url('${
-            process.env.PUBLIC_URL + "/images/airpod.webp"
+            process.env.PUBLIC_URL + "/images/" + item.anh
           }')`,
         }}
       />
-      <div tw='text-sm leading-6'>Airpods Pro Hộp sạc không dây</div>
-      <div tw='font-bold'>4.990.000đ</div>
+      <div tw="text-sm leading-6">{item.ten}</div>
+      <div tw="font-bold">{numberToVND(item.gia)}</div>
     </div>
   );
 };
