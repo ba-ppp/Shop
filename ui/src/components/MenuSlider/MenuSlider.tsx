@@ -98,7 +98,7 @@ export const MenuSlider = (props: Props) => {
         />
         <SimpleListItem
           text="Galaxy Buds"
-          onClick={() => handleClickListItem("samsung", "buds")}
+          onClick={() => handleClickListItem("samsung", "headphone")}
         />
       </CollapsibleList>
 
@@ -117,14 +117,14 @@ export const MenuSlider = (props: Props) => {
           text="Phones"
           onClick={() => handleClickListItem("oppo", "phones")}
         />
-        <SimpleListItem
+        {/* <SimpleListItem
           text="OPPO Buds"
           onClick={() => handleClickListItem("oppo", "buds")}
         />
         <SimpleListItem
           text="OPPO Watch"
           onClick={() => handleClickListItem("oppo", "watches")}
-        />
+        /> */}
       </CollapsibleList>
       <CollapsibleList
         handle={
@@ -141,14 +141,14 @@ export const MenuSlider = (props: Props) => {
           text="Phones"
           onClick={() => handleClickListItem("xiaomi", "phones")}
         />
-        <SimpleListItem
+        {/* <SimpleListItem
           text="Xi Watch"
           onClick={() => handleClickListItem("xiaomi", "watches")}
         />
         <SimpleListItem
           text="Xiaomi Pad"
           onClick={() => handleClickListItem("xiaomi", "pad")}
-        />
+        /> */}
       </CollapsibleList>
       <CollapsibleList
         handle={

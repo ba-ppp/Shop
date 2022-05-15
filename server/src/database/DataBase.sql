@@ -375,11 +375,13 @@ insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("airpodpro", "AirPods 
 insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("airpodmax", "AirPods Max", "airpod","Chủ động khử tiếng ồn với chế độ xuyên âm, chế độ âm thanh không gian với tính năng theo dõi chuyển động.");
 insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("earpod", "EarPods", "airpod","Thiết kế theo hình dạng của tai, tối đa hóa đầu ra âm thanh và giảm thiểu việc mất âm thanh");
 
-insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("ia500", "Tai nghe nhét tai Samsung IA500", "ssbud","Thiết kế có dây truyền thống, đệm tai êm ái, trải nghiệm nghe phong phú, chất âm rõ nét với hệ thống loa 2 chiều.");
+insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("ia500", "Tai nghe nhét tai Có Dây Samsung IA500", "ssbud","Thiết kế có dây truyền thống, đệm tai êm ái, trải nghiệm nghe phong phú, chất âm rõ nét với hệ thống loa 2 chiều.");
 insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("eg920", "Tai nghe Có Dây Samsung EG920", "ssbud","Chủ động khử tiếng ồn với chế độ xuyên âm, chống mồ hôi, chống nước.");
 insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("ig935", "Tai nghe Có Dây Samsung IG935", "ssbud","Chủ động khử tiếng ồn với chế độ xuyên âm, chế độ âm thanh không gian với tính năng theo dõi chuyển động.");
 insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("budspro", "Tai nghe Bluetooth True Wireless Galaxy Buds Pro", "ssbud","Thiết kế sang trọng, thời thượng cùng hộp sạc đồng nhất màu sắc đi kèm, nghe rõ bất kỳ đâu cùng công nghệ chống ồn chủ động (ANC)");
-
+insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("budslive", "Tai nghe Bluetooth True Wireless Galaxy Buds Live", "ssbud","Ngoại hình hoàn toàn mới, độc đáo riêng biệt, nghe rõ bất kỳ đâu cùng công nghệ chống ồn chủ động (ANC)");
+insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("buds2", "Tai nghe Bluetooth True Wireless Galaxy Buds 2", "ssbud","Thiết kế sang trọng, thời thượng cùng hộp sạc đồng nhất màu sắc đi kèm, nghe rõ bất kỳ đâu cùng công nghệ chống ồn chủ động (ANC)");
+insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("bn920c", "Tai nghe Bluetooth Samsung Level U Pro BN920C", "ssbud","Thiết kế sang trọng, hai đầu tai nghe hít nam châm, công nghệ lọc tiếng ồn thông minh");
 -- insert chi tiet san pham
 insert into chi_tiet_sp value ("1", "128GB",29190000,"13promax");
 insert into chi_tiet_sp value ("2", "256GB",32890000,"13promax");
@@ -488,6 +490,9 @@ insert into chi_tiet_sp value ("80","0", 300000,"ia500");
 insert into chi_tiet_sp value ("81","0", 280000,"eg920");
 insert into chi_tiet_sp value ("82","0", 300000,"ig935");
 insert into chi_tiet_sp value ("83","0", 2490000,"budspro");
+insert into chi_tiet_sp value ("84","0", 1990000,"budslive");
+insert into chi_tiet_sp value ("85","0", 2990000,"buds2");
+insert into chi_tiet_sp value ("86","0", 1450000,"bn920c");
 
 -- insert mau sac
 
@@ -636,8 +641,14 @@ insert into mau_sac value ("111","Xám","public_images_b08df22d_4b5e_46a8_87c5_f
 
 insert into mau_sac value ("112","Đen","nhet-tai-samsung-ia500-den-041221-063201-600x600.jpg","ia500");
 insert into mau_sac value ("113","Đỏ","tai-nghe-nhet-tai-samsung-eg920b-avatar-600x600.jpg","eg920");
+insert into mau_sac value ("118","Đen","tai-nghe-15.jpg","eg920");
 insert into mau_sac value ("114","Đen","tai-nghe-nhet-tai-samsung-ig935b-avatar-1-600x600.jpg","ig935");
 insert into mau_sac value ("117","Trắng","tai-nghe-nhet-trong-samsung-ig935b-trang-1-2-org.jpg","ig935");
 insert into mau_sac value ("115","Bạc","bluetooth-true-wireless-galaxy-buds-pro-bac-thumb-600x600.jpeg","budspro");
 insert into mau_sac value ("116","Đen","tai-nghe-bluetooth-true-wireless-galaxy-buds-pro-ava-1-600x600.jpg","budspro");
+insert into mau_sac value ("119","Đồng","ai-nghe-bluetooth-true-wireless-samsung-galaxy-buds-live-r180-gold-thumb-600x600.jpeg","budslive");
+insert into mau_sac value ("120","Trắng","samsung-galaxy-buds-2-r177n-trang-thumb-3-600x600.jpeg","buds2");
+insert into mau_sac value ("121","Đen","samsung-galaxy-buds-2-r177n-600x600.jpg","buds2");
+insert into mau_sac value ("122","Đồng","tai-nghe-bluetooth-samsung-level-u-pro-bn920c-avatar-1-1-600x600.jpg","bn920c");
+insert into mau_sac value ("123","Đen","tai-nghe-bluetooth-samsung-level-u-pro-bn920c-den-3-org.jpg","bn920c");
 
