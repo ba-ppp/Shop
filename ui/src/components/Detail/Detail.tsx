@@ -46,6 +46,7 @@ export const Detail = () => {
   const [data, setData] = useState<DetailData>();
   const [currentPrice, setCurrentPrice] = useState(0);
   const [currentImage, setCurrentImage] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const toggle = useSelector((state: RootState) => state.toggle);
 
@@ -79,6 +80,7 @@ export const Detail = () => {
     if (isNil(data)) return;
 
     setCurrentPrice(data?.gia?.[index]);
+    setCurrentIndex(index);
   };
 
   const handleAddToCart = () => {
@@ -125,6 +127,7 @@ export const Detail = () => {
                       capacity={capacity}
                       index={index}
                       handleClickBox={handleClickRecBox}
+                      currentIndex={currentIndex}
                     />
                   );
                 })}

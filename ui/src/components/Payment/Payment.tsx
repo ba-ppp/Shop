@@ -194,6 +194,7 @@ export const Payment = () => {
         const { data } = res.data;
         window.location.href = data.payUrl;
       }
+      await sleepAsync(1500);
     }
     await handleClearPayment();
     customToast.success("Đã đặt hàng thành công");
@@ -266,14 +267,14 @@ export const Payment = () => {
         <div tw="mb-3">Thông tin khách hàng</div>
         <div tw="flex justify-between">
           <input
-            tw="border p-2 rounded width[261px] height[40px]"
+            tw="border p-2 rounded width[261px] height[40px] focus:outline-none"
             type="text"
             placeholder="Họ và tên: "
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <input
-            tw="border p-2 rounded width[261px] height[40px]"
+            tw="border p-2 rounded width[261px] height[40px] focus:outline-none"
             type="text"
             placeholder="Số điện thoại: "
             value={phone}
