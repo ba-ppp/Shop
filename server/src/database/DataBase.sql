@@ -2,6 +2,7 @@
 -- drop database NLCS;
 -- create database NLCS;
 -- use NLCS;
+
 create table hang(
 	id_hang varchar(50) primary key,
     ten_hang varchar(50) not null,
@@ -137,7 +138,7 @@ insert into loai values("airpod","Headphone","apple");
 
 insert into loai values("ss","Phones","samsung");
 insert into loai values("sstab","Tablet","samsung");
--- insert into loai values("airpod","Headphone","samsung");
+insert into loai values("ssbud","Headphone","samsung");
 
 insert into loai values("opo","Phones","oppo");
 -- insert into loai values("tablet","Tablet","oppo");
@@ -329,6 +330,19 @@ insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh
     value ("tabs8ultra", "Super AMOLED", "1848 x 2960 Pixels", "14' - Tần số quét 120 Hz", "Đang cập nhật", "Kính cường lực Corning Gorilla Glass 5", "Chính 13 MP & Phụ 6 MP",
 		"Có", "12 MP", "Android 12", "Snapdragon 8 Gen 1 8 nhân", "Adreno 730", "8GB", "Hỗ trợ 5G", "1 Nano SIM",
         "MIMO, Wi-Fi 802.11 a/b/g/n/ac/ax", "v5.2", "Type-C", "Samsung DeX (Giao diện tương tự PC)", "11200 mAh", "Li-Po", "45 W", "Sạc pin nhanh, tiết kiệm pin" );
+
+insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
+	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
+    value ("mi12", "AMOLED", "Full HD+ (1080 x 2400 Pixels)", "6.28' - Tần số quét 120 Hz", "1100", "Kính cường lực Corning Gorilla Glass Victus", "Chính 50 MP & Phụ 13 MP, 5 MP",
+		"Đèn LED kép", "32 MP", "Android 12", "Snapdragon 8 Gen 1 8 nhân", "Adreno 730", "8GB", "Hỗ trợ 5G", "2 Nano SIM",
+        "Wi-Fi 802.11 a/b/g/n/ac/ax, Wi-Fi MIMO", "v5.2", "Type-C", "NFC, Hồng ngoại", "4500 mAh", "Li-lon", "67 W", "Sạc không dây, sạc ngược không dây");
+        
+insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
+	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
+    value ("vvv23", "AMOLED", "Full HD+ (1080 x 2400 Pixels)", "6.28' - Tần số quét 120 Hz", "1100", "Kính cường lực Corning Gorilla Glass Victus", "Chính 50 MP & Phụ 13 MP, 5 MP",
+		"Đèn LED kép", "32 MP", "Android 12", "Snapdragon 8 Gen 1 8 nhân", "Adreno 730", "8GB", "Hỗ trợ 5G", "2 Nano SIM",
+        "Wi-Fi 802.11 a/b/g/n/ac/ax, Wi-Fi MIMO", "v5.2", "Type-C", "NFC, Hồng ngoại", "4500 mAh", "Li-lon", "67 W", "Sạc không dây, sạc ngược không dây");
+        
 -- insert san pham
 
 insert into san_pham value ("13promax", "Iphone 13 Pro Max","iphone","iphone13promax","Màn hình ProMotion, chip A15 Bionic mạnh mẽ. Lên Pro thôi.");
@@ -374,7 +388,13 @@ insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("airpodpro", "AirPods 
 insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("airpodmax", "AirPods Max", "airpod","Chủ động khử tiếng ồn với chế độ xuyên âm, chế độ âm thanh không gian với tính năng theo dõi chuyển động.");
 insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("earpod", "EarPods", "airpod","Thiết kế theo hình dạng của tai, tối đa hóa đầu ra âm thanh và giảm thiểu việc mất âm thanh");
 
-
+insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("ia500", "Tai nghe nhét tai Có Dây Samsung IA500", "ssbud","Thiết kế có dây truyền thống, đệm tai êm ái, trải nghiệm nghe phong phú, chất âm rõ nét với hệ thống loa 2 chiều.");
+insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("eg920", "Tai nghe Có Dây Samsung EG920", "ssbud","Chủ động khử tiếng ồn với chế độ xuyên âm, chống mồ hôi, chống nước.");
+insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("ig935", "Tai nghe Có Dây Samsung IG935", "ssbud","Chủ động khử tiếng ồn với chế độ xuyên âm, chế độ âm thanh không gian với tính năng theo dõi chuyển động.");
+insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("budspro", "Tai nghe Bluetooth True Wireless Galaxy Buds Pro", "ssbud","Thiết kế sang trọng, thời thượng cùng hộp sạc đồng nhất màu sắc đi kèm, nghe rõ bất kỳ đâu cùng công nghệ chống ồn chủ động (ANC)");
+insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("budslive", "Tai nghe Bluetooth True Wireless Galaxy Buds Live", "ssbud","Ngoại hình hoàn toàn mới, độc đáo riêng biệt, nghe rõ bất kỳ đâu cùng công nghệ chống ồn chủ động (ANC)");
+insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("buds2", "Tai nghe Bluetooth True Wireless Galaxy Buds 2", "ssbud","Thiết kế sang trọng, thời thượng cùng hộp sạc đồng nhất màu sắc đi kèm, nghe rõ bất kỳ đâu cùng công nghệ chống ồn chủ động (ANC)");
+insert into san_pham(id_sp, ten_sp,id_loai, mo_ta) value ("bn920c", "Tai nghe Bluetooth Samsung Level U Pro BN920C", "ssbud","Thiết kế sang trọng, hai đầu tai nghe hít nam châm, công nghệ lọc tiếng ồn thông minh");
 -- insert chi tiet san pham
 insert into chi_tiet_sp value ("1", "128GB",29190000,"13promax");
 insert into chi_tiet_sp value ("2", "256GB",32890000,"13promax");
@@ -388,10 +408,10 @@ insert into chi_tiet_sp value ("7", "256GB",17000000,"se2022");
 insert into chi_tiet_sp value ("8", "256GB",36990000,"zfold3");
 insert into chi_tiet_sp value ("9", "512GB",39990000,"zfold3");
 
-insert into chi_tiet_sp(id_chitiet, gia, id_sp) value ("10", 4590000,"airpod3");
-insert into chi_tiet_sp(id_chitiet, gia, id_sp) value ("11", 4990000,"airpodpro");
-insert into chi_tiet_sp(id_chitiet, gia, id_sp) value ("12", 12490000,"airpodmax");
-insert into chi_tiet_sp(id_chitiet, gia, id_sp) value ("13", 549000,"earpod");
+insert into chi_tiet_sp value ("10","0", 4590000,"airpod3");
+insert into chi_tiet_sp value ("11","0", 4990000,"airpodpro");
+insert into chi_tiet_sp value ("12","0", 12490000,"airpodmax");
+insert into chi_tiet_sp value ("13","0", 549000,"earpod");
 
 insert into chi_tiet_sp value ("14", "128GB",21290000,"13");
 insert into chi_tiet_sp value ("15", "256GB",23690000,"13");
@@ -478,6 +498,15 @@ insert into chi_tiet_sp value ("77", "64GB",14990000,"mini6wifi");
 insert into chi_tiet_sp value ("78", "256GB",19990000,"mini6wifi");
 
 insert into chi_tiet_sp value ("79", "128GB",28490000,"tabs8ultra");
+
+insert into chi_tiet_sp value ("80","0", 300000,"ia500");
+insert into chi_tiet_sp value ("81","0", 280000,"eg920");
+insert into chi_tiet_sp value ("82","0", 300000,"ig935");
+insert into chi_tiet_sp value ("83","0", 2490000,"budspro");
+insert into chi_tiet_sp value ("84","0", 1990000,"budslive");
+insert into chi_tiet_sp value ("85","0", 2990000,"buds2");
+insert into chi_tiet_sp value ("86","0", 1450000,"bn920c");
+
 -- insert mau sac
 
 insert into mau_sac value ("1","Vàng Đồng","iphone-13-pro-max-gold-650x650.png","13promax");
@@ -508,10 +537,10 @@ insert into mau_sac value ("21","Đen","iphone-12-black-1-650x650.png","12");
 insert into mau_sac value ("22","Trắng","iphone-12-white-1-650x650.png","12");
 insert into mau_sac value ("23","Xanh Lá","iphone-12-green-1-1-650x650.png","12");
 
-insert into mau_sac value ("24","","airpods-3-thumb-650x650.png","airpod3");
-insert into mau_sac value ("25","","airpods-pro-thumb-650x650.png","airpodpro");
-insert into mau_sac value ("26","","airpods-max-select-bac-thumb-650x650.png","airpodmax");
-insert into mau_sac value ("27","","earpod-lightning-trang-thumb-1-650x650.png","earpod");
+insert into mau_sac value ("24","Trắng","airpods-3-thumb-650x650.png","airpod3");
+insert into mau_sac value ("25","Trắng","airpods-pro-thumb-650x650.png","airpodpro");
+insert into mau_sac value ("26","Trắng","airpods-max-select-bac-thumb-650x650.png","airpodmax");
+insert into mau_sac value ("27","Trắng","earpod-lightning-trang-thumb-1-650x650.png","earpod");
 
 insert into mau_sac value ("28","Vàng Đồng","iphone-13-pro-gold-650x650.png","13pro");
 insert into mau_sac value ("29","Bạc","iphone-13-pro-silver-650x650.png","13pro");
@@ -622,3 +651,17 @@ insert into mau_sac value ("109","Trắng","ipad-mini-6-5g-startlight-650x650.pn
 insert into mau_sac value ("110","Xám","ipad-mini-6-5g-gray-650x650.png","mini6wifi");
 
 insert into mau_sac value ("111","Xám","public_images_b08df22d_4b5e_46a8_87c5_fc303e133f8a_1500x1500.jpg","tabs8ultra");
+
+insert into mau_sac value ("112","Đen","nhet-tai-samsung-ia500-den-041221-063201-600x600.jpg","ia500");
+insert into mau_sac value ("113","Đỏ","tai-nghe-nhet-tai-samsung-eg920b-avatar-600x600.jpg","eg920");
+insert into mau_sac value ("118","Đen","tai-nghe-15.jpg","eg920");
+insert into mau_sac value ("114","Đen","tai-nghe-nhet-tai-samsung-ig935b-avatar-1-600x600.jpg","ig935");
+insert into mau_sac value ("117","Trắng","tai-nghe-nhet-trong-samsung-ig935b-trang-1-2-org.jpg","ig935");
+insert into mau_sac value ("115","Bạc","bluetooth-true-wireless-galaxy-buds-pro-bac-thumb-600x600.jpeg","budspro");
+insert into mau_sac value ("116","Đen","tai-nghe-bluetooth-true-wireless-galaxy-buds-pro-ava-1-600x600.jpg","budspro");
+insert into mau_sac value ("119","Đồng","ai-nghe-bluetooth-true-wireless-samsung-galaxy-buds-live-r180-gold-thumb-600x600.jpeg","budslive");
+insert into mau_sac value ("120","Trắng","samsung-galaxy-buds-2-r177n-trang-thumb-3-600x600.jpeg","buds2");
+insert into mau_sac value ("121","Đen","samsung-galaxy-buds-2-r177n-600x600.jpg","buds2");
+insert into mau_sac value ("122","Đồng","tai-nghe-bluetooth-samsung-level-u-pro-bn920c-avatar-1-1-600x600.jpg","bn920c");
+insert into mau_sac value ("123","Đen","tai-nghe-bluetooth-samsung-level-u-pro-bn920c-den-3-org.jpg","bn920c");
+
