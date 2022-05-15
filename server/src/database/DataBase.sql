@@ -334,14 +334,20 @@ insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh
 insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
 	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
     value ("mi12", "AMOLED", "Full HD+ (1080 x 2400 Pixels)", "6.28' - Tần số quét 120 Hz", "1100", "Kính cường lực Corning Gorilla Glass Victus", "Chính 50 MP & Phụ 13 MP, 5 MP",
-		"Đèn LED kép", "32 MP", "Android 12", "Snapdragon 8 Gen 1 8 nhân", "Adreno 730", "8GB", "Hỗ trợ 5G", "2 Nano SIM",
-        "Wi-Fi 802.11 a/b/g/n/ac/ax, Wi-Fi MIMO", "v5.2", "Type-C", "NFC, Hồng ngoại", "4500 mAh", "Li-lon", "67 W", "Sạc không dây, sạc ngược không dây");
+		"Có", "32 MP", "Android 12", "Snapdragon 8 Gen 1 8 nhân", "Adreno 730", "8GB", "Hỗ trợ 5G", "2 Nano SIM",
+        "Wi-Fi 802.11 a/b/g/n/ac/ax", "v5.2", "Type-C", "NFC, Hồng ngoại", "4500 mAh", "Li-lon", "67 W", "Sạc không dây, sạc ngược không dây");
         
 insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
 	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
-    value ("vvv23", "AMOLED", "Full HD+ (1080 x 2400 Pixels)", "6.28' - Tần số quét 120 Hz", "1100", "Kính cường lực Corning Gorilla Glass Victus", "Chính 50 MP & Phụ 13 MP, 5 MP",
-		"Đèn LED kép", "32 MP", "Android 12", "Snapdragon 8 Gen 1 8 nhân", "Adreno 730", "8GB", "Hỗ trợ 5G", "2 Nano SIM",
-        "Wi-Fi 802.11 a/b/g/n/ac/ax, Wi-Fi MIMO", "v5.2", "Type-C", "NFC, Hồng ngoại", "4500 mAh", "Li-lon", "67 W", "Sạc không dây, sạc ngược không dây");
+    value ("mi12pro", "AMOLED", "2K+ (1440 x 3200 Pixels)", "6.73' - Tần số quét 120 Hz", "1500", "Kính cường lực Corning Gorilla Glass Victus", "3 camera 50 MP",
+		"Có", "32 MP", "Android 12", "Snapdragon 8 Gen 1 8 nhân", "Adreno 730", "12GB", "Hỗ trợ 5G", "2 Nano SIM",
+        "Wi-Fi 802.11 a/b/g/n/ac/ax", "v5.2", "Type-C", "NFC, Hồng ngoại", "4600 mAh", "Li-lon", "120 W", "Sạc không dây, sạc ngược không dây");
+        
+insert into thong_tin(id_tt, cn_man, do_phan_giai, kich_thuoc, do_sang, mat_kinh, camera_sau, den_flash, camera_truoc, he_dieu_hanh, CPU, GPU, ram,
+	mang_di_dong, sim, wifi, bluetooth, cong_sac, ket_noi_khac, dung_luong_pin, loai_pin, toc_do_sac, cong_nghe_pin)  
+    value ("vvv23", "AMOLED", "Full HD+ (1080 x 2400 Pixels)", "6.44' - Tần số quét 90 Hz", "600", "Kính cường lực Corning Gorilla Glass", "Chính 64 MP & Phụ 8 MP, 2 MP",
+		"Có", "Chính 50 MP & Phụ 8 MP", "Android 12", "MediaTek Dimensity 920 5G 8 nhân", "Mali-G68 MC4", "8GB", "Hỗ trợ 5G", "2 Nano SIM",
+        "Wi-Fi 802.11 a/b/g/n/ac/ax", "v5.2", "Type-C", "NFC", "4200 mAh", "Li-Po", "44 W", "Sạc không dây");
         
 -- insert san pham
 
@@ -380,6 +386,13 @@ insert into san_pham value ("air5wifi", "iPad Air 5 M1 Wifi","ipad","air5wifi","
 
 insert into san_pham value ("mini6", "iPad Mini 6 Celluler","ipad","air5","Chip Apple M1 vượt trội, kết nối với Apple Pen 2 và Magic Keyboard.");
 insert into san_pham value ("mini6wifi", "iPad Mini 6 Wifi","ipad","air5wifi","Chip Apple M1 vượt trội, kết nối với Apple Pen 2.");
+
+insert into san_pham value ("tabs8ultra", "Samsung Galaxy Tab S8 Ultra","sstab","tabs8ultra","Màn hình lớn, đa nhiệm đa tác vụ, bút S Pen được nâng cấp toàn diện hơn.");
+
+insert into san_pham value ("mi12", "Xiaomi Mi 12","mi","mi12","Thiết kế nhỏ gọn, tràn viền hiện đại, cấu hình mạnh mẽ với chip Snapdragon 8 Gen 1 8 nhân.");
+insert into san_pham value ("mi12pro", "Xiaomi Mi 12 Pro","mi","mi12","Thiết kế tràn viền hiện đại, chụp ảnh sắc nét với 3 camera 50 MP, cấu hình mạnh mẽ với chip Snapdragon 8 Gen 1 8 nhân.");
+
+insert into san_pham value ("vvv23", "Vivo V23","vv","vvv23","Thiết kế sang xịn, Selfie Phone chất lượng hàng đầu trong phân khúc.");
 
 insert into san_pham value ("tabs8ultra", "Samsung Galaxy Tab S8 Ultra","sstab","tabs8ultra","Màn hình lớn, đa nhiệm đa tác vụ, bút S Pen được nâng cấp toàn diện hơn.");
 
@@ -506,6 +519,11 @@ insert into chi_tiet_sp value ("83","0", 2490000,"budspro");
 insert into chi_tiet_sp value ("84","0", 1990000,"budslive");
 insert into chi_tiet_sp value ("85","0", 2990000,"buds2");
 insert into chi_tiet_sp value ("86","0", 1450000,"bn920c");
+
+insert into chi_tiet_sp value ("87", "256GB",27990000,"mi12pro");
+insert into chi_tiet_sp value ("88", "256GB",19990000,"mi12");
+
+insert into chi_tiet_sp value ("89", "120GB",12990000,"vvv23");
 
 -- insert mau sac
 
@@ -665,3 +683,13 @@ insert into mau_sac value ("121","Đen","samsung-galaxy-buds-2-r177n-600x600.jpg
 insert into mau_sac value ("122","Đồng","tai-nghe-bluetooth-samsung-level-u-pro-bn920c-avatar-1-1-600x600.jpg","bn920c");
 insert into mau_sac value ("123","Đen","tai-nghe-bluetooth-samsung-level-u-pro-bn920c-den-3-org.jpg","bn920c");
 
+insert into mau_sac value ("124","Xám","xiaomi-12-1.jpg","mi12");
+insert into mau_sac value ("125","Xanh Dương","xiaomi-12-1-1.jpg","mi12");
+insert into mau_sac value ("126","Tím","xiaomi-mi-12-1.jpg","mi12");
+
+insert into mau_sac value ("127","Tím","xiaomi-12-pro-1-1.jpg","mi12pro");
+insert into mau_sac value ("128","Xám","xiaomi-12-pro-1-2.jpg","mi12pro");
+insert into mau_sac value ("129","Xanh Dương","xiaomi-12-pro-1-3.jpg","mi12pro");
+
+insert into mau_sac value ("130","Vàng","vivo-v23-5g-vang-1.jpg","vvv23");
+insert into mau_sac value ("131","Xanh Đen","vivo-v23-5g-xanh-1.jpg","vvv23");
