@@ -42,10 +42,11 @@ function App() {
     if (isNil(location.pathname)) return;
 
     const pathNotHaveMenu = ["/", "/search", "/history", '/payment'];
-
+    console.log(location.pathname)
     if (pathNotHaveMenu.includes(location.pathname)) {
       dispatch(toggleMenuSelect(false));
     } else {
+
       dispatch(toggleMenuSelect(true));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

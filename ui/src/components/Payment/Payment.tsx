@@ -7,7 +7,7 @@ import { PaymentItem } from "./PaymentItem";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import { has, isEmpty, last, mapValues } from "lodash";
+import { has, isEmpty,mapValues } from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "app/reducer/reducer";
 import { dataToOptions, numberToVND, sleepAsync } from "utils/utils";
@@ -39,10 +39,6 @@ export const Payment = () => {
   const [selectedCity, setSelectedCity] = useState<any>([]);
   const [selectedDistrict, setSelectedDistrict] = useState<any>([]);
   const [selectedWard, setSelectedWard] = useState<any>([]);
-
-  const [defaultCity, setDefaultCity] = useState<string>("");
-  const [defaultDistrict, setDefaultDistrict] = useState<string>("");
-  const [defaultWard, setDefaultWard] = useState<string>("");
 
   const { status }: any = useParams();
 
@@ -132,7 +128,7 @@ export const Payment = () => {
       setName(name);
       setPhone(phone);
     }
-  });
+  }, []);
 
   useEffect(() => {
     handleGetProvinde();
@@ -329,11 +325,9 @@ export const Payment = () => {
           </div>
         </div>
       </div>
-      {console.log("defaultCity", defaultCity)}
       {shipOptions.shipHome && (
         <div tw="w-1/2 mx-auto grid grid-cols-2 grid-rows-2 p-3 border gap-5 rounded-xl">
           <Select
-            defaultValue={defaultCity}
             placeholder="Chọn Tỉnh / Thành"
             options={city}
             onChange={handleChangeCity}

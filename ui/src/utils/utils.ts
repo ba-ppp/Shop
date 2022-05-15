@@ -47,7 +47,7 @@ export const getButtonColorFromVN = (text: string) => {
   if (["vàng đồng"].includes(lowerText)) {
     return "yellow";
   }
-  if (["xanh lá"].includes(lowerText)) {
+  if (["xanh lá", "xanh rêu"].includes(lowerText)) {
     return "green";
   }
   if (["xanh dương"].includes(lowerText)) {

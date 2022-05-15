@@ -21,12 +21,12 @@ export const momoSNS = () => {
         orderId,
         orderInfo: "Muadt",
         partnerCode: "MOMOVN6L20220429",
-        redirectUrl: "http://localhost:3000/payment",
+        redirectUrl: "http://localhost:3000/shop",
         requestId,
         requestType: "captureWallet",
       };
 
-      const stringToHash = `accessKey=VK9in7lVWnI2HcRZ&amount=${amountString}&extraData=&ipnUrl=http://localhost:8080/momo/notification&orderId=${orderId}&orderInfo=Muadt&partnerCode=MOMOVN6L20220429&redirectUrl=http://localhost:3000/payment&requestId=${requestId}&requestType=captureWallet`;
+      const stringToHash = `accessKey=VK9in7lVWnI2HcRZ&amount=${amountString}&extraData=&ipnUrl=http://localhost:8080/momo/notification&orderId=${orderId}&orderInfo=Muadt&partnerCode=MOMOVN6L20220429&redirectUrl=http://localhost:3000/shop&requestId=${requestId}&requestType=captureWallet`;
       const myHash = sha256.hmac( 
         "mkU3vhIpVoGlvETXuKqJEeFzZFWEZyZu",
         stringToHash
