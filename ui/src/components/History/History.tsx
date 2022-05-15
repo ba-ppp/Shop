@@ -41,7 +41,7 @@ export const History = () => {
         await sleepAsync(3000);
 
         history.push("/search");
-        
+
         await fakeSleep(1000);
       }
     })();

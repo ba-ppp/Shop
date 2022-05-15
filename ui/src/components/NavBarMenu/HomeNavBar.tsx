@@ -25,15 +25,16 @@ export const HomeNavBar = () => {
     setActiveNav(id);
   };
 
-
   useEffect(() => {
-    if (location.pathname === '/') {
+    if (location.pathname === "/") {
       setActiveNav(1);
     }
-    if (location.pathname === '/search') {
+    if (location.pathname === "/search") {
       setActiveNav(2);
     }
-
+    if (location.pathname === "/payment") {
+      setActiveNav(3);
+    }
   }, [location]);
 
   return (
@@ -44,7 +45,7 @@ export const HomeNavBar = () => {
             <NavLink to="/">
               <div tw="flex items-center space-x-2 mt-16">
                 {/* <Logo width={32} height={32} /> */}
-                <img src={Logo} alt="logo" width={32} height={32}/>
+                <img src={Logo} alt="logo" width={32} height={32} />
                 <div tw="flex text-2xl">
                   <span tw="text-style-purple-2 font-black">Phone</span>
                   <span tw="font-black">Store</span>
@@ -54,7 +55,7 @@ export const HomeNavBar = () => {
 
             <div tw="mt-16">
               <ul tw="flex space-x-8 text-sm list-none">
-              <li
+                <li
                   css={[activeNav === 1 && activeNavStyle, navStyle]}
                   onClick={() => handleChangeNav(1)}
                 >

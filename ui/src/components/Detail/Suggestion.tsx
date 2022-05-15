@@ -11,7 +11,7 @@ type Props = {
 export const Suggestion = (props: Props) => {
   const { item } = props;
   return (
-    <div tw="flex-col">
+    <div tw="flex-col cursor-pointer">
       <div
         tw="h-56 w-56 bg-contain bg-center bg-no-repeat"
         style={{

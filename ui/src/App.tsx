@@ -41,7 +41,7 @@ function App() {
   useEffect(() => {
     if (isNil(location.pathname)) return;
 
-    const pathNotHaveMenu = ["/", "/search", "/history"];
+    const pathNotHaveMenu = ["/", "/search", "/history", '/payment'];
 
     if (pathNotHaveMenu.includes(location.pathname)) {
       dispatch(toggleMenuSelect(false));

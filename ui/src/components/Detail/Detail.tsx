@@ -170,12 +170,12 @@ export const Detail = () => {
               <div tw="mt-5 flex space-x-5">
                 <button
                   onClick={handleAddToCart}
-                  tw="bg-style-purple-1 hover:bg-style-purple-2 text-white font-bold py-3 px-4 rounded inline-flex items-center space-x-2"
+                  tw="bg-style-purple-2 hover:bg-style-purple-3 text-white font-bold py-3 px-4 rounded inline-flex items-center space-x-2"
                 >
                   <AddToCart fill="white" height={24} width={24} />
                   <span>Thêm vào giỏ hàng</span>
                 </button>
-                <button tw="bg-style-purple-2 px-4 py-3 rounded text-white">
+                <button tw="cursor-not-allowed bg-style-purple-1 px-4 py-3 rounded text-white">
                   Mua ngay
                 </button>
               </div>

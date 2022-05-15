@@ -7,7 +7,7 @@ import { PaymentItem } from "./PaymentItem";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import { has, isEmpty, mapValues, toNumber } from "lodash";
+import { has, isEmpty, mapValues } from "lodash";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "app/reducer/reducer";
 import { dataToOptions, numberToVND, sleepAsync } from "utils/utils";
@@ -247,13 +247,13 @@ export const Payment = () => {
   }, [cart.items, cart.amount]);
 
   return (
-    <div tw="mt-16 mb-10 ml-auto mr-auto width[70%]">
+    <div tw="mt-6 mb-10 ml-auto mr-auto width[70%]">
       {toggle.isLoading && (
         <div className="loader__component">
           <Loader />
         </div>
       )}
-      <h1 tw="text-xl text-style-purple-1 font-bold mb-5 w-1/2 ml-auto">
+      <h1 tw="text-xl text-style-purple-1 font-bold mb-5 text-center ml-auto">
         Giỏ Hàng
       </h1>
       {cart.items.map((item, index) => {
@@ -332,7 +332,7 @@ export const Payment = () => {
       </div>
       <div tw="w-1/2 m-auto justify-between p-3 flex mt-5">
         <div>Tổng tiền:</div>
-        <div tw="text-style-purple-1">{numberToVND(prices)}</div>
+        <div tw="font-semibold text-style-purple-2">{numberToVND(prices)}</div>
       </div>
       <div tw="w-1/2 m-auto justify-between p-3">
         <div>Chọn hình thức thanh toán</div>
@@ -377,7 +377,7 @@ export const Payment = () => {
       </div>
       <div
         onClick={handlePayment}
-        tw=" text-xl text-center rounded-xl w-1/2 m-auto justify-between p-3 border border-style-purple-1 bg-style-purple-1 text-white font-bold cursor-pointer"
+        tw=" text-xl text-center rounded-xl w-1/2 m-auto justify-between p-3 border border-style-purple-2 bg-style-purple-2 hover:bg-style-purple-3 text-white font-bold cursor-pointer"
       >
         Đặt hàng
       </div>
