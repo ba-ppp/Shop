@@ -46,7 +46,7 @@ function App() {
     if (pathNotHaveMenu.includes(location.pathname)) {
       dispatch(toggleMenuSelect(false));
     } else {
-
+      console.log('first')
       dispatch(toggleMenuSelect(true));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

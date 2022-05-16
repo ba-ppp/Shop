@@ -38,7 +38,7 @@ export const createStripe = () => {
           line_items: newItem,
 
           mode: "payment",
-          success_url: "http://localhost:3000/shop",
+          success_url: "http://localhost:3000/payment/success",
           cancel_url: "http://localhost:3000/payment/cancel",
         });
 
