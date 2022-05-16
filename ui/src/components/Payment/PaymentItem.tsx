@@ -34,9 +34,8 @@ export const PaymentItem = (props: Props) => {
 
   const handleInputAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    console.log("value", value);
+
     let newCurrentAmount = toNumber(value);
-    console.log("newCurrentAmount", newCurrentAmount);
 
     const newAmount = [...cart.amount];
     newAmount[index] = newCurrentAmount;
